@@ -35,7 +35,7 @@ namespace Bellona_Console.Bots {
                     if (this.wowinfo.ComboPoints == 5) {
                         DruidDPS.rip.ReCast(this.wowinfo, this.Target.Unit);
                     }
-                    if (this.Player.Unit.SecondaryPower > 80) {
+                    if (this.Player.Unit.SecondaryPower > 60) {
                         DruidDPS.shred.SendCast();
                     }
                 }
