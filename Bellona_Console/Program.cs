@@ -75,7 +75,7 @@ namespace Bellona_Console {
                             break;
                     }
                 }
-                WowPrinter.PrintExit(ConstStrings.GoodByeMessega);
+                //WowPrinter.PrintExit(ConstStrings.GoodByeMessega);
                 return;
             }
 

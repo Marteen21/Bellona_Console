@@ -35,14 +35,13 @@ namespace Bellona_Console.Bots {
             else {
                 Target.Unit.Refresh(wow, Target);
             }
-            if (wowinfo.FocusGUID == 0) {
-                return; //No Focus
-            }
-            if (Focus.GUID != wowinfo.FocusGUID) {
-                Focus = new GameObject(wow, this.wowinfo.FocusGUID);
-            }
-            else {
-                Focus.Unit.Refresh(wow, Focus);
+            if (wowinfo.FocusGUID != 0) {
+                if (Focus.GUID != wowinfo.FocusGUID) {
+                    Focus = new GameObject(wow, this.wowinfo.FocusGUID);
+                }
+                else {
+                    Focus.Unit.Refresh(wow, Focus);
+                }
             }
             Rota();
 
