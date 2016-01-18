@@ -56,6 +56,9 @@ namespace Bellona_Console {
                 if (PlayerObject.Unit.WowClass == WoWClass.Warlock) {
                     WarlockDPS mybot = new WarlockDPS(wow, clientInfo, 100);
                 }
+                else if (PlayerObject.Unit.WowClass == WoWClass.Druid) {
+                    DruidDPS mybot = new DruidDPS(wow, clientInfo, 100);
+                }
                 while (Console.ReadLine() != "STOP") {
 
                 }
