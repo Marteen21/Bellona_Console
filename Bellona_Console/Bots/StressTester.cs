@@ -8,49 +8,40 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bellona_Console.Bots {
-    class StressTester {
+    class StressTester : Bot{
         private BlackMagic wow;
         private WoWGlobal wowinfo;
         private GameObject Player;
         private GameObject Target;
-        private System.Timers.Timer aTimer;
-        private long ticks = 0;
-        private static int cursorTopPos = 1;
 
-        public StressTester(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) {
-            Console.Clear();
+        public StressTester(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(tt) {
             this.wow = wowProcess;
             this.wowinfo = globalinfo;
             Player = new GameObject(wowProcess, this.wowinfo.PlayerGUID);
             Target = new GameObject(wowProcess, this.wowinfo.TargetGUID);
-            SetupTimer(tt);
-            this.aTimer.Elapsed += TestEvent;
         }
-        private void SetupTimer(uint tt) {
-            aTimer = new System.Timers.Timer();
-            aTimer.Interval = tt;
-            aTimer.AutoReset = true;
-            aTimer.Enabled = true;
-        }
-        private void RefreshTick() {
+
+        public override void BotEvent(Object source, System.Timers.ElapsedEventArgs e) {
+            this.ticks++;
+            PrintToConsoleAt(("Refreshing Global info " + this.ticks), 1);
             wowinfo.Refresh(wow);
+            PrintToConsoleAt(("Refreshing Player Unit info " + this.ticks), 2);
             Player.RefreshUnit(wow);
             if (Target.GUID != wowinfo.TargetGUID) {
+                PrintToConsoleAt(("Target changed " + this.ticks), 3);
                 Target = new GameObject(wow, this.wowinfo.TargetGUID);
             }
-            Target.RefreshUnit(wow);
-            PrintTicks();
+            if (Target.GUID == 0) {
+                PrintToConsoleAt(("No target " + this.ticks), 4);
+            }
+            else {
+                PrintToConsoleAt(("Refreshing Target Unit info " + this.ticks), 5);
+                Target.RefreshUnit(wow);
+            }
+        }
+        private void PrintToConsoleAt(string str, int ctop) {
+            Console.WriteLine(str);
+        }
 
-        }
-        public void TestEvent(Object source, System.Timers.ElapsedEventArgs e) {
-            this.RefreshTick();
-        }
-        private void PrintTicks() {
-            this.ticks++;
-            int temp = Console.CursorTop;
-            Console.CursorTop = cursorTopPos;
-            Console.WriteLine("Stress test is running " + ticks);
-            Console.CursorTop = temp;
-        }
     }
 }

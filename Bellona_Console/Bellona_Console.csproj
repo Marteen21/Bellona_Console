@@ -49,14 +49,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bots\Bot.cs" />
+    <Compile Include="Bots\DPSBot.cs" />
+    <Compile Include="Bots\DruidDPS.cs" />
     <Compile Include="Bots\StressTester.cs" />
+    <Compile Include="Bots\WarlockDPS.cs" />
     <Compile Include="ConsoleInterface\ConstStrings.cs" />
     <Compile Include="ConsoleInterface\Error.cs" />
     <Compile Include="ConsoleInterface\Message.cs" />
     <Compile Include="ConsoleInterface\Printer.cs" />
+    <Compile Include="Controller\ConstController.cs" />
+    <Compile Include="Controller\SendKey.cs" />
     <Compile Include="MemoryReading\GameObject.cs" />
     <Compile Include="MemoryReading\Initializer.cs" />
     <Compile Include="MemoryReading\ConstOffsets.cs" />
+    <Compile Include="Models\Curse.cs" />
+    <Compile Include="Models\DoT.cs" />
+    <Compile Include="Models\Spell.cs" />
+    <Compile Include="Models\SpellWithCooldown.cs" />
     <Compile Include="Models\WoWGlobal.cs" />
     <Compile Include="Models\WoWUnit.cs" />
     <Compile Include="Program.cs" />

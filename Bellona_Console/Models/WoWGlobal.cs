@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bellona_Console.Models {
-    class WoWGlobal {
+    public class WoWGlobal {
         private UInt64 playerGUID;
         private UInt64 targetGUID;
         private UInt64 focusGUID;
@@ -78,7 +78,6 @@ namespace Bellona_Console.Models {
             }
             catch {
                 Program.WowPrinter.Print(ConstStrings.ReadError);
-                throw new Exception();
             }
         }
     }

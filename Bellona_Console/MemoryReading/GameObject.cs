@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bellona_Console.MemoryReading {
-    class GameObject {
+    public class GameObject {
         private UIntPtr baseAddress;
         private UInt64 guid;
         private UIntPtr descriptorArrayAddress;
@@ -102,11 +102,11 @@ namespace Bellona_Console.MemoryReading {
                 this.descriptorArrayAddress = (UIntPtr)w.ReadUInt((uint)this.BaseAddress + (uint)ConstOffsets.ObjectManager.LocalDescriptorArray) + 0x10;
                 this.BuffBigArrayAddress = (UIntPtr)w.ReadUInt((uint)this.BaseAddress + (uint)ConstOffsets.ObjectManager.LocalBuffBigArray) + 0x4;
                 this.BuffSmallArrayAddress = (UIntPtr)((uint)this.BaseAddress + (uint)ConstOffsets.ObjectManager.LocalBuffSmallArray);
-                this.MovementArrayAddress = (UIntPtr)((uint)this.BaseAddress + (uint)ConstOffsets.ObjectManager.LocalMovementArray);
+                this.MovementArrayAddress = (UIntPtr)w.ReadUInt((uint)this.BaseAddress + (uint)ConstOffsets.ObjectManager.LocalMovementArray);
             }
             catch {
-                Program.WowPrinter.Print(ConstStrings.ReadError);
-                throw new Exception();
+                Program.WowPrinter.Print(ConstStrings.GameObjectConstructorError);
+                this.Unit = new WoWUnit();
             }
         }
         public GameObject(BlackMagic w, UInt64 guid) {
@@ -121,23 +121,22 @@ namespace Bellona_Console.MemoryReading {
                             this.DescriptorArrayAddress = TempObject.DescriptorArrayAddress;
                             this.BuffBigArrayAddress = TempObject.BuffBigArrayAddress;
                             this.BuffSmallArrayAddress = TempObject.BuffSmallArrayAddress;
-                            this.MovementArrayAddress = (UIntPtr)((uint)this.BaseAddress + (uint)ConstOffsets.ObjectManager.LocalMovementArray);
+                            this.MovementArrayAddress = (UIntPtr)w.ReadUInt((uint)this.BaseAddress + (uint)ConstOffsets.ObjectManager.LocalMovementArray);
                             this.RefreshUnit(w);
                             return;
                         }
                         else {
-                            TempObject = new GameObject(w,(UIntPtr) w.ReadUInt(((uint)TempObject.BaseAddress + (uint)ConstOffsets.ObjectManager.NextObject)));
+                            TempObject = new GameObject(w, (UIntPtr)w.ReadUInt(((uint)TempObject.BaseAddress + (uint)ConstOffsets.ObjectManager.NextObject)));
                         }
                     }
                     Program.WowPrinter.Print(new Error(String.Format("Couldnt Find Gameobject with GUID 0x{0:X16}", guid)));
                 }
-                else {
-                    this.Unit = new WoWUnit();
-                }
+                this.Unit = new WoWUnit();
+
             }
             catch {
-                Program.WowPrinter.Print(ConstStrings.ReadError);
-                throw new Exception();
+                this.Unit = new WoWUnit();
+                Program.WowPrinter.Print(ConstStrings.GameObjectConstructorError);
             }
         }
         #endregion

@@ -58,7 +58,7 @@ namespace Bellona_Console.Models {
         BigArray =2,
     }
 
-    class WoWUnit {
+    public class WoWUnit {
         private WoWClass wowClass;
         private ShapeshiftForm shapeshift;
         private Role role;
@@ -212,7 +212,6 @@ namespace Bellona_Console.Models {
             }
             catch {
                 Program.WowPrinter.Print(ConstStrings.ReadError);
-                throw new Exception();
             }
         }
         private void RefreshBuffs(BlackMagic w, GameObject go) {
@@ -225,7 +224,10 @@ namespace Bellona_Console.Models {
                     this.AddressofTheBuffs = BuffStorage.SmallArray;
                 }
             }
-            while (!FillBuffsList(w, go)) {
+            while (true) {
+                if (FillBuffsList(w, go)) {
+                    break;
+                }
             }
             
             
@@ -245,10 +247,10 @@ namespace Bellona_Console.Models {
                     break;
             }
             try {
-                while (temp != 0) {
+                while (temp != 0 && temp< 121820) {
                     temp = w.ReadUInt(addr + (0x08 * i));
                     i++;
-                    if (temp != 0) {
+                    if (temp != 0 && temp < 121820) {
                         this.Buffs.Add(temp);
                     }
                 }
@@ -256,9 +258,26 @@ namespace Bellona_Console.Models {
             }
             catch {
                 Program.WowPrinter.Print(ConstStrings.BuffError);
-                this.AddressofTheBuffs = BuffStorage.Unkown;
+                switch (this.AddressofTheBuffs) {
+                    case BuffStorage.Unkown:
+                        throw new NullReferenceException();
+                    case BuffStorage.SmallArray:
+                        this.AddressofTheBuffs = BuffStorage.Unkown;
+                        break;
+                    case BuffStorage.BigArray:
+                        this.AddressofTheBuffs = BuffStorage.SmallArray;
+                        break;
+                }
                 return false;
             }
+        }
+        public bool HasBuff(uint buffid) {
+            foreach (uint bid in this.Buffs) {
+                if (bid == buffid) {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }

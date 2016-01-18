@@ -50,10 +50,12 @@ namespace Bellona_Console {
                 //Init success
                 clientInfo = new WoWGlobal(wow);
                 WowPrinter.Print(clientInfo);
-                GameObject TargetObject = new GameObject(wow, clientInfo.TargetGUID);
+                GameObject PlayerObject = new GameObject(wow, (UInt64)clientInfo.PlayerGUID);
+                GameObject TargetObject = new GameObject(wow, (UInt64)clientInfo.TargetGUID);
                 WowPrinter.Print(TargetObject);
-                //Program ending
-                StressTester st = new StressTester(wow,clientInfo,100);
+                if (PlayerObject.Unit.WowClass == WoWClass.Warlock) {
+                    WarlockDPS mybot = new WarlockDPS(wow, clientInfo, 100);
+                }
                 while (Console.ReadLine() != "STOP") {
 
                 }
