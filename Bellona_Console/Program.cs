@@ -53,14 +53,29 @@ namespace Bellona_Console {
                 GameObject PlayerObject = new GameObject(wow, (UInt64)clientInfo.PlayerGUID);
                 GameObject TargetObject = new GameObject(wow, (UInt64)clientInfo.TargetGUID);
                 WowPrinter.Print(TargetObject);
+                WarlockDPS mylockbot;
+                DruidDPS mydudubot;
                 if (PlayerObject.Unit.WowClass == WoWClass.Warlock) {
-                    WarlockDPS mybot = new WarlockDPS(wow, clientInfo, 100);
+                    mylockbot = new WarlockDPS(wow, clientInfo, 100);
                 }
                 else if (PlayerObject.Unit.WowClass == WoWClass.Druid) {
-                    DruidDPS mybot = new DruidDPS(wow, clientInfo, 100);
+                    mydudubot = new DruidDPS(wow, clientInfo, 100);
                 }
-                while (Console.ReadLine() != "STOP") {
-
+                bool temp = true;
+                while (temp) {
+                    switch (Console.ReadLine()) {
+                        case "restart":
+                            if (PlayerObject.Unit.WowClass == WoWClass.Warlock) {
+                                mylockbot = new WarlockDPS(wow, clientInfo, 100);
+                            }
+                            else if (PlayerObject.Unit.WowClass == WoWClass.Druid) {
+                                mydudubot = new DruidDPS(wow, clientInfo, 100);
+                            }
+                            break;
+                        case "stop":
+                            temp = false;
+                            break;
+                    }
                 }
                 WowPrinter.PrintExit(ConstStrings.GoodByeMessega);
                 return;

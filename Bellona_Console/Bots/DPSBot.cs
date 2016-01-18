@@ -13,12 +13,14 @@ namespace Bellona_Console.Bots {
         protected WoWGlobal wowinfo;
         protected GameObject Player;
         protected GameObject Target;
+        protected GameObject Focus;
 
         public DPSBot(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(tt) {
             this.wow = wowProcess;
             this.wowinfo = globalinfo;
             Player = new GameObject(wowProcess, this.wowinfo.PlayerGUID);
             Target = new GameObject(wowProcess, this.wowinfo.TargetGUID);
+            Focus = new GameObject(wowProcess, this.wowinfo.FocusGUID);
         }
         public override void BotEvent(Object source, System.Timers.ElapsedEventArgs e) {
             this.ticks++;
@@ -32,6 +34,15 @@ namespace Bellona_Console.Bots {
             }
             else {
                 Target.Unit.Refresh(wow, Target);
+            }
+            if (wowinfo.FocusGUID == 0) {
+                return; //No Focus
+            }
+            if (Focus.GUID != wowinfo.FocusGUID) {
+                Focus = new GameObject(wow, this.wowinfo.FocusGUID);
+            }
+            else {
+                Focus.Unit.Refresh(wow, Focus);
             }
             Rota();
 
