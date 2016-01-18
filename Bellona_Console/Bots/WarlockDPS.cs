@@ -24,7 +24,7 @@ namespace Bellona_Console.Bots {
         public WarlockDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
         }
         public override void Rota() {
-            if (!WarlockDPS.corruption.ReCast(this.wowinfo, this.Target.Unit) && !WarlockDPS.baneofAgony.ReCast(this.wowinfo, this.Target.Unit) && !WarlockDPS.shadowTrance.IfCast(this.wowinfo, this.Target.Unit)) {
+            if (!WarlockDPS.corruption.ReCast(this.wowinfo, this.Target.Unit) && !WarlockDPS.baneofAgony.ReCast(this.wowinfo, this.Target.Unit) && !WarlockDPS.shadowTrance.IfCast(this.wowinfo, this.Player.Unit)) {
                 if (!this.Player.Unit.IsMoving) {
                     if (!WarlockDPS.unstableAffliction.ReCast(this.wowinfo, this.Target.Unit) && !WarlockDPS.haunt.ReCast(this.wowinfo, this.Target.Unit)) {
                         WarlockDPS.drainLife.ReCast(this.wowinfo, this.Target.Unit);
