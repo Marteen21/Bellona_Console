@@ -12,6 +12,7 @@ namespace Bellona_Console.Bots {
         }
         public override void Rota() {
             throw new NotImplementedException();
+
         }
     }
 }
