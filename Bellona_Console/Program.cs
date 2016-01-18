@@ -6,10 +6,8 @@ using Magic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Bellona_Console {
     class Program {
@@ -55,22 +53,26 @@ namespace Bellona_Console {
                 GameObject PlayerObject = new GameObject(wow, (UInt64)clientInfo.PlayerGUID);
                 GameObject TargetObject = new GameObject(wow, (UInt64)clientInfo.TargetGUID);
                 WowPrinter.Print(TargetObject);
+                WarlockDPS mylockbot;
+                DruidDPS mydudubot;
                 if (PlayerObject.Unit.WowClass == WoWClass.Warlock) {
-                    WarlockDPS mylockbot = new WarlockDPS(wow, clientInfo, 100);
+                    mylockbot = new WarlockDPS(wow, clientInfo, 100);
                 }
                 else if (PlayerObject.Unit.WowClass == WoWClass.Druid) {
-                    DruidDPS mydudubot = new DruidDPS(wow, clientInfo, 100);
+                    mydudubot = new DruidDPS(wow, clientInfo, 100);
                 }
                 bool temp = true;
                 while (temp) {
-                    switch (Console.ReadKey().Key) {
-                        case ConsoleKey.R:
-                            // Starts a new instance of the program itself
-                            var fileName = Assembly.GetExecutingAssembly().Location;
-                            System.Diagnostics.Process.Start(fileName);
-                            Environment.Exit(0);
+                    switch (Console.ReadLine()) {
+                        case "restart":
+                            if (PlayerObject.Unit.WowClass == WoWClass.Warlock) {
+                                mylockbot = new WarlockDPS(wow, clientInfo, 100);
+                            }
+                            else if (PlayerObject.Unit.WowClass == WoWClass.Druid) {
+                                mydudubot = new DruidDPS(wow, clientInfo, 100);
+                            }
                             break;
-                        case ConsoleKey.T:
+                        case "stop":
                             temp = false;
                             break;
                     }

@@ -15,6 +15,10 @@ namespace Bellona_Console.Bots {
             SetupTimer(tt);
             this.botTimer.Elapsed += BotEvent;
         }
+        ~Bot() {
+            this.botTimer.Enabled = false;
+            Console.WriteLine("Restart");
+        }
         public virtual void BotEvent(Object source, System.Timers.ElapsedEventArgs e) {
         }
         private void SetupTimer(uint tt) {
@@ -22,9 +26,6 @@ namespace Bellona_Console.Bots {
             this.botTimer.Interval = tt;
             this.botTimer.AutoReset = true;
             this.botTimer.Enabled = true;
-        }
-        public void DisableThisShit() {
-            this.botTimer.Enabled = false;
         }
     }
 }
