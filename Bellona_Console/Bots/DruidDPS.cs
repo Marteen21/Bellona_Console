@@ -18,6 +18,8 @@ namespace Bellona_Console.Bots {
         private static DoT shred = new DoT(58180, ConstController.WindowsVirtualKey.K_1);
         private static Spell prowl = new Spell(5215);
         private static Spell mark = new Spell(79061, ConstController.WindowsVirtualKey.K_B);
+        private static Spell cyclon = new Spell(69369, ConstController.WindowsVirtualKey.K_G);
+        private bool isincat = false;
 
         public DruidDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
         }
@@ -26,6 +28,15 @@ namespace Bellona_Console.Bots {
             if (!Player.Unit.HasBuff(mark.ID) && Player.Unit.Shapeshift == ShapeshiftForm.Normal) {
                 DruidDPS.mark.SendCast();
             }
+
+            if (DruidDPS.cyclon.IfCast(this.wowinfo, this.Player.Unit)) {
+                isincat = true;
+            }
+            if (isincat) {
+                DruidDPS.pounce.SendCast();
+                isincat = false;
+            }
+
 
             if (Player.Unit.Shapeshift == ShapeshiftForm.Cat) {
                 if (!Player.Unit.HasBuff(prowl.ID)) {
