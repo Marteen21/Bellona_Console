@@ -29,7 +29,7 @@ namespace Bellona_Console.Bots {
                 DruidDPS.mark.SendCast();
             }
 
-            if (DruidDPS.cyclon.IfCast(this.wowinfo, this.Player.Unit)) {
+            if (DruidDPS.cyclon.CastIfHasBuff(this.wowinfo, this.Player.Unit)) {
                 needcat = true;
             }
             if (needcat) {

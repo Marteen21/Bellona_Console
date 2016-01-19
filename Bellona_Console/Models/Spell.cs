@@ -31,7 +31,7 @@ namespace Bellona_Console.Models {
             SendKey.Send(this.keybind);
         }
 
-        public bool IfCast(WoWGlobal wowinfo, WoWUnit unit) {
+        public bool CastIfHasBuff(WoWGlobal wowinfo, WoWUnit unit) {
             if (unit.HasBuff(this.ID)) {
                 this.SendCast();
                 return true;

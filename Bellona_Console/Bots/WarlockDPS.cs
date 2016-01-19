@@ -32,12 +32,12 @@ namespace Bellona_Console.Bots {
             if (Player.Unit.GetHealthPercent() > 70 && Player.Unit.GetManaPercent() < 50) {
                 lifeTap.SendCast();
             }
-            if (!WarlockDPS.corruption.ReCast(this.wowinfo, this.Target.Unit) && !WarlockDPS.baneofAgony.ReCast(this.wowinfo, this.Target.Unit) && !WarlockDPS.shadowTrance.IfCast(this.wowinfo, this.Player.Unit)) {
+            if (!WarlockDPS.corruption.ReCast(this.wowinfo, this.Target.Unit) && !WarlockDPS.baneofAgony.ReCast(this.wowinfo, this.Target.Unit) && !WarlockDPS.shadowTrance.CastIfHasBuff(this.wowinfo, this.Player.Unit)) {
                 if (this.Target.Unit.HasBuffs(new List<uint>() { corruption.ID, baneofAgony.ID, unstableAffliction.ID, }) && !this.Player.Unit.HasBuff(WarlockDPS.soulSwapExhale.ID)) {
                     WarlockDPS.soulSwap.SendCast();
                 }
                 if (this.Focus.GUID != 0) {
-                    WarlockDPS.soulSwapExhale.IfCast(this.wowinfo, this.Player.Unit);
+                    WarlockDPS.soulSwapExhale.CastIfHasBuff(this.wowinfo, this.Player.Unit);
                 }
                 if (!this.Player.Unit.IsMoving) {
                     if(!WarlockDPS.unstableAffliction.ReCast(this.wowinfo, this.Target.Unit)) {

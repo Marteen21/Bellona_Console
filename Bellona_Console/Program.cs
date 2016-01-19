@@ -55,11 +55,16 @@ namespace Bellona_Console {
                 GameObject PlayerObject = new GameObject(wow, (UInt64)clientInfo.PlayerGUID);
                 GameObject TargetObject = new GameObject(wow, (UInt64)clientInfo.TargetGUID);
                 WowPrinter.Print(TargetObject);
-                if (PlayerObject.Unit.WowClass == WoWClass.Warlock) {
-                    WarlockDPS mylockbot = new WarlockDPS(wow, clientInfo, 100);
-                }
-                else if (PlayerObject.Unit.WowClass == WoWClass.Druid) {
-                    DruidDPS mydudubot = new DruidDPS(wow, clientInfo, 100);
+                switch (PlayerObject.Unit.WowClass) {
+                    case WoWClass.Druid:
+                        DruidDPS mydbot = new DruidDPS(wow, clientInfo, 100);
+                        break;
+                    case WoWClass.Warlock:
+                        WarlockDPS mywbot = new WarlockDPS(wow, clientInfo, 100);
+                        break;
+                    case WoWClass.DeathKnight:
+                        DeathKnightDPS mydkbot = new DeathKnightDPS(wow, clientInfo, 100);
+                        break;
                 }
                 bool temp = true;
                 while (temp) {

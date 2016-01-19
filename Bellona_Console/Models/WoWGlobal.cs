@@ -82,6 +82,40 @@ namespace Bellona_Console.Models {
                 Program.WowPrinter.Print(ConstStrings.ReadError);
             }
         }
+        public bool HasRunesFor(DKSpellRuneCost dkspc) {
+            foreach (Rune r in dkspc.Costs) {
+                if (!HasRune(r)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool HasRune(Rune r) {
+            switch (r.Type) {
+                case RuneType.Blood:
+                    if (r.Cost <= GetBloodRunes()) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                case RuneType.Frost:
+                    if (r.Cost <= GetBloodRunes()) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                case RuneType.Unholy:
+                    if (r.Cost <= GetBloodRunes()) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+            }
+            return false;
+        }
         public int GetBloodRunes() {
             int temp = this.runes & 0x03;
             return Convert.ToString(temp, 2).ToCharArray().Count(c => c == '1');

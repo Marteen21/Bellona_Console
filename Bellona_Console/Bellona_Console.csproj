@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bots\Bot.cs" />
+    <Compile Include="Bots\DeathKnightDPS.cs" />
     <Compile Include="Bots\DPSBot.cs" />
     <Compile Include="Bots\DruidDPS.cs" />
     <Compile Include="Bots\StressTester.cs" />
@@ -64,7 +65,10 @@
     <Compile Include="MemoryReading\Initializer.cs" />
     <Compile Include="MemoryReading\ConstOffsets.cs" />
     <Compile Include="Models\Curse.cs" />
+    <Compile Include="Models\DKRunicPowerSpell.cs" />
     <Compile Include="Models\DoT.cs" />
+    <Compile Include="Models\DKModels.cs" />
+    <Compile Include="Models\DKRuneSpell.cs" />
     <Compile Include="Models\Spell.cs" />
     <Compile Include="Models\SpellWithCooldown.cs" />
     <Compile Include="Models\WoWGlobal.cs" />
