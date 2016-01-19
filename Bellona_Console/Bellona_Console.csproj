@@ -50,9 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bots\Bot.cs" />
-    <Compile Include="Bots\DeathKnightDPS.cs" />
+    <Compile Include="Bots\DeathKnightBloodDPS.cs" />
+    <Compile Include="Bots\DeathKnightUnholyDPS.cs" />
     <Compile Include="Bots\DPSBot.cs" />
     <Compile Include="Bots\DruidDPS.cs" />
+    <Compile Include="Bots\PaladinDPS.cs" />
     <Compile Include="Bots\StressTester.cs" />
     <Compile Include="Bots\WarlockDPS.cs" />
     <Compile Include="ConsoleInterface\ConstStrings.cs" />

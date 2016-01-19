@@ -63,7 +63,10 @@ namespace Bellona_Console {
                         WarlockDPS mywbot = new WarlockDPS(wow, clientInfo, 100);
                         break;
                     case WoWClass.DeathKnight:
-                        DeathKnightDPS mydkbot = new DeathKnightDPS(wow, clientInfo, 100);
+                        DeathKnightUnholyDPS mydkbot = new DeathKnightUnholyDPS(wow, clientInfo, 100);
+                        break;
+                    case WoWClass.Paladin:
+                        PaladinDPS mypbot = new PaladinDPS(wow, clientInfo, 100);
                         break;
                 }
                 bool temp = true;

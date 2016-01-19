@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bellona_Console.Bots {
-    class DeathKnightDPS : DPSBot{
+    class DeathKnightBloodDPS : DPSBot{
         private DoT frostFever = new DoT(55095, Controller.ConstController.WindowsVirtualKey.K_8);
         private DoT scarletFever = new DoT(81130, Controller.ConstController.WindowsVirtualKey.K_9);
         private DKRuneSpell hearthStrike = new DKRuneSpell(123, Controller.ConstController.WindowsVirtualKey.K_7, new DKSpellRuneCost(new Rune(RuneType.Blood, 1)));
@@ -17,7 +17,7 @@ namespace Bellona_Console.Bots {
         private Spell DeathCoil = new Spell(123, Controller.ConstController.WindowsVirtualKey.K_F);
         private Spell RuneStrike = new Spell(123, Controller.ConstController.WindowsVirtualKey.K_4);
 
-        public DeathKnightDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
+        public DeathKnightBloodDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
         }
         public override void Rota() {
             if (!Player.Unit.HasBuff(HornofWinter.ID)) {
