@@ -67,6 +67,7 @@ namespace Bellona_Console.Models {
         private uint maxHealth;
         private uint power;
         private uint maxPower;
+        private uint holyPower;
         private uint secondaryPower;
         private bool isMoving = false;
         private List<uint> buffs = new List<uint>();
@@ -189,6 +190,16 @@ namespace Bellona_Console.Models {
                 buffs = value;
             }
         }
+
+        public uint HolyPower {
+            get {
+                return holyPower;
+            }
+
+            set {
+                holyPower = value;
+            }
+        }
         #endregion
         public WoWUnit() {
 
@@ -206,7 +217,8 @@ namespace Bellona_Console.Models {
                 this.MaxHealth = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.MaxHealth);
                 this.Power = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.Power);
                 this.MaxPower = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.MaxPower);
-                this.SecondaryPower = w.ReadUInt(((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.SecondaryPower));
+                this.SecondaryPower = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.SecondaryPower);
+                this.HolyPower = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.HolyPower);
                 this.IsMoving = w.ReadByte((uint)go.MovementArrayAddress+(uint)ConstOffsets.Movements.IsMoving8) != 0x00;
                 this.RefreshBuffs(w,go);
             }

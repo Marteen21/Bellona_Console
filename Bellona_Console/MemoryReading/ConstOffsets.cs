@@ -84,6 +84,7 @@ namespace Bellona_Console.MemoryReading {
             Health = 0x58,
             MaxHealth = 0x70,
             Power = 0x5C,
+            HolyPower = 0x60,
             SecondaryPower = 0x64,
             MaxPower = 0x74,
             TargetGUID = 0x40,
