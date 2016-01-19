@@ -13,6 +13,7 @@ namespace Bellona_Console.Models {
         private UInt64 targetGUID;
         private UInt64 focusGUID;
         private byte comboPoints;
+        private byte runes;
         private bool spellIsPending;
         #region properties
         public ulong PlayerGUID {
@@ -75,10 +76,25 @@ namespace Bellona_Console.Models {
                 this.FocusGUID = w.ReadUInt64((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.FocusTargetGUID);
                 this.ComboPoints = w.ReadByte((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.ComboPoints);
                 this.SpellIsPending = !(w.ReadByte((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.SpellIsPending) == 0);
+                this.runes = w.ReadByte((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.Runes);
             }
             catch {
                 Program.WowPrinter.Print(ConstStrings.ReadError);
             }
         }
+        public int GetBloodRunes() {
+            int temp = this.runes & 0x03;
+            return Convert.ToString(temp, 2).ToCharArray().Count(c => c == '1');
+
+        }
+        public int GetFrostRunes() {
+            int temp = this.runes & 0x30;
+            return Convert.ToString(temp, 2).ToCharArray().Count(c => c == '1');
+        }
+        public int GetUnholyRunes() {
+            int temp = this.runes & 0x0C;
+            return Convert.ToString(temp, 2).ToCharArray().Count(c => c == '1');
+        }
     }
+
 }

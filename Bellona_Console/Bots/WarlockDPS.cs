@@ -21,7 +21,7 @@ namespace Bellona_Console.Bots {
         private static Curse curseoftheElements = new Curse(1490, ConstController.WindowsVirtualKey.K_Á);
         private static Spell lifeTap = new Spell(1454, ConstController.WindowsVirtualKey.K_T);
         private static Spell healthstone = new Spell(1, ConstController.WindowsVirtualKey.K_B);
-        private static Spell soulSwapExhale = new Spell(86213, ConstController.WindowsVirtualKey.K_Ú);
+        private static Spell soulSwapExhale = new Spell(86211, ConstController.WindowsVirtualKey.K_Ú);
         private static Spell soulSwap = new Spell(2, ConstController.WindowsVirtualKey.K_E);
         public WarlockDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
         }

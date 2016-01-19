@@ -59,6 +59,7 @@ namespace Bellona_Console.MemoryReading {
             GetHomeBindAreaId = 0x9D4D7C,
             #endregion
             ComboPoints = 0xAD74F1,
+            Runes = 0xB36060,
             PetSpellBookNumSpells = 0xB33CA4,
             PetSpellBookNumSpellsPtr = 0xB33CA8,
             SpellIsTargetting = 0xACD654,
