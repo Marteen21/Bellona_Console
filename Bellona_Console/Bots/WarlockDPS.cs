@@ -20,13 +20,29 @@ namespace Bellona_Console.Bots {
         private static Spell fellFlame = new Spell(77799, ConstController.WindowsVirtualKey.K_Ő);
         private static Curse curseoftheElements = new Curse(1490, ConstController.WindowsVirtualKey.K_Á);
         private static Spell lifeTap = new Spell(1454, ConstController.WindowsVirtualKey.K_T);
-
+        private static Spell healthstone = new Spell(1, ConstController.WindowsVirtualKey.K_B);
+        private static Spell soulSwapExhale = new Spell(86213, ConstController.WindowsVirtualKey.K_Ú);
+        private static Spell soulSwap = new Spell(2, ConstController.WindowsVirtualKey.K_E);
         public WarlockDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
         }
         public override void Rota() {
+            if (Player.Unit.GetHealthPercent() < 40) {
+                healthstone.SendCast();
+            }
+            if (Player.Unit.GetHealthPercent() > 70 && Player.Unit.GetManaPercent() < 50) {
+                lifeTap.SendCast();
+            }
             if (!WarlockDPS.corruption.ReCast(this.wowinfo, this.Target.Unit) && !WarlockDPS.baneofAgony.ReCast(this.wowinfo, this.Target.Unit) && !WarlockDPS.shadowTrance.IfCast(this.wowinfo, this.Player.Unit)) {
+                //if (this.Target.Unit.HasBuffs(new List<uint>() { corruption.ID, baneofAgony.ID, unstableAffliction.ID, }) && this.Focus.GUID != 0) {
+                //    WarlockDPS.soulSwap.SendCast();
+                //}
+                //if (this.Focus.GUID != 0) {
+                //    WarlockDPS.soulSwapExhale.IfCast(this.wowinfo, this.Player.Unit);
+                //}
                 if (!this.Player.Unit.IsMoving) {
-                    if (!WarlockDPS.unstableAffliction.ReCast(this.wowinfo, this.Target.Unit) && !WarlockDPS.haunt.ReCast(this.wowinfo, this.Target.Unit)) {
+                    if(!WarlockDPS.unstableAffliction.ReCast(this.wowinfo, this.Target.Unit)) {
+                        WarlockDPS.haunt.SendCast();
+                        WarlockDPS.curseoftheElements.ReCast(this.wowinfo, this.Target.Unit);
                         WarlockDPS.drainLife.ReCast(this.wowinfo, this.Target.Unit);
                     }
                 }

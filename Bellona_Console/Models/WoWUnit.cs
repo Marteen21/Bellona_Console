@@ -272,12 +272,21 @@ namespace Bellona_Console.Models {
             }
         }
         public bool HasBuff(uint buffid) {
-            foreach (uint bid in this.Buffs) {
-                if (bid == buffid) {
-                    return true;
+            return this.Buffs.Contains(buffid);
+        }
+        public bool HasBuffs(List<uint> buffidlist) {
+            foreach (uint buffid in buffidlist) {
+                if (!this.Buffs.Contains(buffid)){
+                    return false;
                 }
             }
-            return false;
+            return true;
+        }
+        public uint GetHealthPercent() {
+            return ((100*Health) / maxHealth);
+        }
+        public uint GetManaPercent() {
+            return ((100 * Power) / MaxPower);
         }
 
     }

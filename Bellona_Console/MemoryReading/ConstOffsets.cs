@@ -21,7 +21,7 @@ namespace Bellona_Console.MemoryReading {
             IsMoving8 = 0x38,
         }
         internal enum Globals : uint {
-            CooldPown = 0xACD714,
+            SpellCooldDownPtr = 0xACD714,
             PlayerName = 0x9BE820,
             CurrentRealm = 0x9BE9AE,
             #region GUID-s

@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Bellona_Console.Models {
     class SpellWithCooldown : Spell{
-        public SpellWithCooldown(uint i) : base(i) {
-            throw new NotImplementedException();
+        private System.Threading.Timer cooldownTimer;
+        private int cooldown;
+        private bool isitReady;
+        public SpellWithCooldown(uint i, ConstController.WindowsVirtualKey kb, int cooldown) : base(i, kb) {
+            this.cooldown = cooldown;
         }
-        public SpellWithCooldown(uint i, ConstController.WindowsVirtualKey kb) : base(i, kb) {
-            throw new NotImplementedException();
-        }
+        
     }
 }
