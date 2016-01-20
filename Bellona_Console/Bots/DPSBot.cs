@@ -26,7 +26,7 @@ namespace Bellona_Console.Bots {
         public override void BotEvent(Object source, System.Timers.ElapsedEventArgs e) {
             this.ticks++;
             this.wowinfo.Refresh(wow);
-            Target = new GameObject(wow, this.wowinfo.PlayerGUID);
+            Player = new GameObject(wow, this.wowinfo.PlayerGUID);
             if (wowinfo.TargetGUID == 0) {
                 return; //No target
             }
