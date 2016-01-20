@@ -15,8 +15,8 @@ namespace Bellona_Console.Bots {
         private DKRuneSpell scourgeStrike = new DKRuneSpell(123, Controller.ConstController.WindowsVirtualKey.K_7, new DKSpellRuneCost(new Rune(RuneType.Unholy, 1)));
         private DKRuneSpell necroticStrike = new DKRuneSpell(73975, Controller.ConstController.WindowsVirtualKey.K_É, new DKSpellRuneCost(new Rune(RuneType.Unholy, 1)));
         private Spell festeringStrike = new Spell(123, Controller.ConstController.WindowsVirtualKey.K_6);
-        private Spell DeathCoil = new Spell(123, Controller.ConstController.WindowsVirtualKey.K_F);
-        private Spell suddenDoom = new Spell(81340, Controller.ConstController.WindowsVirtualKey.K_F);
+        private Spell DeathCoil = new Spell(123, Controller.ConstController.WindowsVirtualKey.K_V);
+        private Spell suddenDoom = new Spell(81340, Controller.ConstController.WindowsVirtualKey.K_V);
         public DeathKnightUnholyDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
         }
         public override void Rota() {

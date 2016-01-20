@@ -36,7 +36,7 @@ namespace Bellona_Console.Bots {
                 if (this.Target.Unit.HasBuffs(new List<uint>() { corruption.ID, baneofAgony.ID, unstableAffliction.ID, }) && !this.Player.Unit.HasBuff(WarlockDPS.soulSwapExhale.ID)) {
                     WarlockDPS.soulSwap.SendCast();
                 }
-                if (this.Focus.GUID != 0) {
+                if (this.Focus.GUID != 0 && this.Focus.GUID != this.Target.GUID) {
                     WarlockDPS.soulSwapExhale.CastIfHasBuff(this.wowinfo, this.Player.Unit);
                 }
                 if (!this.Player.Unit.IsMoving) {
