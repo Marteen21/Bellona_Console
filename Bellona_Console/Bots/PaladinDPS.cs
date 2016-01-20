@@ -19,18 +19,14 @@ namespace Bellona_Console.Bots {
         private Spell templar = new Spell(90174, ConstController.WindowsVirtualKey.VK_F11);
         private Spell crusader = new Spell(0, ConstController.WindowsVirtualKey.VK_F9);
         private Spell hammer = new Spell(31884,ConstController.WindowsVirtualKey.VK_F8);//avenging wrath buff alat ingyen lehet tolni
+        private Spell repetance = new Spell(0, ConstController.WindowsVirtualKey.VK_F7);
 
         public PaladinDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
         }
 
         public override void Rota() {
-            if (!this.Player.Unit.HasBuff(might.ID)) {
-                might.SendCast();
-            }
-            if (!this.Player.Unit.HasBuff(truth.ID)) {
-                truth.SendCast();
-            }
-            if(this.Player.Unit.GetManaPercent()<50  && this.Player.Unit.GetHealthPercent() > 70) {
+            repetance.SendCast();
+            if (this.Player.Unit.GetManaPercent()<50  && this.Player.Unit.GetHealthPercent() > 70) {
                 plea.SendCast();
             }
             if (this.Player.Unit.HasBuff(exorcism.ID)) {
@@ -47,6 +43,7 @@ namespace Bellona_Console.Bots {
             if (this.Target.Unit.GetHealthPercent()>20 || this.Player.Unit.HasBuff(hammer.ID)) {
                 hammer.SendCast();
             }
+            
         }
     }
 }
