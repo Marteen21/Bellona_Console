@@ -27,23 +27,8 @@ namespace Bellona_Console.Bots {
             this.ticks++;
             this.wowinfo.Refresh(wow);
             Player = new GameObject(wow, this.wowinfo.PlayerGUID);
-            if (wowinfo.TargetGUID == 0) {
-                return; //No target
-            }
-            if (Target.GUID != wowinfo.TargetGUID) {
-                Target = new GameObject(wow, this.wowinfo.TargetGUID);
-            }
-            else {
-                Target.Unit.Refresh(wow, Target);
-            }
-            if (wowinfo.FocusGUID != 0) {
-                if (Focus.GUID != wowinfo.FocusGUID) {
-                    Focus = new GameObject(wow, this.wowinfo.FocusGUID);
-                }
-                else {
-                    Focus.Unit.Refresh(wow, Focus);
-                }
-            }
+            Target = new GameObject(wow, this.wowinfo.TargetGUID);
+            Focus = new GameObject(wow, this.wowinfo.FocusGUID);
             Rota();
 
         }
