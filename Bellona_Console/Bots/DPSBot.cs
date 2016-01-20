@@ -18,6 +18,7 @@ namespace Bellona_Console.Bots {
         public DPSBot(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(tt) {
             this.wow = wowProcess;
             this.wowinfo = globalinfo;
+            this.wowinfo.Refresh(wowProcess);
             Player = new GameObject(wowProcess, this.wowinfo.PlayerGUID);
             Target = new GameObject(wowProcess, this.wowinfo.TargetGUID);
             Focus = new GameObject(wowProcess, this.wowinfo.FocusGUID);
