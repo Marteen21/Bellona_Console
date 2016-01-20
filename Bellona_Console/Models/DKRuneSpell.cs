@@ -24,7 +24,7 @@ namespace Bellona_Console.Models {
                 return false;
             }
         }
-        public bool CastIfHasRunesFor(WoWGlobal wowinfo, WoWUnit unit) {
+        public bool CastIfHasRunesFor(WoWGlobal wowinfo) {
             if (wowinfo.HasRunesFor(cost)) {
                 this.SendCast();
                 return true;
