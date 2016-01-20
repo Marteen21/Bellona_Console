@@ -29,7 +29,9 @@ namespace Bellona_Console.Bots {
             Player = new GameObject(wow, this.wowinfo.PlayerGUID);
             Target = new GameObject(wow, this.wowinfo.TargetGUID);
             Focus = new GameObject(wow, this.wowinfo.FocusGUID);
-            Rota();
+            if (Target.GUID != 0) {
+                Rota();
+            }
 
         }
         public virtual void Rota() {
