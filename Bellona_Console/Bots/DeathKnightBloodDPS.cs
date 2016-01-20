@@ -33,7 +33,7 @@ namespace Bellona_Console.Bots {
                 RuneStrike.SendCast();
                 DeathCoil.SendCast();
             }
-            hearthStrike.CastIfHasRunesFor(this.wowinfo, this.Player.Unit);
+            hearthStrike.CastIfHasRunesFor(this.wowinfo);
         }
 
     }

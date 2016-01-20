@@ -100,14 +100,14 @@ namespace Bellona_Console.Models {
                         return false;
                     }
                 case RuneType.Frost:
-                    if (r.Cost <= GetBloodRunes()) {
+                    if (r.Cost <= GetFrostRunes()) {
                         return true;
                     }
                     else {
                         return false;
                     }
                 case RuneType.Unholy:
-                    if (r.Cost <= GetBloodRunes()) {
+                    if (r.Cost <= GetUnholyRunes()) {
                         return true;
                     }
                     else {
