@@ -18,6 +18,7 @@ namespace Bellona_Console.Bots {
         private Spell soulFire = new Spell(63167, ConstController.WindowsVirtualKey.K_7);
 
         public WarlockDemoPVEDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
+            Console.WriteLine("Initialize Warlock Demonology DPS bot");
         }
         public override void Rota() {
             corruption.ReCast(this.wowinfo, this.Target.Unit);

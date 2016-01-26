@@ -18,6 +18,7 @@ namespace Bellona_Console.Bots {
         private Spell DeathCoil = new Spell(123, Controller.ConstController.WindowsVirtualKey.K_V);
         private Spell suddenDoom = new Spell(81340, Controller.ConstController.WindowsVirtualKey.K_V);
         public DeathKnightUnholyDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
+            Console.WriteLine("Initialize Death Knight Unholy DPS bot");
         }
         public override void Rota() {
             if (!Player.Unit.HasBuff(hornofWinter.ID)) {

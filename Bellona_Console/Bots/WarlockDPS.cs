@@ -24,6 +24,7 @@ namespace Bellona_Console.Bots {
         private static Spell soulSwapExhale = new Spell(86211, ConstController.WindowsVirtualKey.K_Ú);
         private static Spell soulSwap = new Spell(2, ConstController.WindowsVirtualKey.K_E);
         public WarlockDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
+            Console.WriteLine("Initialize Warlock Affliction DPS bot");
         }
         public override void Rota() {
             if (Player.Unit.GetHealthPercent() < 40) {

@@ -19,6 +19,7 @@ namespace Bellona_Console.Bots {
         private DKRuneSpell RuneTap = new DKRuneSpell(123, Controller.ConstController.WindowsVirtualKey.K_É, new DKSpellRuneCost(new Rune(RuneType.Blood, 1)));
         private DKRuneSpell BoneShield = new DKRuneSpell(123, Controller.ConstController.WindowsVirtualKey.K_1, new DKSpellRuneCost(new Rune(RuneType.Unholy,1)));
         public DeathKnightBloodDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
+            Console.WriteLine("Initialize Death Knight Blood DPS bot");
         }
         public override void Rota() {
             if (!Player.Unit.HasBuff(HornofWinter.ID)) {

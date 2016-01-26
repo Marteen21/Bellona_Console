@@ -22,6 +22,7 @@ namespace Bellona_Console.Bots {
         private bool needcat = false;
 
         public DruidDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
+            Console.WriteLine("Initialize Druid Feral(cat) DPS bot");
         }
         public override void Rota() {
 

@@ -22,6 +22,7 @@ namespace Bellona_Console.Bots {
         private Spell repetance = new Spell(0, ConstController.WindowsVirtualKey.VK_F7);
 
         public PaladinDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
+            Console.WriteLine("Initialize Paladin Retribution DPS bot");
         }
 
         public override void Rota() {

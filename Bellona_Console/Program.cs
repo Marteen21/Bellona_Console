@@ -44,11 +44,10 @@ namespace Bellona_Console {
         static void Main(string[] args) {
             WowPrinter.Print(ConstStrings.WelcomeMessage);
             //Initialize if fail end program
-            Console.WriteLine(args.Length);
             if (args.Length > 0) {
                 PROCESS_WINDOW_TITLE = args[0].ToString();
-                Console.WriteLine(PROCESS_WINDOW_TITLE);
             }
+            wowPrinter.Print(new Message("Connecting to window named " + PROCESS_WINDOW_TITLE));
             if (!Initializer.ConnectToGame(out wow, PROCESS_WINDOW_TITLE)) {
                 WowPrinter.PrintExit(ConstStrings.InitError);
                 return;
@@ -81,7 +80,12 @@ namespace Bellona_Console {
                         case ConsoleKey.R:
                             // Starts a new instance of the program itself
                             var fileName = Assembly.GetExecutingAssembly().Location;
-                            System.Diagnostics.Process.Start(fileName);
+                            if (args.Length > 0) {
+                                System.Diagnostics.Process.Start(fileName);
+                            }
+                            else {
+                                System.Diagnostics.Process.Start(fileName,args[0]);
+                            }
                             Environment.Exit(0);
                             break;
                         case ConsoleKey.T:
@@ -89,7 +93,6 @@ namespace Bellona_Console {
                             break;
                     }
                 }
-                //WowPrinter.PrintExit(ConstStrings.GoodByeMessega);
                 return;
             }
 
