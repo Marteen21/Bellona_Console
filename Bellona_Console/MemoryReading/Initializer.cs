@@ -15,8 +15,11 @@ namespace Bellona_Console.MemoryReading {
                 if (!w.OpenProcessAndThread(SProcess.GetProcessFromWindowTitle(title))) {
                     return false;
                 }
+                Console.WriteLine("Process found...");
                 uint ObjMgrAddr = w.ReadUInt(w.ReadUInt((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.ObjectManager.CurMgrPointer) + (uint)ConstOffsets.ObjectManager.CurMgrOffset);
+                Console.WriteLine("Object Manager found...");
                 FirstObject = new GameObject(w,(UIntPtr)w.ReadUInt(ObjMgrAddr + (uint)ConstOffsets.ObjectManager.FirstObject));
+                Console.WriteLine("First Object found...");
                 return true;
                 
             }

@@ -81,10 +81,10 @@ namespace Bellona_Console {
                             // Starts a new instance of the program itself
                             var fileName = Assembly.GetExecutingAssembly().Location;
                             if (args.Length > 0) {
-                                System.Diagnostics.Process.Start(fileName);
+                                System.Diagnostics.Process.Start(fileName,args[0].ToString());
                             }
                             else {
-                                System.Diagnostics.Process.Start(fileName,args[0]);
+                                System.Diagnostics.Process.Start(fileName);
                             }
                             Environment.Exit(0);
                             break;
