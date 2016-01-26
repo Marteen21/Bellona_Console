@@ -56,6 +56,7 @@
     <Compile Include="Bots\DruidDPS.cs" />
     <Compile Include="Bots\PaladinDPS.cs" />
     <Compile Include="Bots\StressTester.cs" />
+    <Compile Include="Bots\WarlockDemoPVEDPS.cs" />
     <Compile Include="Bots\WarlockDPS.cs" />
     <Compile Include="ConsoleInterface\ConstStrings.cs" />
     <Compile Include="ConsoleInterface\Error.cs" />

@@ -16,7 +16,7 @@ namespace Bellona_Console.Controller {
         private const Int32 WM_KEYUP = 0x0101;
 
         public static void Send(ConstController.WindowsVirtualKey Key) {
-            IntPtr Handle = FindWindow(null, "World of Warcraft");
+            IntPtr Handle = FindWindow(null, Program.PROCESS_WINDOW_TITLE);
             PostMessage(Handle, WM_KEYDOWN, (int)Key, 0);
             PostMessage(Handle, WM_KEYUP, (int)Key, 0);
         }

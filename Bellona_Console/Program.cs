@@ -13,7 +13,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Bellona_Console {
     class Program {
-        const string PROCESS_WINDOW_TITLE = "World of Warcraft";    //Window title of the game
+        public static string PROCESS_WINDOW_TITLE = "World of Warcraft";    //Window title of the game
         private static BlackMagic wow;
         private static Printer wowPrinter = new Printer();
         private static WoWGlobal clientInfo;
@@ -44,6 +44,11 @@ namespace Bellona_Console {
         static void Main(string[] args) {
             WowPrinter.Print(ConstStrings.WelcomeMessage);
             //Initialize if fail end program
+            Console.WriteLine(args.Length);
+            if (args.Length > 0) {
+                PROCESS_WINDOW_TITLE = args[0].ToString();
+                Console.WriteLine(PROCESS_WINDOW_TITLE);
+            }
             if (!Initializer.ConnectToGame(out wow, PROCESS_WINDOW_TITLE)) {
                 WowPrinter.PrintExit(ConstStrings.InitError);
                 return;
@@ -60,10 +65,11 @@ namespace Bellona_Console {
                         DruidDPS mydbot = new DruidDPS(wow, clientInfo, 100);
                         break;
                     case WoWClass.Warlock:
-                        WarlockDPS mywbot = new WarlockDPS(wow, clientInfo, 100);
+                        //WarlockDPS mywbot = new WarlockDPS(wow, clientInfo, 100);
+                        WarlockDemoPVEDPS mywbot = new WarlockDemoPVEDPS(wow, clientInfo, 100);
                         break;
                     case WoWClass.DeathKnight:
-                        DeathKnightUnholyDPS mydkbot = new DeathKnightUnholyDPS(wow, clientInfo, 100);
+                        DeathKnightBloodDPS mydkbot = new DeathKnightBloodDPS(wow, clientInfo, 100);
                         break;
                     case WoWClass.Paladin:
                         PaladinDPS mypbot = new PaladinDPS(wow, clientInfo, 100);
