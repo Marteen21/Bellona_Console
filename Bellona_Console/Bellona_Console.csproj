@@ -54,6 +54,7 @@
     <Compile Include="Bots\DeathKnightUnholyDPS.cs" />
     <Compile Include="Bots\DPSBot.cs" />
     <Compile Include="Bots\DruidDPS.cs" />
+    <Compile Include="Bots\MageFireDPS.cs" />
     <Compile Include="Bots\PaladinDPS.cs" />
     <Compile Include="Bots\StressTester.cs" />
     <Compile Include="Bots\WarlockDemoPVEDPS.cs" />
