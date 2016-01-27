@@ -27,7 +27,7 @@ namespace Bellona_Console.Bots {
             pyroblast.CastIfHasBuff(this.wowinfo, this.Player.Unit);
             fireblast.CastIfHasBuff(this.wowinfo, this.Player.Unit);
             combustion.CastIfHasBuff(this.wowinfo, this.Target.Unit);
-            if (!this.Target.Unit.HasBuff(scorch.ID) && !this.wowinfo.SpellIsPending){
+            if ((!this.Target.Unit.HasBuff(scorch.ID) && !this.wowinfo.SpellIsPending) || (this.Player.Unit.GetManaPercent()<10)){
                 scorch.SendCast();
             }
             if (this.Player.Unit.IsMoving) {
