@@ -1,5 +1,6 @@
 ﻿using Bellona_Console.Bots;
 using Bellona_Console.ConsoleInterface;
+using Bellona_Console.Controller;
 using Bellona_Console.MemoryReading;
 using Bellona_Console.Models;
 using Magic;
@@ -59,33 +60,41 @@ namespace Bellona_Console {
                 GameObject PlayerObject = new GameObject(wow, (UInt64)clientInfo.PlayerGUID);
                 GameObject TargetObject = new GameObject(wow, (UInt64)clientInfo.TargetGUID);
                 WowPrinter.Print(TargetObject);
-                switch (PlayerObject.Unit.WowClass) {
-                    case WoWClass.Druid:
-                        DruidDPS mydbot = new DruidDPS(wow, clientInfo, 100);
-                        break;
-                    case WoWClass.Warlock:
-                        //WarlockDPS mywbot = new WarlockDPS(wow, clientInfo, 100);
-                        WarlockDemoPVEDPS mywbot = new WarlockDemoPVEDPS(wow, clientInfo, 100);
-                        break;
-                    case WoWClass.DeathKnight:
-                        DeathKnightBloodDPS mydkbot = new DeathKnightBloodDPS(wow, clientInfo, 100);
-                        break;
-                    case WoWClass.Paladin:
-                        PaladinDPS mypbot = new PaladinDPS(wow, clientInfo, 100);
-                        break;
-                }
+                SendKey.Send(ConstController.WindowsVirtualKey.VK_LEFT,25);
+                WalkerBot mybot = new WalkerBot(wow, clientInfo, 1000);
+                //switch (PlayerObject.Unit.WowClass) {
+                //    case WoWClass.Druid:
+                //        DruidDPS mydbot = new DruidDPS(wow, clientInfo, 100);
+                //        break;
+                //    case WoWClass.Warlock:
+                //        if (args.Length>1) {
+                //            WarlockDemoPVEDPS mywbot = new WarlockDemoPVEDPS(wow, clientInfo, 100);
+                //        }
+                //        else {
+                //            WarlockDPS mywbot = new WarlockDPS(wow, clientInfo, 100);
+                //        }
+                //        break;
+                //    case WoWClass.DeathKnight:
+                //        DeathKnightBloodDPS mydkbot = new DeathKnightBloodDPS(wow, clientInfo, 100);
+                //        break;
+                //    case WoWClass.Paladin:
+                //        PaladinDPS mypbot = new PaladinDPS(wow, clientInfo, 100);
+                //        break;
+                //}
                 bool temp = true;
                 while (temp) {
                     switch (Console.ReadKey().Key) {
                         case ConsoleKey.R:
                             // Starts a new instance of the program itself
-                            var fileName = Assembly.GetExecutingAssembly().Location;
-                            if (args.Length > 0) {
-                                System.Diagnostics.Process.Start(fileName,args[0].ToString());
+                            System.Diagnostics.Process proci = new System.Diagnostics.Process();
+                            proci.StartInfo.FileName = Assembly.GetExecutingAssembly().Location;
+                            if (args.Length == 2) {
+                                proci.StartInfo.Arguments = args[0] + " " + args[1];
                             }
-                            else {
-                                System.Diagnostics.Process.Start(fileName);
+                            else if (args.Length == 1){
+                                proci.StartInfo.Arguments = args[0];
                             }
+                            proci.Start();
                             Environment.Exit(0);
                             break;
                         case ConsoleKey.T:

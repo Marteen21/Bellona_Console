@@ -43,7 +43,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
@@ -56,6 +55,7 @@
     <Compile Include="Bots\DruidDPS.cs" />
     <Compile Include="Bots\PaladinDPS.cs" />
     <Compile Include="Bots\StressTester.cs" />
+    <Compile Include="Bots\WalkerBot.cs" />
     <Compile Include="Bots\WarlockDemoPVEDPS.cs" />
     <Compile Include="Bots\WarlockDPS.cs" />
     <Compile Include="ConsoleInterface\ConstStrings.cs" />
@@ -76,13 +76,24 @@
     <Compile Include="Models\SpellWithCooldown.cs" />
     <Compile Include="Models\WoWGlobal.cs" />
     <Compile Include="Models\WoWUnit.cs" />
+    <Compile Include="Other\Vector3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="DXTRANSLib">
+      <Guid>{54314D1D-35FE-11D1-81A1-0000F87557DB}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

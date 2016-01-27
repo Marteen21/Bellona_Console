@@ -15,7 +15,7 @@ namespace Bellona_Console.MemoryReading {
         private UIntPtr buffBigArrayAddress;
         private UIntPtr buffSmallArrayAddress;
         private UIntPtr movementArrayAddress;
-        private WoWUnit unit;   //TODO
+        private WoWUnit unit;
         #region properties
         public UIntPtr BaseAddress {
             get {

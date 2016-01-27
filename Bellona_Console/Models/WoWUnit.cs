@@ -1,5 +1,6 @@
 ﻿using Bellona_Console.ConsoleInterface;
 using Bellona_Console.MemoryReading;
+using Bellona_Console.Other;
 using Magic;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bellona_Console.Models {
+    #region Flags
     [Flags]
     public enum WoWClass : uint {
         None = 0,
@@ -57,7 +59,7 @@ namespace Bellona_Console.Models {
         SmallArray = 1,
         BigArray =2,
     }
-
+    #endregion
     public class WoWUnit {
         private WoWClass wowClass;
         private ShapeshiftForm shapeshift;
@@ -69,7 +71,10 @@ namespace Bellona_Console.Models {
         private uint maxPower;
         private uint holyPower;
         private uint secondaryPower;
+        private uint faction;
         private bool isMoving = false;
+        private Vector3 position = new Vector3();
+        private float rotation;
         private List<uint> buffs = new List<uint>();
         private BuffStorage addressofTheBuffs = BuffStorage.Unkown;
         #region properties
@@ -171,6 +176,26 @@ namespace Bellona_Console.Models {
                 isMoving = value;
             }
         }
+
+        public uint HolyPower {
+            get {
+                return holyPower;
+            }
+
+            set {
+                holyPower = value;
+            }
+        }
+
+        public uint Faction {
+            get {
+                return faction;
+            }
+
+            set {
+                faction = value;
+            }
+        }
         public BuffStorage AddressofTheBuffs {
             get {
                 return addressofTheBuffs;
@@ -191,15 +216,26 @@ namespace Bellona_Console.Models {
             }
         }
 
-        public uint HolyPower {
+        internal Vector3 Position {
             get {
-                return holyPower;
+                return position;
             }
 
             set {
-                holyPower = value;
+                position = value;
             }
         }
+
+        public float Rotation {
+            get {
+                return rotation;
+            }
+
+            set {
+                rotation = value;
+            }
+        }
+
         #endregion
         public WoWUnit() {
 
@@ -220,11 +256,19 @@ namespace Bellona_Console.Models {
                 this.SecondaryPower = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.SecondaryPower);
                 this.HolyPower = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.HolyPower);
                 this.IsMoving = w.ReadByte((uint)go.MovementArrayAddress+(uint)ConstOffsets.Movements.IsMoving8) != 0x00;
+                this.Faction = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.Faction);
+
+                this.position.X = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.X);
+                this.position.Y = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Y);
+                this.position.Z = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Z);
+                this.Rotation = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Rotation);
                 this.RefreshBuffs(w,go);
             }
             catch {
                 Program.WowPrinter.Print(ConstStrings.ReadError);
             }
+
+            //this.Position = new Vector3(x,y,z);
         }
         private void RefreshBuffs(BlackMagic w, GameObject go) {
             this.Buffs.Clear();

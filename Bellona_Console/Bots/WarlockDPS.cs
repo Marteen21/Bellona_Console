@@ -1,6 +1,7 @@
 ﻿using Bellona_Console.Controller;
 using Bellona_Console.MemoryReading;
 using Bellona_Console.Models;
+using Bellona_Console.Other;
 using Magic;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,9 @@ namespace Bellona_Console.Bots {
             Console.WriteLine("Initialize Warlock Affliction DPS bot");
         }
         public override void Rota() {
+            if (this.ticks % 50==0) {
+                Console.WriteLine(Vector3.Distance(Player.Unit.Position, Target.Unit.Position));
+            }
             if (Player.Unit.GetHealthPercent() < 40) {
                 healthstone.SendCast();
             }

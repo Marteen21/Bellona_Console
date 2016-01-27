@@ -20,5 +20,11 @@ namespace Bellona_Console.Controller {
             PostMessage(Handle, WM_KEYDOWN, (int)Key, 0);
             PostMessage(Handle, WM_KEYUP, (int)Key, 0);
         }
+        public static void Send(ConstController.WindowsVirtualKey Key, int time) {
+            IntPtr Handle = FindWindow(null, Program.PROCESS_WINDOW_TITLE);
+            PostMessage(Handle, WM_KEYDOWN, (int)Key, 0);
+            System.Threading.Thread.Sleep(time);
+            PostMessage(Handle, WM_KEYUP, (int)Key, 0);
+        }
     }
 }
