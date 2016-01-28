@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bellona_Console.Bots {
+namespace Bellona_Console.Bots.PvEDPSBots {
     class WarlockDemoPVEDPS : PvEDPSBot {
         private DoT corruption = new DoT(172, ConstController.WindowsVirtualKey.K_4);
         private DoT immolate = new DoT(348, ConstController.WindowsVirtualKey.K_3);

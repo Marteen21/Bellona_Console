@@ -1,4 +1,5 @@
 ﻿using Bellona_Console.Bots;
+using Bellona_Console.Bots.PvEDPSBots;
 using Bellona_Console.ConsoleInterface;
 using Bellona_Console.Controller;
 using Bellona_Console.MemoryReading;
