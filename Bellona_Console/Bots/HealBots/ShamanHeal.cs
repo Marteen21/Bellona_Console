@@ -23,12 +23,13 @@ namespace Bellona_Console.Bots.HealBots {
         public ShamanHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
             Console.WriteLine("Initialize Shaman Resto Heal bot");
         }
-        public ShamanHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healinterval, uint walkerinterval) : base(wowProcess, globalinfo, tt) {
+        public ShamanHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healinterval, uint walkerinterval) : base(wowProcess, globalinfo, healinterval) {
             Console.WriteLine("Initialize Shaman Resto Heal bot");
             focusfollow = new WalkerBot(wow, wowinfo, walkerinterval, WalkTargetType.CurrentFocus);
         }
 
         public override void Rota() {
+            base.Rota();
             if (!this.Player.Unit.HasBuff(watershild.ID)) {
                 watershild.SendCast();
             }

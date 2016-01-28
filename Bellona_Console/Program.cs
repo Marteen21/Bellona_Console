@@ -116,7 +116,7 @@ namespace Bellona_Console {
                     MageFireDPS mymbot = new MageFireDPS(wow, clientInfo, 100);
                     break;
                 case WoWClass.Shaman:
-                    ShamanHeal mysbot = new ShamanHeal(wow, clientInfo, 100);
+                    ShamanHeal mysbot = new ShamanHeal(wow, clientInfo, 100,1);
                     break;
                 case WoWClass.Priest:
                     PriestDiscHeal mypdbot = new PriestDiscHeal(wow, clientInfo, 200);
