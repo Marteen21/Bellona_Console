@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Bellona_Console.Controller;
 
 namespace Bellona_Console.Bots.HealBots {
-    class ShamanHeal : HealBot {
+    class ShamanHeal : HealPartyBot {
 
         public ShamanHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
             Console.WriteLine("Initialize Shaman Resto Heal bot");

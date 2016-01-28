@@ -8,20 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bellona_Console.Bots {
-    class HealBot : Bot {
+    class HealPartyBot : Bot {
 
         protected BlackMagic wow;
         protected WoWGlobal wowinfo;
         protected GameObject Player;
         protected GameObject Target;
         protected GameObject Focus;
-        protected GameObject Party1;
-        protected GameObject Party2;
-        protected GameObject Party3;
-        protected GameObject Party4;
-        protected GameObject Party5;
+        protected WoWParty Party; 
 
-        public HealBot(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(tt) {
+        public HealPartyBot(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(tt) {
             this.wow = wowProcess;
             this.wowinfo = globalinfo;
             this.wowinfo.Refresh(wowProcess);
