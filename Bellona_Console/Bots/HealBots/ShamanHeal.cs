@@ -18,9 +18,14 @@ namespace Bellona_Console.Bots.HealBots {
         Spell greaterhw = new Spell(0, ConstController.WindowsVirtualKey.VK_F12);
         Spell hw = new Spell(0, ConstController.WindowsVirtualKey.VK_F11);
         Spell natureswiftness = new Spell(0, ConstController.WindowsVirtualKey.VK_F9);
+        private WalkerBot focusfollow;
 
         public ShamanHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
             Console.WriteLine("Initialize Shaman Resto Heal bot");
+        }
+        public ShamanHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healinterval, uint walkerinterval) : base(wowProcess, globalinfo, tt) {
+            Console.WriteLine("Initialize Shaman Resto Heal bot");
+            focusfollow = new WalkerBot(wow, wowinfo, walkerinterval, WalkTargetType.CurrentFocus);
         }
 
         public override void Rota() {
