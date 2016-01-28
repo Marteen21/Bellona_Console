@@ -1,4 +1,5 @@
 ﻿using Bellona_Console.Bots;
+using Bellona_Console.Bots.HealBots;
 using Bellona_Console.Bots.PvEDPSBots;
 using Bellona_Console.ConsoleInterface;
 using Bellona_Console.Controller;
@@ -110,6 +111,9 @@ namespace Bellona_Console {
                     break;
                 case WoWClass.Mage:
                     MageFireDPS mymbot = new MageFireDPS(wow, clientInfo, 100);
+                    break;
+                case WoWClass.Shaman:
+                    ShamanHeal mysbot = new ShamanHeal(wow, clientInfo, 100);
                     break;
             }
         }
