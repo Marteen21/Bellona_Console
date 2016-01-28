@@ -19,7 +19,9 @@ namespace Bellona_Console.Bots {
         protected GameObject Target;
         protected GameObject Focus;
         protected WoWParty Party;
-        protected uint NumberofLowHPPartyMembers=0;
+        public static readonly uint HealthForAoeHeal = 70;
+        public static readonly uint HealthForSelfishHeal = 40;
+        protected uint NumberofLowHPPartyMembers = 0;
         protected PartyMembers WhatToTarget;
 
         public HealPartyBot(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(tt) {
@@ -68,20 +70,20 @@ namespace Bellona_Console.Bots {
             tempObject = new GameObject(wow, (UInt64)wowinfo.PlayerGUID);
             NumberofLowHPPartyMembers = 0;
             uint playerhp = tempObject.Unit.GetHealthPercent();
-            if (playerhp < 70) {
+            if (playerhp < HealthForAoeHeal) {
                 NumberofLowHPPartyMembers++;
             }
-            if (playerhp < 40) {
+            if (playerhp < HealthForSelfishHeal) {
                 return result;
             }
             else {
-                for(int i= 0; i < this.Party.Party.Count; i++) {
+                for (int i = 0; i < this.Party.Party.Count; i++) {
                     GameObject temp2Object = new GameObject(wow, Party.Party[i]);
-                    if (temp2Object.Unit.GetHealthPercent() < 70) {
+                    if (temp2Object.Unit.GetHealthPercent() < HealthForAoeHeal) {
                         NumberofLowHPPartyMembers++;
                     }
-                    if (Vector3.Distance(Player.Unit.Position,temp2Object.Unit.Position)<40 && GameObject.HPMin(ref tempObject,temp2Object)) {
-                        result = (PartyMembers)i+1;
+                    if (Vector3.Distance(Player.Unit.Position, temp2Object.Unit.Position) < 40 && GameObject.HPMin(ref tempObject, temp2Object)) {
+                        result = (PartyMembers)i + 1;
                     }
                 }
             }
