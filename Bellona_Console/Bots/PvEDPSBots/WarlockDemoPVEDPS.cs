@@ -24,6 +24,9 @@ namespace Bellona_Console.Bots.PvEDPSBots {
             Console.WriteLine("Initialize Warlock Demonology Complex PvE (Beta) bot");
             followFocus = new WalkerBot(this.wow, this.wowinfo, walkerTimerInterval, WalkTargetType.CurrentFocus);
         }
+        public WarlockDemoPVEDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint dpsTimerInterval) : base(wowProcess, globalinfo, dpsTimerInterval) {
+            Console.WriteLine("Initialize Warlock Demonology Complex PvE (Beta) bot");
+        }
         public override void Rota() {
             if (Player.Unit.GetHealthPercent() > 40  && Player.Unit.GetManaPercent() < 50) {
                 lifeTap.SendCast();
