@@ -66,7 +66,7 @@ namespace Bellona_Console {
                 WowPrinter.Print(wr,1);
                 WowPrinter.Print(TargetObject); //For debug
                 //WalkerBot mybot = new WalkerBot(wow, clientInfo, 100);
-                //InitBotBasedonClass(args, PlayerObject.Unit.WowClass);
+                InitBotBasedonClass(args, PlayerObject.Unit.WowClass);
                 HealPartyBot hpb = new HealPartyBot(wow, clientInfo, 1000);
                 bool temp = true;
                 while (temp) {
