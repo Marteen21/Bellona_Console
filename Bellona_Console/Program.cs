@@ -60,6 +60,10 @@ namespace Bellona_Console {
                 WowPrinter.Print(clientInfo);
                 GameObject PlayerObject = new GameObject(wow, (UInt64)clientInfo.PlayerGUID);
                 GameObject TargetObject = new GameObject(wow, (UInt64)clientInfo.TargetGUID);
+                WoWRaid wr = new WoWRaid(wow);
+                WoWParty wp = new WoWParty(wow);
+                WowPrinter.Print(wp, 1);
+                WowPrinter.Print(wr,1);
                 WowPrinter.Print(TargetObject); //For debug
                 //WalkerBot mybot = new WalkerBot(wow, clientInfo, 100);
                 InitBotBasedonClass(args, PlayerObject.Unit.WowClass);

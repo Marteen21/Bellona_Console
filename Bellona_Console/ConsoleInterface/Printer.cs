@@ -50,6 +50,11 @@ namespace Bellona_Console.ConsoleInterface {
                 Console.WriteLine("".PadLeft(padleft) +i);
             }
         }
+        public void Print(List<UInt64> guidlist, int padleft) {
+            foreach (UInt64 i in guidlist) {
+                Console.WriteLine("".PadLeft(padleft) + "0x{0:X16}",i);
+            }
+        }
         public void Print(WoWUnit u) {
             Type type = u.GetType();
             PropertyInfo[] properties = type.GetProperties();
@@ -66,6 +71,21 @@ namespace Bellona_Console.ConsoleInterface {
                 Console.WriteLine("".PadLeft(padleft)+(property.Name.ToString().PadRight(Paddistance) + property.GetValue(u, null)));
             }
             Print(u.Buffs,2*padleft);
+        }
+        public void Print(WoWRaid r, int padleft) {
+            Type type = r.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+            foreach (PropertyInfo property in properties) {
+                Console.WriteLine("".PadLeft(padleft) + (property.Name.ToString().PadRight(Paddistance) + property.GetValue(r, null)));
+            }
+            Print(r.RaidMembers,2*padleft);
+        }
+        public void Print(WoWParty p, int padleft) {
+            Type type = p.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+            foreach (PropertyInfo property in properties) {
+                Console.WriteLine("".PadLeft(padleft) + (property.Name.ToString().PadRight(Paddistance) + String.Format("0x{0:X16}", property.GetValue(p, null))));
+            }
         }
         public void Print(GameObject go) {
             Type type = go.GetType();

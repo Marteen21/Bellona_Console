@@ -16,6 +16,8 @@ namespace Bellona_Console.Bots.PvEDPSBots {
         private Spell moltenCore = new Spell(71165, ConstController.WindowsVirtualKey.K_2);
         private Spell shadowTrance = new Spell(17941, ConstController.WindowsVirtualKey.K_1);
         private Spell soulFire = new Spell(63167, ConstController.WindowsVirtualKey.K_7);
+        private Spell lifeTap = new Spell(1454, ConstController.WindowsVirtualKey.K_T);
+
         private WalkerBot followFocus;
 
         public WarlockDemoPVEDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint dpsTimerInterval, uint walkerTimerInterval) : base(wowProcess, globalinfo, dpsTimerInterval) {
@@ -23,6 +25,9 @@ namespace Bellona_Console.Bots.PvEDPSBots {
             followFocus = new WalkerBot(this.wow, this.wowinfo, walkerTimerInterval, WalkTargetType.CurrentFocus);
         }
         public override void Rota() {
+            if (Player.Unit.GetHealthPercent() > 40  && Player.Unit.GetManaPercent() < 50) {
+                lifeTap.SendCast();
+            }
             corruption.ReCast(this.wowinfo, this.Target.Unit);
             immolate.ReCast(this.wowinfo, this.Target.Unit);
             baneofdoom.ReCast(this.wowinfo, this.Target.Unit);

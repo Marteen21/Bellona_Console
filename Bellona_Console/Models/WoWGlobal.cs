@@ -12,11 +12,6 @@ namespace Bellona_Console.Models {
         private UInt64 playerGUID;
         private UInt64 targetGUID;
         private UInt64 focusGUID;
-        private UInt64 party1GUID;
-        private UInt64 party2GUID;
-        private UInt64 party3GUID;
-        private UInt64 party4GUID;
-        private UInt64 party5GUID;
         private byte comboPoints;
         private byte runes;
         private bool spellIsPending;
@@ -48,56 +43,6 @@ namespace Bellona_Console.Models {
 
             set {
                 focusGUID = value;
-            }
-        }
-
-        public ulong Party1GUID {
-            get {
-                return party1GUID;
-            }
-
-            set {
-                party1GUID = value;
-            }
-        }
-
-        public ulong Party2GUID {
-            get {
-                return party2GUID;
-            }
-
-            set {
-                party2GUID = value;
-            }
-        }
-
-        public ulong Party3GUID {
-            get {
-                return party3GUID;
-            }
-
-            set {
-                party3GUID = value;
-            }
-        }
-
-        public ulong Party4GUID {
-            get {
-                return party4GUID;
-            }
-
-            set {
-                party4GUID = value;
-            }
-        }
-
-        public ulong Party5GUID {
-            get {
-                return party5GUID;
-            }
-
-            set {
-                party5GUID = value;
             }
         }
 

@@ -28,11 +28,11 @@ namespace Bellona_Console.Bots {
             Player = new GameObject(wowProcess, this.wowinfo.PlayerGUID);
             Target = new GameObject(wowProcess, this.wowinfo.TargetGUID);
             Focus = new GameObject(wowProcess, this.wowinfo.FocusGUID);
-            Party1 = new GameObject(wowProcess, this.wowinfo.Party1GUID);
-            Party2 = new GameObject(wowProcess, this.wowinfo.Party2GUID);
-            Party3 = new GameObject(wowProcess, this.wowinfo.Party3GUID);
-            Party4 = new GameObject(wowProcess, this.wowinfo.Party4GUID);
-            Party5 = new GameObject(wowProcess, this.wowinfo.Party5GUID);
+            //Party1 = new GameObject(wowProcess, this.wowinfo.Party1GUID);
+            //Party2 = new GameObject(wowProcess, this.wowinfo.Party2GUID);
+            //Party3 = new GameObject(wowProcess, this.wowinfo.Party3GUID);
+            //Party4 = new GameObject(wowProcess, this.wowinfo.Party4GUID);
+            //Party5 = new GameObject(wowProcess, this.wowinfo.Party5GUID);
 
         }
         public override void BotEvent(Object source, System.Timers.ElapsedEventArgs e) {
@@ -41,11 +41,11 @@ namespace Bellona_Console.Bots {
             Player = new GameObject(wow, this.wowinfo.PlayerGUID);
             Target = new GameObject(wow, this.wowinfo.TargetGUID);
             Focus = new GameObject(wow, this.wowinfo.FocusGUID);
-            Party1 = new GameObject(wow, this.wowinfo.Party1GUID);
-            Party2 = new GameObject(wow, this.wowinfo.Party2GUID);
-            Party3 = new GameObject(wow, this.wowinfo.Party3GUID);
-            Party4 = new GameObject(wow, this.wowinfo.Party4GUID);
-            Party5 = new GameObject(wow, this.wowinfo.Party5GUID);
+            //Party1 = new GameObject(wow, this.wowinfo.Party1GUID);
+            //Party2 = new GameObject(wow, this.wowinfo.Party2GUID);
+            //Party3 = new GameObject(wow, this.wowinfo.Party3GUID);
+            //Party4 = new GameObject(wow, this.wowinfo.Party4GUID);
+            //Party5 = new GameObject(wow, this.wowinfo.Party5GUID);
 
             Rota();
 

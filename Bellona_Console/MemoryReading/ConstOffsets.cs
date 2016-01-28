@@ -91,6 +91,12 @@ namespace Bellona_Console.MemoryReading {
             ShapeShift = 0x1C7,
             Faction = 0xB4
         }
+        internal enum RaidMembers : uint {
+             TotalNumber=0xB3407C,
+             FirstRaidMemberAddress = 0xB33FD8,
+             NextRaidMemberAddres = 0x04,
+        }
+
         internal enum Positions : uint {
             X = 0x790,
             Y = 0x794,
