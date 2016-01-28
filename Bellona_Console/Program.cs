@@ -100,7 +100,7 @@ namespace Bellona_Console {
                     break;
                 case WoWClass.Warlock:
                     if (args.Length > 1) {
-                        WarlockDemoPVEDPS mywbot = new WarlockDemoPVEDPS(wow, clientInfo, 100, 100);
+                        WarlockDemoPVEDPS mywbot = new WarlockDemoPVEDPS(wow, clientInfo, 100, 1);
                     }
                     else {
                         WarlockDPS mywbot = new WarlockDPS(wow, clientInfo, 100);
