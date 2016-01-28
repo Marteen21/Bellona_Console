@@ -15,9 +15,9 @@ namespace Bellona_Console.Bots.HealBots {
         Spell earthshild = new Spell(974, ConstController.WindowsVirtualKey.K_8);
         Spell riptide = new Spell(0, ConstController.WindowsVirtualKey.K_9);
         Spell tidalwaves = new Spell(53390);
-
-
-
+        Spell greaterhw = new Spell(0, ConstController.WindowsVirtualKey.VK_F12);
+        Spell hw = new Spell(0, ConstController.WindowsVirtualKey.VK_F11);
+        Spell natureswiftness = new Spell(0, ConstController.WindowsVirtualKey.VK_F9);
 
         public ShamanHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
             Console.WriteLine("Initialize Shaman Resto Heal bot");
@@ -30,14 +30,25 @@ namespace Bellona_Console.Bots.HealBots {
             if (this.Player.Unit.GetManaPercent() < 50) {
                 manatide.SendCast();
             }
-            if (!this.Focus.Unit.HasBuff(earthshild.ID)) {
+            if (!this.Focus.Unit.HasBuff(earthshild.ID) && this.Focus.GUID !=0) {
                 earthshild.SendCast();
             }
             if (this.Target.Unit.GetHealthPercent() < 95) {
                 riptide.SendCast();
             }
+            if (this.Player.Unit.HasBuff(tidalwaves.ID) && this.Target.Unit.GetHealthPercent()<90 && !this.wowinfo.SpellIsPending ) {
+                if (this.Target.Unit.GetHealthPercent() < 30) {
+                    greaterhw.SendCast();
+                }
+                else {
+                    hw.SendCast();
+                }
+            }
+            if (this.Target.Unit.GetHealthPercent() < 10) {
+                natureswiftness.SendCast();
+            }
 
-            
+
         }
     }
 }
