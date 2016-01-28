@@ -145,5 +145,14 @@ namespace Bellona_Console.MemoryReading {
                 this.Unit = new WoWUnit(w, this);
             }
         }
+        public static bool HPMin(ref GameObject minimum, GameObject next) {
+            if (next.GUID == 0 || minimum.unit.GetHealthPercent() < next.Unit.GetHealthPercent()) {
+                return false;
+            }
+            else{
+                minimum = next;
+                return true;
+            }
+        }
     }
 }

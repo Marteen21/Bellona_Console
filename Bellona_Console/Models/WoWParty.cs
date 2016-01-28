@@ -8,77 +8,58 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bellona_Console.Models {
+    [Flags]
+    public enum PartyMembers : uint {
+        Player = 0,
+        PartyMember1 = 1,
+        PartyMember2 = 2,
+        PartyMember3 = 3,
+        PartyMember4 = 4,
+    }
     class WoWParty {
-        private UInt64 partyLeaderGUID;
-        private UInt64 partyMember1GUID;
-        private UInt64 partyMember2GUID;
-        private UInt64 partyMember3GUID;
-        private UInt64 partyMember4GUID;
-       
+        private List<UInt64> party= new List<UInt64>();
+
+
         public WoWParty(BlackMagic w) {
             this.Refresh(w);
         }
-        #region properties
-        public ulong PartyLeaderGUID {
+
+        public List<ulong> Party {
             get {
-                return partyLeaderGUID;
+                return party;
             }
 
             set {
-                partyLeaderGUID = value;
+                party = value;
             }
         }
-
-        public ulong PartyMember1GUID {
-            get {
-                return partyMember1GUID;
-            }
-
-            set {
-                partyMember1GUID = value;
-            }
-        }
-
-        public ulong PartyMember2GUID {
-            get {
-                return partyMember2GUID;
-            }
-
-            set {
-                partyMember2GUID = value;
-            }
-        }
-
-        public ulong PartyMember3GUID {
-            get {
-                return partyMember3GUID;
-            }
-
-            set {
-                partyMember3GUID = value;
-            }
-        }
-
-        public ulong PartyMember4GUID {
-            get {
-                return partyMember4GUID;
-            }
-
-            set {
-                partyMember4GUID = value;
-            }
-        }
-#endregion
         private void Refresh(BlackMagic w) {
+            UInt64 PartyMember1GUID = 0;
+            UInt64 PartyMember2GUID = 0;
+            UInt64 PartyMember3GUID = 0;
+            UInt64 PartyMember4GUID = 0;
             try {
-                this.PartyLeaderGUID = w.ReadUInt64((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.PartyLeaderGUID);
-                this.PartyMember1GUID = w.ReadUInt64((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.PartyMember1GUID);
-                this.PartyMember2GUID = w.ReadUInt64((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.PartyMember2GUID);
-                this.PartyMember3GUID = w.ReadUInt64((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.PartyMember3GUID);
-                this.PartyMember4GUID = w.ReadUInt64((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.PartyMember4GUID);
+                PartyMember1GUID = w.ReadUInt64((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.PartyMember1GUID);
+                PartyMember2GUID = w.ReadUInt64((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.PartyMember2GUID);
+                PartyMember3GUID = w.ReadUInt64((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.PartyMember3GUID);
+                PartyMember4GUID = w.ReadUInt64((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.PartyMember4GUID);
             }
             catch {
                 Program.WowPrinter.Print(ConstStrings.ReadError);
+            }
+            finally {
+                if (PartyMember1GUID != 0) {
+                    Party.Add(PartyMember1GUID);
+                    if (PartyMember2GUID != 0) {
+                        Party.Add(PartyMember2GUID);
+                        if (PartyMember3GUID != 0) {
+                            Party.Add(PartyMember3GUID);
+                            if (PartyMember4GUID != 0) {
+                                Party.Add(PartyMember4GUID);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
