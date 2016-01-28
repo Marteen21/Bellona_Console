@@ -28,9 +28,6 @@ namespace Bellona_Console.Bots {
             Console.WriteLine("Initialize Warlock Affliction DPS bot");
         }
         public override void Rota() {
-            if (this.ticks % 50==0) {
-                Console.WriteLine(Vector3.Distance(Player.Unit.Position, Target.Unit.Position));
-            }
             if (Player.Unit.GetHealthPercent() < 40) {
                 healthstone.SendCast();
             }

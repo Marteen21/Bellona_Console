@@ -49,16 +49,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bots\Bot.cs" />
-    <Compile Include="Bots\DeathKnightBloodDPS.cs" />
-    <Compile Include="Bots\DeathKnightUnholyDPS.cs" />
+    <Compile Include="Bots\DPSBots\DeathKnightBloodDPS.cs" />
+    <Compile Include="Bots\DPSBots\DeathKnightUnholyDPS.cs" />
     <Compile Include="Bots\DPSBot.cs" />
     <Compile Include="Bots\DruidDPS.cs" />
     <Compile Include="Bots\MageFireDPS.cs" />
     <Compile Include="Bots\PaladinDPS.cs" />
-    <Compile Include="Bots\StressTester.cs" />
-    <Compile Include="Bots\WalkerBot.cs" />
-    <Compile Include="Bots\WarlockDemoPVEDPS.cs" />
-    <Compile Include="Bots\WarlockDPS.cs" />
+    <Compile Include="Bots\Other\StressTester.cs" />
+    <Compile Include="Bots\Other\WalkerBot.cs" />
+    <Compile Include="Bots\PvEDPSBot.cs" />
+    <Compile Include="Bots\PvEDPSBots\WarlockDemoPVEDPS.cs" />
+    <Compile Include="Bots\DPSBots\WarlockDPS.cs" />
     <Compile Include="ConsoleInterface\ConstStrings.cs" />
     <Compile Include="ConsoleInterface\Error.cs" />
     <Compile Include="ConsoleInterface\Message.cs" />

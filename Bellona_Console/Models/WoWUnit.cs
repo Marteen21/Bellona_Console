@@ -72,9 +72,10 @@ namespace Bellona_Console.Models {
         private uint holyPower;
         private uint secondaryPower;
         private uint faction;
+        private UInt64 targetGUID;
         private bool isMoving = false;
         private Vector3 position = new Vector3();
-        private float rotation;
+        private double rotation;
         private List<uint> buffs = new List<uint>();
         private BuffStorage addressofTheBuffs = BuffStorage.Unkown;
         #region properties
@@ -196,6 +197,25 @@ namespace Bellona_Console.Models {
                 faction = value;
             }
         }
+        internal Vector3 Position {
+            get {
+                return position;
+            }
+
+            set {
+                position = value;
+            }
+        }
+
+        public double Rotation {
+            get {
+                return rotation;
+            }
+
+            set {
+                rotation = value;
+            }
+        }
         public BuffStorage AddressofTheBuffs {
             get {
                 return addressofTheBuffs;
@@ -216,25 +236,17 @@ namespace Bellona_Console.Models {
             }
         }
 
-        internal Vector3 Position {
+        public ulong TargetGUID {
             get {
-                return position;
+                return targetGUID;
             }
 
             set {
-                position = value;
+                targetGUID = value;
             }
         }
 
-        public float Rotation {
-            get {
-                return rotation;
-            }
 
-            set {
-                rotation = value;
-            }
-        }
 
         #endregion
         public WoWUnit() {
@@ -248,6 +260,7 @@ namespace Bellona_Console.Models {
                 this.WowClass = (WoWClass)w.ReadByte((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.Class8);
                 this.Shapeshift = (ShapeshiftForm)w.ReadByte((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.ShapeShift);
                 this.Role = Role.Unknown;
+
                 this.Level = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.Level);
                 this.Health = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.Health);
                 this.MaxHealth = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.MaxHealth);
@@ -257,11 +270,18 @@ namespace Bellona_Console.Models {
                 this.HolyPower = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.HolyPower);
                 this.IsMoving = w.ReadByte((uint)go.MovementArrayAddress+(uint)ConstOffsets.Movements.IsMoving8) != 0x00;
                 this.Faction = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.Faction);
+                this.TargetGUID = w.ReadUInt64((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.TargetGUID);
 
                 this.position.X = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.X);
                 this.position.Y = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Y);
                 this.position.Z = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Z);
-                this.Rotation = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Rotation);
+                float temprot = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Rotation);
+                if (temprot > Math.PI) {
+                    this.Rotation = -(2*Math.PI - temprot);
+                }
+                else {
+                    this.Rotation = temprot;
+                }
                 this.RefreshBuffs(w,go);
             }
             catch {
