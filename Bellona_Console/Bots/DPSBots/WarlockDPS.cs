@@ -1,6 +1,7 @@
 ﻿using Bellona_Console.Controller;
 using Bellona_Console.MemoryReading;
 using Bellona_Console.Models;
+using Bellona_Console.Other;
 using Magic;
 using System;
 using System.Collections.Generic;

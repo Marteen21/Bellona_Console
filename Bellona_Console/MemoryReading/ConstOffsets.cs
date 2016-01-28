@@ -88,7 +88,14 @@ namespace Bellona_Console.MemoryReading {
             SecondaryPower = 0x64,
             MaxPower = 0x74,
             TargetGUID = 0x40,
-            ShapeShift = 0x1C7
+            ShapeShift = 0x1C7,
+            Faction = 0xB4
+        }
+        internal enum Positions : uint {
+            X = 0x790,
+            Y = 0x794,
+            Z = 0x798,
+            Rotation = 0x7A0,
         }
 
     }
