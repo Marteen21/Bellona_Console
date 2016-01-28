@@ -25,7 +25,7 @@ namespace Bellona_Console.Bots.HealBots {
         }
         public ShamanHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healinterval, uint walkerinterval) : base(wowProcess, globalinfo, healinterval) {
             Console.WriteLine("Initialize Shaman Resto Heal bot");
-            focusfollow = new WalkerBot(wow, wowinfo, walkerinterval, WalkTargetType.CurrentFocus);
+            focusfollow = new WalkerBot(wow, wowinfo, walkerinterval, WalkTargetType.CurrentFocus,10);
         }
 
         public override void Rota() {

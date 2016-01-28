@@ -25,15 +25,16 @@ namespace Bellona_Console.Bots {
         private bool left = false;
         private bool right = false;
         private WalkTargetType WhatToFollow;
-        public static readonly float PositionThreshhold = 5;
+        private float PositionThreshhold = 5;
         public static readonly double RotationThreshhold = 10 * Math.PI / 180;
 
 
-        public WalkerBot(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt, WalkTargetType wtf) : base(tt) {
+        public WalkerBot(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt, WalkTargetType wtf, float posThreshhold) : base(tt) {
             this.wow = wowProcess;
             this.wowinfo = globalinfo;
             this.wowinfo.Refresh(wowProcess);
             this.WhatToFollow = wtf;
+            this.PositionThreshhold = posThreshhold;
             Player = new GameObject(wowProcess, this.wowinfo.PlayerGUID);
             setWalkTarget(out WalkTarget);
         }

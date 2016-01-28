@@ -22,7 +22,7 @@ namespace Bellona_Console.Bots.PvEDPSBots {
 
         public WarlockDemoPVEDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint dpsTimerInterval, uint walkerTimerInterval) : base(wowProcess, globalinfo, dpsTimerInterval) {
             Console.WriteLine("Initialize Warlock Demonology Complex PvE (Beta) bot");
-            followFocus = new WalkerBot(this.wow, this.wowinfo, walkerTimerInterval, WalkTargetType.CurrentFocus);
+            followFocus = new WalkerBot(this.wow, this.wowinfo, walkerTimerInterval, WalkTargetType.CurrentFocus,10);
         }
         public WarlockDemoPVEDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint dpsTimerInterval) : base(wowProcess, globalinfo, dpsTimerInterval) {
             Console.WriteLine("Initialize Warlock Demonology Complex PvE (Beta) bot");

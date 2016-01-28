@@ -18,7 +18,7 @@ namespace Bellona_Console.Bots.HealBots {
         private WalkerBot followFocus;
         public PriestDiscHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healTimerInterval, uint walkerTimerInterval) : base(wowProcess, globalinfo, healTimerInterval) {
             Console.WriteLine("Priest Beta Healing");
-            followFocus = new WalkerBot(this.wow, this.wowinfo, walkerTimerInterval, WalkTargetType.CurrentFocus);
+            followFocus = new WalkerBot(this.wow, this.wowinfo, walkerTimerInterval, WalkTargetType.CurrentFocus,10);
         }
         public PriestDiscHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healTimerInterval) : base(wowProcess, globalinfo, healTimerInterval) {
             Console.WriteLine("Priest Beta Healing");

@@ -20,7 +20,7 @@ namespace Bellona_Console.Models {
         public override bool ReCast(WoWGlobal wowinfo, WoWUnit unit) {
             if (!unit.HasBuff(cot) && !unit.HasBuff(cote) && !unit.HasBuff(cow) && !unit.HasBuff(coe)) {
                 this.SendCast();
-                return true;
+                return true; 
             }
             else {
                 return false;
