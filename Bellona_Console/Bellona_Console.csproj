@@ -60,8 +60,10 @@
     <Compile Include="Bots\HealBots\ShamanHeal.cs" />
     <Compile Include="Bots\HealPartyBot.cs" />
     <Compile Include="Bots\Other\StressTester.cs" />
+    <Compile Include="Bots\Other\WalkBehindBot.cs" />
     <Compile Include="Bots\Other\WalkerBot.cs" />
     <Compile Include="Bots\PvEDPSBot.cs" />
+    <Compile Include="Bots\PvEDPSBots\DruidPVEDPS.cs" />
     <Compile Include="Bots\PvEDPSBots\MageFirePVEDPS.cs" />
     <Compile Include="Bots\PvEDPSBots\PaladinPVEDPS.cs" />
     <Compile Include="Bots\PvEDPSBots\WarlockDemoPVEDPS.cs" />
