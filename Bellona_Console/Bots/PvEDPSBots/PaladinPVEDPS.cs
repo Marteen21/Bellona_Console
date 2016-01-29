@@ -19,7 +19,7 @@ namespace Bellona_Console.Bots {
         private Spell templar = new Spell(90174, ConstController.WindowsVirtualKey.VK_F11);
         private Spell crusader = new Spell(0, ConstController.WindowsVirtualKey.VK_F9);
         private Spell hammer = new Spell(31884, ConstController.WindowsVirtualKey.VK_F8);//avenging wrath buff alat ingyen lehet tolni
-        private Spell repetance = new Spell(0, ConstController.WindowsVirtualKey.VK_F7);
+        //private Spell repetance = new Spell(0, ConstController.WindowsVirtualKey.VK_F7);
         private WalkerBot followBot;
 
         public PaladinPVEDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt, uint walkerTimerInterval) : base(wowProcess, globalinfo, tt) {
@@ -34,7 +34,7 @@ namespace Bellona_Console.Bots {
 
         public override void Rota() {
             base.Rota();
-            repetance.SendCast();
+            //repetance.SendCast();
             if (this.Player.Unit.GetManaPercent() < 50 && this.Player.Unit.GetHealthPercent() > 70) {
                 plea.SendCast();
             }
