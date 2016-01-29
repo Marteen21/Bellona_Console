@@ -136,7 +136,7 @@ namespace Bellona_Console {
                     DeathKnightBloodDPS mydkbot = new DeathKnightBloodDPS(wow, clientInfo, 100);
                     break;
                 case WoWClass.Paladin:
-                    PaladinDPS mypbot = new PaladinDPS(wow, clientInfo, 100);
+                    PaladinPVEDPS mypbot = new PaladinPVEDPS(wow, clientInfo, 100,1);
                     break;
                 case WoWClass.Mage:
                     MageFirePVEDPS mymbot = new MageFirePVEDPS(wow, clientInfo, 100, 1);

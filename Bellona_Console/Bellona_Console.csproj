@@ -62,6 +62,7 @@
     <Compile Include="Bots\Other\WalkerBot.cs" />
     <Compile Include="Bots\PvEDPSBot.cs" />
     <Compile Include="Bots\PvEDPSBots\MageFirePVEDPS.cs" />
+    <Compile Include="Bots\PvEDPSBots\PaladinPVEDPS.cs" />
     <Compile Include="Bots\PvEDPSBots\WarlockDemoPVEDPS.cs" />
     <Compile Include="Bots\DPSBots\WarlockDPS.cs" />
     <Compile Include="ConsoleInterface\ConstStrings.cs" />

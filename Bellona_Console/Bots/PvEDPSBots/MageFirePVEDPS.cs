@@ -20,7 +20,7 @@ namespace Bellona_Console.Bots {
         private WalkerBot followFocus;
 
         public MageFirePVEDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt, uint walkerTimerInterval) : base(wowProcess, globalinfo, tt) {
-            Console.WriteLine("Initialize FireMage DPS bot");
+            Console.WriteLine("Initialize FireMage PVE DPS bot");
             followFocus = new WalkerBot(this.wow, this.wowinfo, walkerTimerInterval, WalkTargetType.CurrentFocus, 10);
         }
         public MageFirePVEDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
