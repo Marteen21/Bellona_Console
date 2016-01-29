@@ -21,7 +21,7 @@ namespace Bellona_Console.Bots {
             Target = new GameObject(wowProcess, this.wowinfo.TargetGUID);
         }
 
-        public override void BotEvent(Object source, System.Timers.ElapsedEventArgs e) {
+        public override void BotEvent(Object source) {
             this.ticks++;
             PrintToConsoleAt(("Refreshing Global info " + this.ticks), 1);
             wowinfo.Refresh(wow);

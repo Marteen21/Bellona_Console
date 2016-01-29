@@ -23,7 +23,7 @@ namespace Bellona_Console.Bots {
             Target = new GameObject(wowProcess, this.wowinfo.TargetGUID);
             Focus = new GameObject(wowProcess, this.wowinfo.FocusGUID);
         }
-        public override void BotEvent(Object source, System.Timers.ElapsedEventArgs e) {
+        public override void BotEvent(Object source) {
             this.ticks++;
             this.wowinfo.Refresh(wow);
             Player = new GameObject(wow, this.wowinfo.PlayerGUID);

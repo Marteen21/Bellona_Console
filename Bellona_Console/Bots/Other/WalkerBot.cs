@@ -47,7 +47,7 @@ namespace Bellona_Console.Bots {
             Player = new GameObject(wowProcess, this.wowinfo.PlayerGUID);
             setWalkTarget(out WalkTarget);
         }
-        public override void BotEvent(Object source, System.Timers.ElapsedEventArgs e) {
+        public override void BotEvent(Object source) {
             this.ticks++;
             this.wowinfo.Refresh(wow);
             Player = new GameObject(wow, this.wowinfo.PlayerGUID);

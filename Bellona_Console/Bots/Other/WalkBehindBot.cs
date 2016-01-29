@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Bellona_Console.Bots {
 
-    public class WalkBehindBot : BunkoBot {
+    public class WalkBehindBot : Bot {
         protected BlackMagic wow;
         protected WoWGlobal wowinfo;
         protected GameObject Player;
@@ -51,29 +51,48 @@ namespace Bellona_Console.Bots {
             if (WalkTarget.GUID != 0) {
                 Vector3 RealTarget = Behindtarget(WalkTarget);
                 double mydiff = AngleDiff(Calculateangle(RealTarget), Player.Unit.Rotation);
-                if ((Math.Abs(mydiff) < RotationThreshhold)) {
-                    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
-                    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
-                    if (Vector3.Distance(Player.Unit.Position, RealTarget) > PositionThreshhold) {
-                            SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_UP, ref forward);
+                if (Vector3.Distance(Player.Unit.Position, RealTarget) > PositionThreshhold) {
+                    if ((Math.Abs(mydiff) < RotationThreshhold)) {
+                        SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
+                        SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
+
+                        SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_UP, ref forward);
+                        //}
+                        //else if (forward || left || right) {
+                        //    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_UP, ref forward);
+                        //    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
+                        //    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
+                        //}
                     }
-                    else if (forward || left || right) {
+                    else if (mydiff < 0) {
+                        SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
+                        SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
                         SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_UP, ref forward);
+
+                    }
+                    else if (mydiff > 0) {
+                        SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
+                        SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
+                        SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_UP, ref forward);
+
+                    }
+                }
+                else{
+                    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_UP, ref forward);
+                    double dmgdiff = AngleDiff(Calculateangle(WalkTarget.Unit.Position), Player.Unit.Rotation);
+                    if ((Math.Abs(dmgdiff) < RotationThreshhold)) {
                         SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
                         SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
                     }
-                }
-                else if (mydiff < 0) {
-                    SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
-                    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
-                    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_UP, ref forward);
+                    else if (dmgdiff < 0) {
+                        SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
+                        SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
+                    }
+                    else if (dmgdiff > 0) {
+                        SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
+                        SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
 
-                }
-                else if (mydiff > 0) {
-                    SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
-                    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
-                    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_UP, ref forward);
-
+                    }
                 }
             }
             else {
@@ -92,11 +111,11 @@ namespace Bellona_Console.Bots {
 
         private Vector3 Behindtarget(GameObject target) {
             return new Vector3(
-                target.Unit.Position.X +(float) Math.Cos(target.Unit.Rotation)*BehindScale,
-                target.Unit.Position.Y +(float) Math.Sin(target.Unit.Rotation)*BehindScale,
+                target.Unit.Position.X + (float)Math.Cos(target.Unit.Rotation) * BehindScale,
+                target.Unit.Position.Y + (float)Math.Sin(target.Unit.Rotation) * BehindScale,
                 target.Unit.Position.Z);
 
-        } 
+        }
 
         private static double AngleDiff(double rad2, double rad1) {
             double result = (rad1 - rad2);
