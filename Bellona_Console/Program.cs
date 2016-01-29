@@ -65,7 +65,8 @@ namespace Bellona_Console {
                 WowPrinter.Print(wp, 1);
                 WowPrinter.Print(wr, 1);
                 WowPrinter.Print(TargetObject); //For debug
-                InitPvEBotBasedonClass(args, PlayerObject.Unit.WowClass);
+                WalkBehindBot kutya = new WalkBehindBot(wow, clientInfo, 1, WalkTargetType.CurrentTarget, 3);
+                //InitPvEBotBasedonClass(args, PlayerObject.Unit.WowClass);
                 bool temp = true;
                 while (temp) {
                     switch (Console.ReadKey().Key) {
@@ -127,7 +128,7 @@ namespace Bellona_Console {
         private static void InitPvEBotBasedonClass(string[] args, WoWClass myclass) {
             switch (myclass) {
                 case WoWClass.Druid:
-                    DruidDPS mydbot = new DruidDPS(wow, clientInfo, 100);
+                    DruidPVEDPS mydbot = new DruidPVEDPS(wow, clientInfo, 100,1);
                     break;
                 case WoWClass.Warlock:
                     WarlockDemoPVEDPS mywbot = new WarlockDemoPVEDPS(wow, clientInfo, 100, 1);
