@@ -145,7 +145,8 @@ namespace Bellona_Console.Other {
         public static float Distance(Vector3 value1, Vector3 value2) {
             float x = value1.X - value2.X;
             float y = value1.Y - value2.Y;
-            float z = value1.Z - value2.Z;
+            //float z = value1.Z - value2.Z;
+            float z = 0;
             
             return (float)Math.Sqrt((x * x) + (y * y) + (z * z));
         }

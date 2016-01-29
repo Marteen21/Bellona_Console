@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Bellona_Console.Bots {
 
-    public class WalkBehindBot : Bot {
+    public class WalkBehindBot : BunkoBot {
         protected BlackMagic wow;
         protected WoWGlobal wowinfo;
         protected GameObject Player;
@@ -22,7 +22,7 @@ namespace Bellona_Console.Bots {
         private WalkTargetType whatToFollow;
         private float PositionThreshhold = 3;
         public static readonly double RotationThreshhold = 10 * Math.PI / 180;
-        public static readonly float BehindScale = 5;
+        public static readonly float BehindScale = -3;
 
         public WalkTargetType WhatToFollow {
             get {
@@ -43,32 +43,33 @@ namespace Bellona_Console.Bots {
             Player = new GameObject(wowProcess, this.wowinfo.PlayerGUID);
             setWalkTarget(out WalkTarget);
         }
-        public override void BotEvent(Object source, System.Timers.ElapsedEventArgs e) {
+        public override void BotEvent(Object source) {
             this.ticks++;
             this.wowinfo.Refresh(wow);
             Player = new GameObject(wow, this.wowinfo.PlayerGUID);
             setWalkTarget(out WalkTarget);
             if (WalkTarget.GUID != 0) {
-                if (Vector3.Distance(Player.Unit.Position, Behindtarget(WalkTarget)) > PositionThreshhold) {
-                    if (!forward || !Player.Unit.IsMoving) {
-                        SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_UP, ref forward);
+                Vector3 RealTarget = Behindtarget(WalkTarget);
+                double mydiff = AngleDiff(Calculateangle(RealTarget), Player.Unit.Rotation);
+                if ((Math.Abs(mydiff) < RotationThreshhold)) {
+                    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
+                    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
+                    if (Vector3.Distance(Player.Unit.Position, RealTarget) > PositionThreshhold) {
+                            SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_UP, ref forward);
                     }
-                    double mydiff = AngleDiff(Calculateangle(), Player.Unit.Rotation);
-                    if ((Math.Abs(mydiff) < RotationThreshhold)) {
+                    else if (forward || left || right) {
+                        SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_UP, ref forward);
                         SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
                         SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
                     }
-                    else if (mydiff < 0) {
-                        SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
-                    }
-                    else if (mydiff > 0) {
-                        SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
-                    }
                 }
-                else if (forward || left || right) {
+                else if (mydiff < 0) {
+                    SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
                     SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_UP, ref forward);
-                    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
-                    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
+                }
+                else if (mydiff > 0) {
+                    SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
+                    SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_UP, ref forward);
                 }
             }
             else {
@@ -79,16 +80,16 @@ namespace Bellona_Console.Bots {
                 }
             }
         }
-        private double Calculateangle() {
-            float vx = WalkTarget.Unit.Position.X - Player.Unit.Position.X;
-            float vy = WalkTarget.Unit.Position.Y - Player.Unit.Position.Y;
+        private double Calculateangle(Vector3 RealTargetPosition) {
+            float vx = RealTargetPosition.X - Player.Unit.Position.X;
+            float vy = RealTargetPosition.Y - Player.Unit.Position.Y;
             return Math.Sign(vy) * Math.Acos((vx * 1 + vy * 0) / (Math.Sqrt(vx * vx + vy * vy)));
         }
 
         private Vector3 Behindtarget(GameObject target) {
             return new Vector3(
-                target.Unit.Position.X +(float) Math.Sin(target.Unit.Rotation)*BehindScale,
-                target.Unit.Position.Y +(float) Math.Cos(target.Unit.Rotation)*BehindScale,
+                target.Unit.Position.X +(float) Math.Cos(target.Unit.Rotation)*BehindScale,
+                target.Unit.Position.Y +(float) Math.Sin(target.Unit.Rotation)*BehindScale,
                 target.Unit.Position.Z);
 
         } 
