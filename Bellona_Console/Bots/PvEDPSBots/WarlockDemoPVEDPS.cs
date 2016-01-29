@@ -9,15 +9,16 @@ using System.Threading.Tasks;
 
 namespace Bellona_Console.Bots.PvEDPSBots {
     class WarlockDemoPVEDPS : PvEDPSBot {
-        private DoT corruption = new DoT(172, ConstController.WindowsVirtualKey.K_4);
-        private DoT immolate = new DoT(348, ConstController.WindowsVirtualKey.K_3);
-        private DoT baneofdoom = new DoT(603, ConstController.WindowsVirtualKey.K_5);
-        private DoT handofguldan = new DoT(86000, ConstController.WindowsVirtualKey.K_6);
-        private Spell moltenCore = new Spell(71165, ConstController.WindowsVirtualKey.K_2);
-        private Spell shadowTrance = new Spell(17941, ConstController.WindowsVirtualKey.K_1);
-        private Spell soulFire = new Spell(63167, ConstController.WindowsVirtualKey.K_7);
-        private Spell lifeTap = new Spell(1454, ConstController.WindowsVirtualKey.K_T);
+        private Spell shadowTrance = new Spell(17941, ConstController.WindowsVirtualKey.VK_NUMPAD0);
+        private Spell moltenCore = new Spell(71165, ConstController.WindowsVirtualKey.VK_NUMPAD1);
+        private DoT immolate = new DoT(348, ConstController.WindowsVirtualKey.VK_NUMPAD2);
+        private DoT corruption = new DoT(172, ConstController.WindowsVirtualKey.VK_NUMPAD3);
+        private DoT baneofdoom = new DoT(603, ConstController.WindowsVirtualKey.VK_NUMPAD4);
+        private DoT handofguldan = new DoT(86000, ConstController.WindowsVirtualKey.VK_NUMPAD5);
+        private Spell soulFire = new Spell(63167, ConstController.WindowsVirtualKey.VK_NUMPAD6);
+        private Spell lifeTap = new Spell(1454, ConstController.WindowsVirtualKey.VK_NUMPAD7);
 
+            
         private WalkerBot followFocus;
 
         public WarlockDemoPVEDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint dpsTimerInterval, uint walkerTimerInterval) : base(wowProcess, globalinfo, dpsTimerInterval) {

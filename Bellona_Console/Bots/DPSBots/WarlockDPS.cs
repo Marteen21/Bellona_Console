@@ -11,19 +11,20 @@ using System.Threading.Tasks;
 
 namespace Bellona_Console.Bots {
     class WarlockDPS : DPSBot {
-        private static DoT corruption = new DoT(172, ConstController.WindowsVirtualKey.K_5);
-        private static DoT unstableAffliction = new DoT(30108, ConstController.WindowsVirtualKey.K_7);
-        private static DoT haunt = new DoT(48181, ConstController.WindowsVirtualKey.K_6);
-        private static DoT baneofAgony = new DoT(980, ConstController.WindowsVirtualKey.K_8);
-        private static Spell shadowTrance = new Spell(17941, ConstController.WindowsVirtualKey.K_9);
-        private static DoT drainLife = new DoT(689, ConstController.WindowsVirtualKey.K_Ö);
-        private static DoT drainSoul = new DoT(1120, ConstController.WindowsVirtualKey.K_Ü);
-        private static Spell fellFlame = new Spell(77799, ConstController.WindowsVirtualKey.K_Ő);
-        private static Curse curseoftheElements = new Curse(1490, ConstController.WindowsVirtualKey.K_Á);
+        private static DoT corruption = new DoT(172, ConstController.WindowsVirtualKey.VK_NUMPAD0);
+        private static DoT haunt = new DoT(48181, ConstController.WindowsVirtualKey.VK_NUMPAD1);
+        private static DoT unstableAffliction = new DoT(30108, ConstController.WindowsVirtualKey.VK_NUMPAD2);
+        private static DoT baneofAgony = new DoT(980, ConstController.WindowsVirtualKey.VK_NUMPAD3);
+        private static Spell shadowTrance = new Spell(17941, ConstController.WindowsVirtualKey.VK_NUMPAD4);
+        private static DoT drainLife = new DoT(689, ConstController.WindowsVirtualKey.VK_NUMPAD5);
+        private static DoT drainSoul = new DoT(1120, ConstController.WindowsVirtualKey.VK_NUMPAD6);
+        private static Spell fellFlame = new Spell(77799, ConstController.WindowsVirtualKey.VK_NUMPAD7);
+        private static Curse curseoftheElements = new Curse(1490, ConstController.WindowsVirtualKey.VK_NUMPAD8);
+        private static Spell healthstone = new Spell(1, ConstController.WindowsVirtualKey.VK_NUMPAD9);
+        private static Spell soulSwapExhale = new Spell(86211, ConstController.WindowsVirtualKey.VK_PRIOR);
+        private static Spell soulSwap = new Spell(2, ConstController.WindowsVirtualKey.VK_NEXT);
+
         private static Spell lifeTap = new Spell(1454, ConstController.WindowsVirtualKey.K_T);
-        private static Spell healthstone = new Spell(1, ConstController.WindowsVirtualKey.K_B);
-        private static Spell soulSwapExhale = new Spell(86211, ConstController.WindowsVirtualKey.K_Ú);
-        private static Spell soulSwap = new Spell(2, ConstController.WindowsVirtualKey.K_E);
         public WarlockDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
             Console.WriteLine("Initialize Warlock Affliction DPS bot");
         }
