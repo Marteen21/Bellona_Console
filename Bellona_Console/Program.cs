@@ -63,9 +63,9 @@ namespace Bellona_Console {
                 WoWRaid wr = new WoWRaid(wow);
                 WoWParty wp = new WoWParty(wow);
                 WowPrinter.Print(wp, 1);
-                WowPrinter.Print(wr,1);
+                WowPrinter.Print(wr, 1);
                 WowPrinter.Print(TargetObject); //For debug
-                InitBotBasedonClass(args, PlayerObject.Unit.WowClass);
+                InitPvEBotBasedonClass(args, PlayerObject.Unit.WowClass);
                 bool temp = true;
                 while (temp) {
                     switch (Console.ReadKey().Key) {
@@ -93,7 +93,7 @@ namespace Bellona_Console {
             proci.Start();
             Environment.Exit(0);
         }
-        private static void InitBotBasedonClass(string[] args, WoWClass myclass) {
+        private static void InitPvPBotBasedonClass(string[] args, WoWClass myclass) {
             switch (myclass) {
                 case WoWClass.Druid:
                     DruidDPS mydbot = new DruidDPS(wow, clientInfo, 100);
@@ -116,7 +116,7 @@ namespace Bellona_Console {
                     MageFireDPS mymbot = new MageFireDPS(wow, clientInfo, 100);
                     break;
                 case WoWClass.Shaman:
-                    ShamanHeal mysbot = new ShamanHeal(wow, clientInfo, 100,1);
+                    ShamanHeal mysbot = new ShamanHeal(wow, clientInfo, 100, 1);
                     break;
                 case WoWClass.Priest:
                     PriestDiscHeal mypdbot = new PriestDiscHeal(wow, clientInfo, 200);
@@ -124,9 +124,31 @@ namespace Bellona_Console {
 
             }
         }
+        private static void InitPvEBotBasedonClass(string[] args, WoWClass myclass) {
+            switch (myclass) {
+                case WoWClass.Druid:
+                    DruidDPS mydbot = new DruidDPS(wow, clientInfo, 100);
+                    break;
+                case WoWClass.Warlock:
+                    WarlockDemoPVEDPS mywbot = new WarlockDemoPVEDPS(wow, clientInfo, 100, 1);
+                    break;
+                case WoWClass.DeathKnight:
+                    DeathKnightBloodDPS mydkbot = new DeathKnightBloodDPS(wow, clientInfo, 100);
+                    break;
+                case WoWClass.Paladin:
+                    PaladinDPS mypbot = new PaladinDPS(wow, clientInfo, 100);
+                    break;
+                case WoWClass.Mage:
+                    MageFirePVEDPS mymbot = new MageFirePVEDPS(wow, clientInfo, 100, 1);
+                    break;
+                case WoWClass.Shaman:
+                    ShamanHeal mysbot = new ShamanHeal(wow, clientInfo, 100, 1);
+                    break;
+                case WoWClass.Priest:
+                    PriestDiscHeal mypdbot = new PriestDiscHeal(wow, clientInfo, 200);
+                    break;
 
-
-
-
+            }
+        }
     }
 }

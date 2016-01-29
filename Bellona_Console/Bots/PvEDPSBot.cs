@@ -1,4 +1,5 @@
-﻿using Bellona_Console.MemoryReading;
+﻿using Bellona_Console.Controller;
+using Bellona_Console.MemoryReading;
 using Bellona_Console.Models;
 using Magic;
 using System;
@@ -32,13 +33,16 @@ namespace Bellona_Console.Bots {
             CurTarget = new GameObject(wow, this.wowinfo.TargetGUID);
             Focus = new GameObject(wow, this.wowinfo.FocusGUID);
             SetTarget();
-            if (CurTarget.GUID != 0) {
+            if (Target.GUID != 0) {
                 Rota();
             }
 
+
         }
         public virtual void Rota() {
-
+            if (wowinfo.TargetGUID != Target.GUID) {
+                SendKey.Send(ConstController.WindowsVirtualKey.VK_F6);
+            }
         }
         private void SetTarget() {
             if (Focus.Unit.TargetGUID != 0) {
