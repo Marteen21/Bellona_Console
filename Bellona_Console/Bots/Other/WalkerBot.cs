@@ -24,10 +24,19 @@ namespace Bellona_Console.Bots {
         private bool forward = false;
         private bool left = false;
         private bool right = false;
-        private WalkTargetType WhatToFollow;
+        private WalkTargetType whatToFollow;
         private float PositionThreshhold = 5;
         public static readonly double RotationThreshhold = 10 * Math.PI / 180;
 
+        public WalkTargetType WhatToFollow {
+            get {
+                return whatToFollow;
+            }
+
+            set {
+                whatToFollow = value;
+            }
+        }
 
         public WalkerBot(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt, WalkTargetType wtf, float posThreshhold) : base(tt) {
             this.wow = wowProcess;

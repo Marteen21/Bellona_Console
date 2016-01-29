@@ -32,7 +32,7 @@ namespace Bellona_Console.Bots {
             Player = new GameObject(wow, this.wowinfo.PlayerGUID);
             CurTarget = new GameObject(wow, this.wowinfo.TargetGUID);
             Focus = new GameObject(wow, this.wowinfo.FocusGUID);
-            SetTarget();
+            SetTargetBeta();
             if (Target.GUID != 0) {
                 Rota();
             }
@@ -41,7 +41,12 @@ namespace Bellona_Console.Bots {
         }
         public virtual void Rota() {
             if (wowinfo.TargetGUID != Target.GUID) {
-                SendKey.Send(ConstController.WindowsVirtualKey.VK_F6);
+                if (Target.GUID == Focus.GUID) {
+                    SendKey.Send(ConstController.WindowsVirtualKey.VK_F7);
+                }
+                else {
+                    SendKey.Send(ConstController.WindowsVirtualKey.VK_F6);
+                }
             }
         }
         private void SetTarget() {
@@ -50,6 +55,14 @@ namespace Bellona_Console.Bots {
             }
             else {
                 Target = new GameObject(wow,(UInt64) this.wowinfo.TargetGUID);
+            }
+        }
+        private void SetTargetBeta() {
+            if (Focus.Unit.TargetGUID != 0) {
+                Target = new GameObject(wow, (UInt64)this.Focus.Unit.TargetGUID);
+            }
+            else {
+                Target = new GameObject(wow, (UInt64)this.wowinfo.FocusGUID);
             }
         }
     }
