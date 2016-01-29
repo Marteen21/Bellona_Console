@@ -18,6 +18,7 @@ namespace Bellona_Console.Bots.HealBots {
         Spell greaterhw = new Spell(0, ConstController.WindowsVirtualKey.VK_F12);
         Spell hw = new Spell(0, ConstController.WindowsVirtualKey.VK_F11);
         Spell natureswiftness = new Spell(0, ConstController.WindowsVirtualKey.VK_F9);
+        Spell chainheal = new Spell(0, ConstController.WindowsVirtualKey.VK_F10);
         private WalkerBot focusfollow;
 
         public ShamanHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
@@ -52,6 +53,9 @@ namespace Bellona_Console.Bots.HealBots {
             }
             if (this.Target.Unit.GetHealthPercent() < 10) {
                 natureswiftness.SendCast();
+            }
+            if (this.NumberofLowHPPartyMembers >= 3) {
+                chainheal.SendCast();
             }
 
 
