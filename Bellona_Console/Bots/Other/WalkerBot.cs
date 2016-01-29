@@ -64,9 +64,11 @@ namespace Bellona_Console.Bots {
                     }
                     else if (mydiff<0) {
                         SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
+                        SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
                     }
                     else if (mydiff>0) {
                         SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_RIGHT, ref right);
+                        SendKey.KeyUp(ConstController.WindowsVirtualKey.VK_LEFT, ref left);
                     }
                 }
                 else if (forward || left || right) {
