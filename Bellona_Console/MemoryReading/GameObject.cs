@@ -94,6 +94,7 @@ namespace Bellona_Console.MemoryReading {
             this.DescriptorArrayAddress = other.DescriptorArrayAddress;
             this.BuffBigArrayAddress = other.BuffBigArrayAddress;
             this.BuffSmallArrayAddress = other.BuffSmallArrayAddress;
+            this.Unit = new WoWUnit();
         }
         public GameObject(BlackMagic w, UIntPtr baddr) {
             try {
@@ -103,6 +104,7 @@ namespace Bellona_Console.MemoryReading {
                 this.BuffBigArrayAddress = (UIntPtr)w.ReadUInt((uint)this.BaseAddress + (uint)ConstOffsets.ObjectManager.LocalBuffBigArray) + 0x4;
                 this.BuffSmallArrayAddress = (UIntPtr)((uint)this.BaseAddress + (uint)ConstOffsets.ObjectManager.LocalBuffSmallArray);
                 this.MovementArrayAddress = (UIntPtr)w.ReadUInt((uint)this.BaseAddress + (uint)ConstOffsets.ObjectManager.LocalMovementArray);
+                this.Unit = new WoWUnit();
             }
             catch {
                 Program.WowPrinter.Print(ConstStrings.GameObjectConstructorError);

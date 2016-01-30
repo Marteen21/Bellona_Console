@@ -51,6 +51,7 @@
     <Compile Include="Bots\BunkoBot.cs" />
     <Compile Include="Bots\Bot.cs" />
     <Compile Include="Bots\ComplexBot.cs" />
+    <Compile Include="Bots\ComplexBots\TestBot.cs" />
     <Compile Include="Bots\DPSBots\DeathKnightBloodDPS.cs" />
     <Compile Include="Bots\DPSBots\DeathKnightBloodTank.cs" />
     <Compile Include="Bots\DPSBot.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Models\WowModels\WoWParty.cs" />
     <Compile Include="Models\WowModels\WoWRaid.cs" />
     <Compile Include="Models\WowModels\WoWUnit.cs" />
+    <Compile Include="Other\Angles.cs" />
     <Compile Include="Other\MovementFlags.cs" />
     <Compile Include="Other\Vector3.cs" />
     <Compile Include="Program.cs" />
@@ -109,6 +111,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
