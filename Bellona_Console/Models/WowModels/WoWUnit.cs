@@ -260,7 +260,7 @@ namespace Bellona_Console.Models {
 
         #endregion
         public WoWUnit() {
-
+            this.MovingInfo = new MovementFlags(0);
         }
         public WoWUnit(BlackMagic w, GameObject go) {
             this.Refresh(w, go);
