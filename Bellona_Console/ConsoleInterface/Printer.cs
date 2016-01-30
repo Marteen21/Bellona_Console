@@ -1,5 +1,6 @@
 ﻿using Bellona_Console.MemoryReading;
 using Bellona_Console.Models;
+using Bellona_Console.Other;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,13 @@ namespace Bellona_Console.ConsoleInterface {
                 Console.WriteLine("".PadLeft(padleft) + "0x{0:X16}",i);
             }
         }
+        public void Print(MovementFlags mf, int padleft) {
+            Type type = mf.GetType();
+            PropertyInfo[] properties = type.GetProperties();
+            foreach (PropertyInfo property in properties) {
+                Console.WriteLine("".PadLeft(padleft) + (property.Name.ToString().PadRight(Paddistance) + property.GetValue(mf, null)));
+            }
+        }
         public void Print(WoWUnit u) {
             Type type = u.GetType();
             PropertyInfo[] properties = type.GetProperties();
@@ -67,6 +75,7 @@ namespace Bellona_Console.ConsoleInterface {
             foreach (PropertyInfo property in properties) {
                     Console.WriteLine(property.Name.ToString().PadRight(Paddistance) + property.GetValue(u, null));
             }
+            Print(u.MovingInfo,0);
             Print(u.Buffs, 3);
         }
         public void Print(WoWUnit u, int padleft) {
@@ -75,6 +84,7 @@ namespace Bellona_Console.ConsoleInterface {
             foreach (PropertyInfo property in properties) {
                 Console.WriteLine("".PadLeft(padleft)+(property.Name.ToString().PadRight(Paddistance) + property.GetValue(u, null)));
             }
+            Print(u.MovingInfo, padleft);
             Print(u.Buffs,2*padleft);
         }
         public void Print(WoWRaid r, int padleft) {
