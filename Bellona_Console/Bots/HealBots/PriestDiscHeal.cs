@@ -1,4 +1,5 @@
-﻿using Bellona_Console.Models;
+﻿using Bellona_Console.Bots.Other;
+using Bellona_Console.Models;
 using Magic;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,7 @@ namespace Bellona_Console.Bots.HealBots {
                 if (Player.GUID == Target.GUID) {
                     fade.SendCast();
                 }
-                if (Player.Unit.IsMoving) {
+                if (Player.Unit.MovingInfo.IsMoving) {
                     renew.ReCast(wowinfo, Target.Unit);
                     if (Target.Unit.HasBuff(PowerWordShield.ID) && !Target.Unit.HasBuff(6788)) {
                         PowerWordShield.SendCast();
@@ -48,7 +49,7 @@ namespace Bellona_Console.Bots.HealBots {
                 if (Target.Unit.HasBuff(PowerWordShield.ID) && !Target.Unit.HasBuff(6788)) {
                     PowerWordShield.SendCast();
                 }
-                if (!Player.Unit.IsMoving) {
+                if (!Player.Unit.MovingInfo.IsMoving) {
                     penance.SendCast();
                     heal.SendCast();
                 }
@@ -58,7 +59,7 @@ namespace Bellona_Console.Bots.HealBots {
                 if (Target.Unit.HasBuff(PowerWordShield.ID) && !Target.Unit.HasBuff(6788)) {
                     PowerWordShield.SendCast();
                 }
-                if (!Player.Unit.IsMoving) {
+                if (!Player.Unit.MovingInfo.IsMoving) {
                     penance.SendCast();
                     flashheal.SendCast();
                 }

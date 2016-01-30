@@ -73,7 +73,6 @@ namespace Bellona_Console.Models {
         private uint secondaryPower;
         private uint faction;
         private UInt64 targetGUID;
-        private bool isMoving = false;
         private MovementFlags movingInfo; 
         private bool isInCombat = false;
         private Vector3 position = new Vector3();
@@ -170,16 +169,6 @@ namespace Bellona_Console.Models {
                 secondaryPower = value;
             }
         }
-        public bool IsMoving {
-            get {
-                return isMoving;
-            }
-
-            set {
-                isMoving = value;
-            }
-        }
-
         public uint HolyPower {
             get {
                 return holyPower;
@@ -290,7 +279,6 @@ namespace Bellona_Console.Models {
                 this.SecondaryPower = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.SecondaryPower);
                 this.MovingInfo = new MovementFlags(w.ReadByte((uint)go.MovementArrayAddress + (uint)ConstOffsets.Movements.IsMoving8));
                 this.HolyPower = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.HolyPower);
-                this.IsMoving = w.ReadByte((uint)go.MovementArrayAddress + (uint)ConstOffsets.Movements.IsMoving8) != 0x00;
                 this.Faction = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.Faction);
                 this.TargetGUID = w.ReadUInt64((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.TargetGUID);
                 //byte temp = w.ReadByte((uint)go.BuffSmallArrayAddress + (uint)ConstOffsets.Descriptors.IsinCombat);

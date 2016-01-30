@@ -30,7 +30,7 @@ namespace Bellona_Console.Bots {
             if ((!this.Target.Unit.HasBuff(scorch.ID) && !this.wowinfo.SpellIsPending) || (this.Player.Unit.GetManaPercent()<50)){
                 scorch.SendCast();
             }
-            if (this.Player.Unit.IsMoving) {
+            if (this.Player.Unit.MovingInfo.IsMoving) {
                 if (!this.wowinfo.SpellIsPending) {
                     scorch.SendCast();
                 }

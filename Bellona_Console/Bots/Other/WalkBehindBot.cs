@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bellona_Console.Bots {
+namespace Bellona_Console.Bots.Other {
 
     public class WalkBehindBot : Bot {
         protected BlackMagic wow;

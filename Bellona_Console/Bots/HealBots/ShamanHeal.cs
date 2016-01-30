@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bellona_Console.Controller;
+using Bellona_Console.Bots.Other;
 
 namespace Bellona_Console.Bots.HealBots {
     class ShamanHeal : HealPartyBot {

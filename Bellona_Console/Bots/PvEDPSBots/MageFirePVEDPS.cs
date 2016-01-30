@@ -6,8 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bellona_Console.Controller;
+using Bellona_Console.Bots.Other;
 
-namespace Bellona_Console.Bots {
+namespace Bellona_Console.Bots.PvEDPSBots {
     class MageFirePVEDPS : PvEDPSBot {
 
         private DoT livingBomb = new DoT(44457, ConstController.WindowsVirtualKey.K_6);
@@ -36,7 +37,7 @@ namespace Bellona_Console.Bots {
             if ((!this.Target.Unit.HasBuff(scorch.ID) && !this.wowinfo.SpellIsPending) || (this.Player.Unit.GetManaPercent() < 50 && !this.wowinfo.SpellIsPending)) {
                 scorch.SendCast();
             }
-            if (this.Player.Unit.IsMoving) {
+            if (this.Player.Unit.MovingInfo.IsMoving) {
                 if (!this.wowinfo.SpellIsPending) {
                     scorch.SendCast();
                 }

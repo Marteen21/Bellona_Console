@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bellona_Console.Bots {
+namespace Bellona_Console.Bots.Other {
     [Flags]
     public enum WalkTargetType : uint {
         CurrentTarget = 0,
@@ -54,7 +54,7 @@ namespace Bellona_Console.Bots {
             setWalkTarget(out WalkTarget);
             if (WalkTarget.GUID != 0) {
                 if (Vector3.Distance(Player.Unit.Position, WalkTarget.Unit.Position) > PositionThreshhold) {
-                    if (!forward || !Player.Unit.IsMoving) {
+                    if (!forward || !Player.Unit.MovingInfo.IsMoving) {
                         SendKey.KeyDown(ConstController.WindowsVirtualKey.VK_UP, ref forward);
                     }
                     double mydiff = AngleDiff(Calculateangle(), Player.Unit.Rotation);

@@ -42,7 +42,7 @@ namespace Bellona_Console.Bots {
                 if (this.Focus.GUID != 0 && this.Focus.GUID != this.Target.GUID) {
                     WarlockDPS.soulSwapExhale.CastIfHasBuff(this.wowinfo, this.Player.Unit);
                 }
-                if (!this.Player.Unit.IsMoving) {
+                if (!this.Player.Unit.MovingInfo.IsMoving) {
                     if(!WarlockDPS.unstableAffliction.ReCast(this.wowinfo, this.Target.Unit)) {
                         WarlockDPS.haunt.SendCast();
                         WarlockDPS.curseoftheElements.ReCast(this.wowinfo, this.Target.Unit);
