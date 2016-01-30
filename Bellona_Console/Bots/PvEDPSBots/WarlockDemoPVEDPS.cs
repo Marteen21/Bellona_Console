@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bellona_Console.Bots.PvEDPSBots {
+namespace Bellona_Console.Bots.PVEDPSBots {
     class WarlockDemoPVEDPS : PvEDPSBot {
         private Spell shadowTrance = new Spell(17941, ConstController.WindowsVirtualKey.VK_NUMPAD0);
         private Spell moltenCore = new Spell(71165, ConstController.WindowsVirtualKey.VK_NUMPAD1);

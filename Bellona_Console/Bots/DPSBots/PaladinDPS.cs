@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bellona_Console.Controller;
 
-namespace Bellona_Console.Bots {
+namespace Bellona_Console.Bots.DPSBots {
     class PaladinDPS : DPSBot {
 
         private Spell might = new Spell(79102,ConstController.WindowsVirtualKey.K_6);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Bellona_Console.Controller;
 using Bellona_Console.Bots.Other;
 
-namespace Bellona_Console.Bots.PvEDPSBots {
+namespace Bellona_Console.Bots.PVEDPSBots {
     class DruidPVEDPS : PvEDPSBot {
 
         private DoT rake = new DoT(1822, ConstController.WindowsVirtualKey.K_2);

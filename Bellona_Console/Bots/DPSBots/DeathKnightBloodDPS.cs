@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bellona_Console.Bots {
+namespace Bellona_Console.Bots.DPSBots {
     class DeathKnightBloodDPS : DPSBot{
         private DoT frostFever = new DoT(55095, Controller.ConstController.WindowsVirtualKey.K_8);
         private DoT scarletFever = new DoT(81130, Controller.ConstController.WindowsVirtualKey.K_9);

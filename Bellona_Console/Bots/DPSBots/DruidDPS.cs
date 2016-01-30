@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bellona_Console.Controller;
 
-namespace Bellona_Console.Bots {
+namespace Bellona_Console.Bots.DPSBots {
     class DruidDPS : DPSBot {
 
         private static DoT rake = new DoT(1822, ConstController.WindowsVirtualKey.K_2);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Bellona_Console.Controller;
 using Bellona_Console.Bots.Other;
 
-namespace Bellona_Console.Bots.PvEDPSBots {
+namespace Bellona_Console.Bots.PVEDPSBots {
     class MageFirePVEDPS : PvEDPSBot {
 
         private DoT livingBomb = new DoT(44457, ConstController.WindowsVirtualKey.K_6);

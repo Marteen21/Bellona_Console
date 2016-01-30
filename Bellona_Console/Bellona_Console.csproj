@@ -65,10 +65,10 @@
     <Compile Include="Bots\Other\WalkBehindBot.cs" />
     <Compile Include="Bots\Other\WalkerBot.cs" />
     <Compile Include="Bots\PvEDPSBot.cs" />
-    <Compile Include="Bots\PvEDPSBots\DruidPVEDPS.cs" />
-    <Compile Include="Bots\PvEDPSBots\MageFirePVEDPS.cs" />
-    <Compile Include="Bots\PvEDPSBots\PaladinPVEDPS.cs" />
-    <Compile Include="Bots\PvEDPSBots\WarlockDemoPVEDPS.cs" />
+    <Compile Include="Bots\PVEDPSBots\DruidPVEDPS.cs" />
+    <Compile Include="Bots\PVEDPSBots\MageFirePVEDPS.cs" />
+    <Compile Include="Bots\PVEDPSBots\PaladinPVEDPS.cs" />
+    <Compile Include="Bots\PVEDPSBots\WarlockDemoPVEDPS.cs" />
     <Compile Include="Bots\DPSBots\WarlockDPS.cs" />
     <Compile Include="ConsoleInterface\ConstStrings.cs" />
     <Compile Include="ConsoleInterface\Error.cs" />

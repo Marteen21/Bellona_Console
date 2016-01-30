@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bellona_Console.Controller;
 
-namespace Bellona_Console.Bots {
+namespace Bellona_Console.Bots.DPSBots {
     class MageFireDPS : DPSBot {
 
         private DoT livingBomb = new DoT(44457, ConstController.WindowsVirtualKey.K_6);
