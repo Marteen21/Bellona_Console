@@ -18,42 +18,43 @@ namespace Bellona_Console.Bots {
         private DoT shred = new DoT(58180, ConstController.WindowsVirtualKey.K_1);
         private Spell prowl = new Spell(5215);
         private Spell mark = new Spell(79061, ConstController.WindowsVirtualKey.K_B);
-        private WalkerBot followBot;
+        private WalkBehindBot followBot;
 
         public DruidPVEDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
             Console.WriteLine("Initialize Druid Feral(cat) PVE DPS bot");
         }
         public DruidPVEDPS(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt, uint walkerTimerInterval) : base(wowProcess, globalinfo, tt) {
             Console.WriteLine("Initialize Druid Feral(cat) PVE walker DPS bot");
-            followBot = new WalkerBot(this.wow, this.wowinfo, walkerTimerInterval, WalkTargetType.CurrentTarget, 5);
+            followBot = new WalkBehindBot(this.wow, this.wowinfo, walkerTimerInterval, WalkTargetType.CurrentTarget, 1);
         }
 
         public override void Rota() {
-
-            if (!Player.Unit.HasBuff(mark.ID) && Player.Unit.Shapeshift == ShapeshiftForm.Normal) {
-                mark.SendCast();
-            }
-
-           
-            if (Player.Unit.Shapeshift == ShapeshiftForm.Cat) {
-                if (!Player.Unit.HasBuff(prowl.ID)) {
-                    rake.ReCast(this.wowinfo, this.Target.Unit);
-                    mangle.ReCast(this.wowinfo, this.Target.Unit);
-                    FF.ReCast(this.wowinfo, this.Target.Unit);
-                    if (this.wowinfo.ComboPoints == 5) {
-                        rip.ReCast(this.wowinfo, this.Target.Unit);
-                    }
-                    // savage fasz meg a másik
-                    if (this.Player.Unit.SecondaryPower > 60) {
-                        shred.SendCast();
-                    }
-                }
-                else {
-                    pounce.SendCast();
+            base.Rota();
+            if (this.wowinfo.FocusGUID != this.wowinfo.TargetGUID) {
+                if (!Player.Unit.HasBuff(mark.ID) && Player.Unit.Shapeshift == ShapeshiftForm.Normal) {
+                    mark.SendCast();
                 }
 
-            }
 
+                if (Player.Unit.Shapeshift == ShapeshiftForm.Cat) {
+                    if (!Player.Unit.HasBuff(prowl.ID)) {
+                        rake.ReCast(this.wowinfo, this.Target.Unit);
+                        mangle.ReCast(this.wowinfo, this.Target.Unit);
+                        FF.ReCast(this.wowinfo, this.Target.Unit);
+                        if (this.wowinfo.ComboPoints == 5) {
+                            rip.ReCast(this.wowinfo, this.Target.Unit);
+                        }
+                        // savage fasz meg a másik
+                        if (this.Player.Unit.SecondaryPower > 60) {
+                            shred.SendCast();
+                        }
+                    }
+                    else {
+                        pounce.SendCast();
+                    }
+
+                }
+            }
         }
 
     }

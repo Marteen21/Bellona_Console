@@ -65,8 +65,8 @@ namespace Bellona_Console {
                 WowPrinter.Print(wp, 1);
                 WowPrinter.Print(wr, 1);
                 WowPrinter.Print(TargetObject); //For debug
-                WalkBehindBot kutya = new WalkBehindBot(wow, clientInfo, 100, WalkTargetType.CurrentTarget, 1);
-                //InitPvEBotBasedonClass(args, PlayerObject.Unit.WowClass);
+                //WalkBehindBot kutya = new WalkBehindBot(wow, clientInfo, 100, WalkTargetType.CurrentTarget, 1);
+                InitPvEBotBasedonClass(args, PlayerObject.Unit.WowClass);
                 bool temp = true;
                 while (temp) {
                     switch (Console.ReadKey().Key) {
