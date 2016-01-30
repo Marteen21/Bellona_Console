@@ -55,7 +55,13 @@ namespace Bellona_Console.Bots.HealBots {
                 natureswiftness.SendCast();
             }
             if (this.NumberofLowHPPartyMembers >= 3) {
-                chainheal.SendCast();
+                if (this.Player.Unit.HasBuff(tidalwaves.ID)) {
+                    greaterhw.SendCast();
+                }
+                else {
+                    chainheal.SendCast();
+                }
+                
             }
 
 
