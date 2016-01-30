@@ -89,6 +89,7 @@
     <Compile Include="Models\WoWParty.cs" />
     <Compile Include="Models\WoWRaid.cs" />
     <Compile Include="Models\WoWUnit.cs" />
+    <Compile Include="Other\MovementFlags.cs" />
     <Compile Include="Other\Vector3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

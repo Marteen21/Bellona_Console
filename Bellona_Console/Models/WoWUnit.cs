@@ -57,7 +57,7 @@ namespace Bellona_Console.Models {
     public enum BuffStorage {
         Unkown = 0,
         SmallArray = 1,
-        BigArray =2,
+        BigArray = 2,
     }
     #endregion
     public class WoWUnit {
@@ -74,6 +74,8 @@ namespace Bellona_Console.Models {
         private uint faction;
         private UInt64 targetGUID;
         private bool isMoving = false;
+        private MovementFlags movingInfo; 
+        private bool isInCombat = false;
         private Vector3 position = new Vector3();
         private double rotation;
         private List<uint> buffs = new List<uint>();
@@ -246,6 +248,25 @@ namespace Bellona_Console.Models {
             }
         }
 
+        public bool IsInCombat {
+            get {
+                return isInCombat;
+            }
+
+            set {
+                isInCombat = value;
+            }
+        }
+
+        internal MovementFlags MovingInfo {
+            get {
+                return movingInfo;
+            }
+
+            set {
+                movingInfo = value;
+            }
+        }
 
 
         #endregion
@@ -253,7 +274,7 @@ namespace Bellona_Console.Models {
 
         }
         public WoWUnit(BlackMagic w, GameObject go) {
-            this.Refresh(w,go);
+            this.Refresh(w, go);
         }
         public void Refresh(BlackMagic w, GameObject go) {
             try {
@@ -267,22 +288,24 @@ namespace Bellona_Console.Models {
                 this.Power = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.Power);
                 this.MaxPower = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.MaxPower);
                 this.SecondaryPower = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.SecondaryPower);
+                this.MovingInfo = new MovementFlags(w.ReadByte((uint)go.MovementArrayAddress + (uint)ConstOffsets.Movements.IsMoving8));
                 this.HolyPower = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.HolyPower);
-                this.IsMoving = w.ReadByte((uint)go.MovementArrayAddress+(uint)ConstOffsets.Movements.IsMoving8) != 0x00;
+                this.IsMoving = w.ReadByte((uint)go.MovementArrayAddress + (uint)ConstOffsets.Movements.IsMoving8) != 0x00;
                 this.Faction = w.ReadUInt((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.Faction);
                 this.TargetGUID = w.ReadUInt64((uint)go.DescriptorArrayAddress + (uint)ConstOffsets.Descriptors.TargetGUID);
-
+                //byte temp = w.ReadByte((uint)go.BuffSmallArrayAddress + (uint)ConstOffsets.Descriptors.IsinCombat);
+                this.IsInCombat = (w.ReadByte((w.ReadUInt((uint)go.BaseAddress + (uint)ConstOffsets.Movements.IsinCombatOffset1)) + (uint)ConstOffsets.Movements.IsinCombatOffset2+2)& 0x8)!=0;
                 this.position.X = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.X);
                 this.position.Y = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Y);
                 this.position.Z = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Z);
                 float temprot = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Rotation);
                 if (temprot > Math.PI) {
-                    this.Rotation = -(2*Math.PI - temprot);
+                    this.Rotation = -(2 * Math.PI - temprot);
                 }
                 else {
                     this.Rotation = temprot;
                 }
-                this.RefreshBuffs(w,go);
+                this.RefreshBuffs(w, go);
             }
             catch {
                 Program.WowPrinter.Print(ConstStrings.ReadError);
@@ -305,8 +328,8 @@ namespace Bellona_Console.Models {
                     break;
                 }
             }
-            
-            
+
+
         }
         private bool FillBuffsList(BlackMagic w, GameObject go) {
             uint addr = 0;
@@ -323,7 +346,7 @@ namespace Bellona_Console.Models {
                     break;
             }
             try {
-                while (temp != 0 && temp< 121820) {
+                while (temp != 0 && temp < 121820) {
                     temp = w.ReadUInt(addr + (0x08 * i));
                     i++;
                     if (temp != 0 && temp < 121820) {
@@ -352,14 +375,14 @@ namespace Bellona_Console.Models {
         }
         public bool HasBuffs(List<uint> buffidlist) {
             foreach (uint buffid in buffidlist) {
-                if (!this.Buffs.Contains(buffid)){
+                if (!this.Buffs.Contains(buffid)) {
                     return false;
                 }
             }
             return true;
         }
         public uint GetHealthPercent() {
-            return ((100*Health) / maxHealth);
+            return ((100 * Health) / maxHealth);
         }
         public uint GetManaPercent() {
             return ((100 * Power) / MaxPower);

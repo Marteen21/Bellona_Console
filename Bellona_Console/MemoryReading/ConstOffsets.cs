@@ -19,6 +19,8 @@ namespace Bellona_Console.MemoryReading {
         }
         internal enum Movements : uint {
             IsMoving8 = 0x38,
+            IsinCombatOffset1 = 0xF8,
+            IsinCombatOffset2 = 0xB4,
         }
         internal enum Globals : uint {
             SpellCooldDownPtr = 0xACD714,
@@ -89,7 +91,7 @@ namespace Bellona_Console.MemoryReading {
             MaxPower = 0x74,
             TargetGUID = 0x40,
             ShapeShift = 0x1C7,
-            Faction = 0xB4
+            Faction = 0xB4,
         }
         internal enum RaidMembers : uint {
              TotalNumber=0xB3407C,
