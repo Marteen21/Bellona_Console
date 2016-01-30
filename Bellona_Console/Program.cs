@@ -20,6 +20,7 @@ namespace Bellona_Console {
         private static BlackMagic wow;
         private static Printer wowPrinter = new Printer();
         private static WoWGlobal clientInfo;
+        public static string[] myargs;
 
         #region propertys
         public static BlackMagic Wow {
@@ -45,6 +46,7 @@ namespace Bellona_Console {
         #endregion
 
         static void Main(string[] args) {
+            myargs = args;
             WowPrinter.Print(ConstStrings.WelcomeMessage);
             if (args.Length > 0) {
                 PROCESS_WINDOW_TITLE = args[0].ToString();  //If has arguments then connect to that window, not default
@@ -82,7 +84,7 @@ namespace Bellona_Console {
             }
 
         }
-        private static void RestartApp(string[] args) {
+        public static void RestartApp(string[] args) {
             System.Diagnostics.Process proci = new System.Diagnostics.Process();
             proci.StartInfo.FileName = Assembly.GetExecutingAssembly().Location;
             if (args.Length == 2) {
@@ -134,7 +136,7 @@ namespace Bellona_Console {
                     WarlockDemoPVEDPS mywbot = new WarlockDemoPVEDPS(wow, clientInfo, 100, 1);
                     break;
                 case WoWClass.DeathKnight:
-                    DeathKnightBloodDPS mydkbot = new DeathKnightBloodDPS(wow, clientInfo, 100);
+                    DeathKnightBloodTank mydkbot = new DeathKnightBloodTank(wow, clientInfo, 100);
                     break;
                 case WoWClass.Paladin:
                     PaladinPVEDPS mypbot = new PaladinPVEDPS(wow, clientInfo, 100,1);

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 namespace Bellona_Console.ConsoleInterface {
     class Error {
         public static ConsoleColor Color = ConsoleColor.Red;
+        public static uint ErrorCount = 0;
+
         string msg;
         #region propertys
 

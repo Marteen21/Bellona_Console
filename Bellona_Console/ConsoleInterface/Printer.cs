@@ -27,6 +27,11 @@ namespace Bellona_Console.ConsoleInterface {
             Console.ForegroundColor = Error.Color;
             Console.WriteLine(("Error " + "\"" +  e.Msg + "\""));
             Console.ForegroundColor = Message.Color;
+            Error.ErrorCount++;
+            if (Error.ErrorCount > 100) {
+                Error.ErrorCount = 0;
+                Program.RestartApp(Program.myargs);
+            }
         }
         public void Print(Message m) {
             Console.WriteLine(m.Msg);
