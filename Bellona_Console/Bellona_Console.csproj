@@ -52,7 +52,7 @@
     <Compile Include="Bots\Bot.cs" />
     <Compile Include="Bots\ComplexBot.cs" />
     <Compile Include="Bots\DPSBots\DeathKnightBloodDPS.cs" />
-    <Compile Include="Bots\DPSBots\DeathKnightUnholyDPS.cs" />
+    <Compile Include="Bots\DPSBots\DeathKnightBloodTank.cs" />
     <Compile Include="Bots\DPSBot.cs" />
     <Compile Include="Bots\DPSBots\DruidDPS.cs" />
     <Compile Include="Bots\DPSBots\MageFireDPS.cs" />
