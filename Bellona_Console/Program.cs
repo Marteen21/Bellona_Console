@@ -1,4 +1,5 @@
 ﻿using Bellona_Console.Bots;
+using Bellona_Console.Bots.DPSBots;
 using Bellona_Console.Bots.HealBots;
 using Bellona_Console.Bots.PvEDPSBots;
 using Bellona_Console.ConsoleInterface;
@@ -123,6 +124,9 @@ namespace Bellona_Console {
                     break;
                 case WoWClass.Priest:
                     PriestDiscHeal mypdbot = new PriestDiscHeal(wow, clientInfo, 200);
+                    break;
+                case WoWClass.Warrior:
+                    WarriTank mypwbot = new WarriTank(wow, clientInfo, 100);
                     break;
 
             }

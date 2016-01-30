@@ -57,6 +57,7 @@
     <Compile Include="Bots\DPSBots\DruidDPS.cs" />
     <Compile Include="Bots\DPSBots\MageFireDPS.cs" />
     <Compile Include="Bots\DPSBots\PaladinDPS.cs" />
+    <Compile Include="Bots\DPSBots\WarriTank.cs" />
     <Compile Include="Bots\HealBots\PriestDiscHeal.cs" />
     <Compile Include="Bots\HealBots\ShamanHeal.cs" />
     <Compile Include="Bots\HealPartyBot.cs" />
