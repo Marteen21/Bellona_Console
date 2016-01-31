@@ -16,9 +16,15 @@ namespace Bellona_Console.Bots.DPSBots {
         Spell defensivestance = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD0);
         Spell commandingshout = new Spell(469, ConstController.WindowsVirtualKey.VK_NUMPAD1);
         Spell devastate = new Spell(0, ConstController.WindowsVirtualKey.K_4);
-        Spell demoralizingshout = new Spell(1160, ConstController.WindowsVirtualKey.K_5);
+        Spell demoralizingshout = new Spell(1160, ConstController.WindowsVirtualKey.VK_NUMPAD9);
         Spell tunderclap = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD3);
         Spell shockwave = new Spell(87096, ConstController.WindowsVirtualKey.K_C);
+        Spell shieldblock = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD4);
+        Spell laststandmacro = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD5);
+        Spell shieldwall = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD6);
+        Spell berserkerage = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD7);
+        Spell cleave = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD2);
+        Spell retaliation = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD8);
 
 
         public WarriTank(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
@@ -29,6 +35,21 @@ namespace Bellona_Console.Bots.DPSBots {
             if (this.Player.Unit.Shapeshift != ShapeshiftForm.DefensiveStance) {
                 defensivestance.SendCast();
             }
+            if (this.Player.Unit.IsInCombat) {
+                berserkerage.SendCast();
+                retaliation.SendCast();
+            }
+            if (this.Player.Unit.GetHealthPercent() < 30) {
+                laststandmacro.SendCast();
+            }
+            if (this.Player.Unit.GetHealthPercent() < 50) {
+                shieldwall.SendCast();
+            }
+            if (this.Player.Unit.GetHealthPercent() < 80) {
+                shieldblock.SendCast();
+            }
+            
+
             if (!this.Player.Unit.HasBuff(commandingshout.ID)) {
                 commandingshout.SendCast();
             }
