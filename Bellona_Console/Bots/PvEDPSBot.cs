@@ -42,12 +42,10 @@ namespace Bellona_Console.Bots {
         public virtual void Rota() {
             if (wowinfo.TargetGUID != Target.GUID) {
                 if (Target.GUID == wowinfo.FocusGUID) {
-                    SendKey.Send(ConstController.WindowsVirtualKey.VK_F7);
-                    Console.WriteLine("Targeting FOCUS");
+                    SendKey.Send(ConstController.WindowsVirtualKey.VK_F7);                    
                 }
                 else {
-                    SendKey.Send(ConstController.WindowsVirtualKey.VK_F6);
-                    Console.WriteLine("Targeting DISZNO");
+                    SendKey.Send(ConstController.WindowsVirtualKey.VK_F6);          
                 }
             }
         }
