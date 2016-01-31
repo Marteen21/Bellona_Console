@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bellona_Console.MemoryReading;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,6 +72,9 @@ namespace Bellona_Console.Other {
         /// A unit <see cref="Vector3"/> designating backward in a left-handed coordinate system (0, 0, -1).
         /// </summary>
         public static readonly Vector3 BackwardLH = new Vector3(0.0f, 0.0f, -1.0f);
+
+        public static readonly float BehindScale = -3;
+
 
         /// <summary>
         /// The X component of the vector.
@@ -149,6 +153,13 @@ namespace Bellona_Console.Other {
             float z = 0;
             
             return (float)Math.Sqrt((x * x) + (y * y) + (z * z));
+        }
+        public static Vector3 Behindtarget(GameObject target) {
+            return new Vector3(
+                target.Unit.Position.X + (float)Math.Cos(target.Unit.Rotation) * BehindScale,
+                target.Unit.Position.Y + (float)Math.Sin(target.Unit.Rotation) * BehindScale,
+                target.Unit.Position.Z);
+
         }
     }
 }
