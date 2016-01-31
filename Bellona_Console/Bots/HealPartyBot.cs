@@ -79,10 +79,10 @@ namespace Bellona_Console.Bots {
             else {
                 for (int i = 0; i < this.Party.Party.Count; i++) {
                     GameObject temp2Object = new GameObject(wow, Party.Party[i]);
-                    if (temp2Object.Unit.GetHealthPercent() < HealthForAoeHeal) {
+                    if (temp2Object.Unit.GetHealthPercent() < HealthForAoeHeal && temp2Object.Unit.Health!=0) {
                         NumberofLowHPPartyMembers++;
                     }
-                    if (Vector3.Distance(Player.Unit.Position, temp2Object.Unit.Position) < 40 && GameObject.HPMin(ref tempObject, temp2Object)) {
+                    if (Vector3.Distance(Player.Unit.Position, temp2Object.Unit.Position) < 40 && GameObject.HPMin(ref tempObject, temp2Object) && temp2Object.Unit.Health!=0) {
                         result = (PartyMembers)i + 1;
                     }
                 }

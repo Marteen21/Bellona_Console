@@ -64,7 +64,9 @@ namespace Bellona_Console.Bots.DPSBots {
                 demoralizingshout.SendCast();
             }
             devastate.SendCast();
-
+            if (this.Player.Unit.GetManaPercent() < 50) {
+                cleave.SendCast();
+            }
 
         }
 

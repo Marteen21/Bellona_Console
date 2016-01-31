@@ -41,6 +41,7 @@ namespace Bellona_Console.Bots.HealBots {
             if (!this.Focus.Unit.HasBuff(earthshild.ID) && this.Focus.GUID !=0) {
                 earthshild.SendCast();
             }
+            
             if (this.Target.Unit.GetHealthPercent() < 95) {
                 riptide.SendCast();
             }
