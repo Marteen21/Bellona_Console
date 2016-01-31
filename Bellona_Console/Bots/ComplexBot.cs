@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using Bellona_Console.MemoryReading;
+using Bellona_Console.Models.Other;
 
 namespace Bellona_Console.Bots {
     [Flags]
@@ -21,11 +22,13 @@ namespace Bellona_Console.Bots {
         FollowTargetBack = 6,
         Idle = 7,
         Halt = 8,
+        CCMarker = 9,
     }
     class ComplexBot {
         #region Constants
         public static readonly double RangedDPSRange = 28;
         public static readonly double MeleeDPSRange = 4;
+        public static readonly double BackDPSRange = 1;
         public static readonly double FollowFocusStartRange = 10;
         public static readonly double FollowFocusStopRange = 3;
 
@@ -96,7 +99,7 @@ namespace Bellona_Console.Bots {
                 return playerDPStype;
             }
             else {
-                if (Program.ClientInfo.Markers.CrossGUID == focus.GUID) {   //AOE STANCE
+                if (Program.ClientInfo.Markers.getGUIDByMarkerType(MarkerType.cross) == focus.GUID) {   //AOE STANCE
                     return ComplexBotStance.AoEAtFocus;
                 }
                 else if (focus.Unit.TargetGUID != 0) {
@@ -133,6 +136,9 @@ namespace Bellona_Console.Bots {
                 case ComplexBotStance.Halt:
                     HaltMovement();
                     break;
+                case ComplexBotStance.DpsTargetBackMelee:
+                    DpsTargetBackMeleeMovement();
+                    break;
                 default:
                     throw new NotImplementedException("The selected stance is not yet supported by Complexbot");
             }
@@ -164,10 +170,12 @@ namespace Bellona_Console.Bots {
         }
         protected virtual void DpsTargetBackMeleeMovement() {
             if (target.GUID != 0) {
-                if (WalkingTowards(player.Unit, Vector3.Behindtarget(target), MeleeDPSRange)) {
+                if (WalkingTowards(player.Unit, Vector3.Behindtarget(target), BackDPSRange)) {
                     RotateTowards(player.Unit, target.Unit, MeleeDPSAngle, true);//In Range
                 }
-                RotateTowards(player.Unit, Vector3.Behindtarget(target), MeleeDPSAngle, false);//Not in range
+                else {
+                    RotateTowards(player.Unit, Vector3.Behindtarget(target), MeleeDPSAngle, false);//Not in range
+                }
             }
         }
         protected virtual void FollowTargetMovement() {
@@ -181,6 +189,9 @@ namespace Bellona_Console.Bots {
         }
         protected virtual void HaltMovement() {
             Halt(player.Unit);
+        }
+        protected virtual void CCMarker(MarkerType mt, List<uint> ccspellids) {
+            
         }
         #endregion
         #region MovementControlling

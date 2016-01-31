@@ -166,7 +166,9 @@ namespace Bellona_Console {
                 case WoWClass.Priest:
                     PriestDiscHeal mypdbot = new PriestDiscHeal(wow, ClientInfo, 200);
                     break;
-
+                case WoWClass.Rogue:
+                    RogueComplex myrbot = new RogueComplex(100, 100);
+                    break;
             }
         }
     }

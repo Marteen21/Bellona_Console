@@ -51,6 +51,7 @@
     <Compile Include="Bots\BunkoBot.cs" />
     <Compile Include="Bots\Bot.cs" />
     <Compile Include="Bots\ComplexBot.cs" />
+    <Compile Include="Bots\ComplexBots\RogueComplex.cs" />
     <Compile Include="Bots\ComplexBots\TestBot.cs" />
     <Compile Include="Bots\ComplexBots\WarlockDemoComplex.cs" />
     <Compile Include="Bots\DPSBots\DeathKnightBloodDPS.cs" />
