@@ -23,6 +23,7 @@ namespace Bellona_Console.MemoryReading {
             IsinCombatOffset2 = 0xB4,
         }
         internal enum Globals : uint {
+            Markers = 0xB33EF8,
             SpellCooldDownPtr = 0xACD714,
             PlayerName = 0x9BE820,
             CurrentRealm = 0x9BE9AE,

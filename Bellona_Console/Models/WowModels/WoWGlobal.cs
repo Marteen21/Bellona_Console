@@ -1,5 +1,6 @@
 ﻿using Bellona_Console.ConsoleInterface;
 using Bellona_Console.MemoryReading;
+using Bellona_Console.Models.Other;
 using Magic;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bellona_Console.Models {
+
     public class WoWGlobal {
         private UInt64 playerGUID;
         private UInt64 targetGUID;
@@ -15,6 +17,7 @@ namespace Bellona_Console.Models {
         private byte comboPoints;
         private byte runes;
         private bool spellIsPending;
+        private MarkerGUIDs markers;
         #region properties
         public ulong PlayerGUID {
             get {
@@ -65,6 +68,16 @@ namespace Bellona_Console.Models {
                 spellIsPending = value;
             }
         }
+
+        public MarkerGUIDs Markers {
+            get {
+                return markers;
+            }
+
+            set {
+                markers = value;
+            }
+        }
         #endregion
         public WoWGlobal(BlackMagic w) {
             this.Refresh(w);
@@ -77,6 +90,7 @@ namespace Bellona_Console.Models {
                 this.ComboPoints = w.ReadByte((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.ComboPoints);
                 this.SpellIsPending = !(w.ReadByte((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.SpellIsPending) == 0);
                 this.runes = w.ReadByte((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.Runes);
+                this.Markers = new MarkerGUIDs(w.ReadBytes((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.Globals.Markers,64));
             }
             catch {
                 Program.WowPrinter.Print(ConstStrings.ReadError);

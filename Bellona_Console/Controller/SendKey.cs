@@ -43,20 +43,20 @@ namespace Bellona_Console.Controller {
             //}
             state = false;
         }
-        public static void KeyDown(ConstController.WindowsVirtualKey Key, bool state) {
-            if (state) {
+        public static void KeyDown(ConstController.WindowsVirtualKey Key, bool state, ref bool mystate) {
+            if (state || mystate) {
                 IntPtr Handle = FindWindow(null, Program.PROCESS_WINDOW_TITLE);
                 PostMessage(Handle, WM_KEYDOWN, (int)Key, 0);
             }
-            state = true;
+            mystate = true;
 
         }
-        public static void KeyUp(ConstController.WindowsVirtualKey Key, bool state) {
-            if (state) {
+        public static void KeyUp(ConstController.WindowsVirtualKey Key, bool state, ref bool mystate) {
+            if (state || mystate) {
                 IntPtr Handle = FindWindow(null, Program.PROCESS_WINDOW_TITLE);
                 PostMessage(Handle, WM_KEYUP, (int)Key, 0);
             }
-            state = false;
+            mystate = false;
         }
     }
 }

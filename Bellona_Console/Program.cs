@@ -1,4 +1,5 @@
 ﻿using Bellona_Console.Bots;
+using Bellona_Console.Bots.ComplexBots;
 using Bellona_Console.Bots.DPSBots;
 using Bellona_Console.Bots.HealBots;
 using Bellona_Console.Bots.PVEDPSBots;
@@ -44,6 +45,16 @@ namespace Bellona_Console {
             }
         }
 
+        public static WoWGlobal ClientInfo {
+            get {
+                return clientInfo;
+            }
+
+            set {
+                clientInfo = value;
+            }
+        }
+
         #endregion
 
         static void Main(string[] args) {
@@ -59,17 +70,18 @@ namespace Bellona_Console {
             }
             else {
                 //Init success
-                clientInfo = new WoWGlobal(wow);
-                WowPrinter.Print(clientInfo);
-                GameObject PlayerObject = new GameObject(wow, (UInt64)clientInfo.PlayerGUID);
-                GameObject TargetObject = new GameObject(wow, (UInt64)clientInfo.TargetGUID);
+                ClientInfo = new WoWGlobal(wow);
+                WowPrinter.Print(ClientInfo);
+                GameObject PlayerObject = new GameObject(wow, (UInt64)ClientInfo.PlayerGUID);
+                GameObject TargetObject = new GameObject(wow, (UInt64)ClientInfo.TargetGUID);
                 WoWRaid wr = new WoWRaid(wow);
                 WoWParty wp = new WoWParty(wow);
                 WowPrinter.Print(wp, 1);
                 WowPrinter.Print(wr, 1);
                 WowPrinter.Print(TargetObject); //For debug
-                                                //WalkBehindBot kutya = new WalkBehindBot(wow, clientInfo, 100, WalkTargetType.CurrentTarget, 1);
-                InitPvPBotBasedonClass(args, PlayerObject.Unit.WowClass);
+                //TestBot tb = new TestBot(100,100, ComplexBotStance.DpsTargetRanged);
+                //WalkBehindBot kutya = new WalkBehindBot(wow, clientInfo, 100, WalkTargetType.CurrentTarget, 1);
+                InitPvEBotBasedonClass(args, PlayerObject.Unit.WowClass);
                 bool temp = true;
                 while (temp) {
                     switch (Console.ReadKey().Key) {
@@ -100,33 +112,33 @@ namespace Bellona_Console {
         private static void InitPvPBotBasedonClass(string[] args, WoWClass myclass) {
             switch (myclass) {
                 case WoWClass.Druid:
-                    DruidDPS mydbot = new DruidDPS(wow, clientInfo, 100);
+                    DruidDPS mydbot = new DruidDPS(wow, ClientInfo, 100);
                     break;
                 case WoWClass.Warlock:
                     if (args.Length > 1) {
-                        WarlockDemoPVEDPS mywbot = new WarlockDemoPVEDPS(wow, clientInfo, 100, 1);
+                        WarlockDemoPVEDPS mywbot = new WarlockDemoPVEDPS(wow, ClientInfo, 100, 1);
                     }
                     else {
-                        WarlockDPS mywbot = new WarlockDPS(wow, clientInfo, 100);
+                        WarlockDPS mywbot = new WarlockDPS(wow, ClientInfo, 100);
                     }
                     break;
                 case WoWClass.DeathKnight:
-                    DeathKnightBloodDPS mydkbot = new DeathKnightBloodDPS(wow, clientInfo, 100);
+                    DeathKnightBloodDPS mydkbot = new DeathKnightBloodDPS(wow, ClientInfo, 100);
                     break;
                 case WoWClass.Paladin:
-                    PaladinDPS mypbot = new PaladinDPS(wow, clientInfo, 100);
+                    PaladinDPS mypbot = new PaladinDPS(wow, ClientInfo, 100);
                     break;
                 case WoWClass.Mage:
-                    MageFireDPS mymbot = new MageFireDPS(wow, clientInfo, 100);
+                    MageFireDPS mymbot = new MageFireDPS(wow, ClientInfo, 100);
                     break;
                 case WoWClass.Shaman:
-                    ShamanHeal mysbot = new ShamanHeal(wow, clientInfo, 100, 1);
+                    ShamanHeal mysbot = new ShamanHeal(wow, ClientInfo, 100, 1);
                     break;
                 case WoWClass.Priest:
-                    PriestDiscHeal mypdbot = new PriestDiscHeal(wow, clientInfo, 200);
+                    PriestDiscHeal mypdbot = new PriestDiscHeal(wow, ClientInfo, 200);
                     break;
                 case WoWClass.Warrior:
-                    WarriTank mypwbot = new WarriTank(wow, clientInfo, 100);
+                    WarriTank mypwbot = new WarriTank(wow, ClientInfo, 100);
                     break;
 
             }
@@ -134,25 +146,25 @@ namespace Bellona_Console {
         private static void InitPvEBotBasedonClass(string[] args, WoWClass myclass) {
             switch (myclass) {
                 case WoWClass.Druid:
-                    DruidPVEDPS mydbot = new DruidPVEDPS(wow, clientInfo, 100,1);
+                    DruidPVEDPS mydbot = new DruidPVEDPS(wow, ClientInfo, 100, 1);
                     break;
                 case WoWClass.Warlock:
-                    WarlockDemoPVEDPS mywbot = new WarlockDemoPVEDPS(wow, clientInfo, 100, 1);
+                    WarlockDemoComplex mywbot = new WarlockDemoComplex(100, 100);
                     break;
                 case WoWClass.DeathKnight:
-                    DeathKnightBloodTank mydkbot = new DeathKnightBloodTank(wow, clientInfo, 100);
+                    DeathKnightBloodTank mydkbot = new DeathKnightBloodTank(wow, ClientInfo, 100);
                     break;
                 case WoWClass.Paladin:
-                    PaladinPVEDPS mypbot = new PaladinPVEDPS(wow, clientInfo, 100,1);
+                    PaladinPVEDPS mypbot = new PaladinPVEDPS(wow, ClientInfo, 100, 1);
                     break;
                 case WoWClass.Mage:
-                    MageFirePVEDPS mymbot = new MageFirePVEDPS(wow, clientInfo, 100, 1);
+                    MageFirePVEDPS mymbot = new MageFirePVEDPS(wow, ClientInfo, 100, 1);
                     break;
                 case WoWClass.Shaman:
-                    ShamanHeal mysbot = new ShamanHeal(wow, clientInfo, 100, 1);
+                    ShamanHeal mysbot = new ShamanHeal(wow, ClientInfo, 100, 1);
                     break;
                 case WoWClass.Priest:
-                    PriestDiscHeal mypdbot = new PriestDiscHeal(wow, clientInfo, 200);
+                    PriestDiscHeal mypdbot = new PriestDiscHeal(wow, ClientInfo, 200);
                     break;
 
             }

@@ -370,9 +370,15 @@ namespace Bellona_Console.Models {
             return true;
         }
         public uint GetHealthPercent() {
+            if(Health ==0 || maxHealth == 0) {
+                return 0;
+            }
             return ((100 * Health) / maxHealth);
         }
         public uint GetManaPercent() {
+            if (Power == 0 || maxPower == 0) {
+                return 0;
+            }
             return ((100 * Power) / MaxPower);
         }
 

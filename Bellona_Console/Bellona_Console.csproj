@@ -52,6 +52,7 @@
     <Compile Include="Bots\Bot.cs" />
     <Compile Include="Bots\ComplexBot.cs" />
     <Compile Include="Bots\ComplexBots\TestBot.cs" />
+    <Compile Include="Bots\ComplexBots\WarlockDemoComplex.cs" />
     <Compile Include="Bots\DPSBots\DeathKnightBloodDPS.cs" />
     <Compile Include="Bots\DPSBots\DeathKnightBloodTank.cs" />
     <Compile Include="Bots\DPSBot.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="MemoryReading\GameObject.cs" />
     <Compile Include="MemoryReading\Initializer.cs" />
     <Compile Include="MemoryReading\ConstOffsets.cs" />
+    <Compile Include="Models\Other\MarkerGUIDs.cs" />
     <Compile Include="Models\Spells\Curse.cs" />
     <Compile Include="Models\Spells\DKRunicPowerSpell.cs" />
     <Compile Include="Models\Spells\DoT.cs" />
