@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Bellona_Console.Controller;
 using Bellona_Console.Bots.Other;
 
-namespace Bellona_Console.Bots.PVEDPSBots {
+namespace Bellona_Console.Bots.ComplexBots {
     class PaladinRetriComplex : ComplexBot {
 
         //private Spell might = new Spell(79102, ConstController.WindowsVirtualKey.K_6);
@@ -22,10 +22,14 @@ namespace Bellona_Console.Bots.PVEDPSBots {
         private Spell hammer = new Spell(31884, ConstController.WindowsVirtualKey.VK_NUMPAD6);//avenging wrath buff alat ingyen lehet tolni
         //private Spell repetance = new Spell(0, ConstController.WindowsVirtualKey.VK_F7);
 
-        public PaladinRetriComplex(uint rotaInterval, uint movementInterval) : base(rotaInterval, movementInterval, ComplexBotStance.DpsTargetMelee) {
+        public PaladinRetriComplex(uint rotaInterval, uint movementInterval) : base(rotaInterval, movementInterval, ComplexBotStance.DpsTargetBackMelee) {
             Console.WriteLine("paladin complex bot");
         }
-
+        protected override void MovementEvent(object source) {
+            base.MovementEvent(source);
+            this.stance = base.SetStance();
+            base.MoveBasedOnStance(this.stance);
+        }
         protected override void RotaEvent(object source) {
             if (stance==ComplexBotStance.DpsTargetMelee || stance==ComplexBotStance.AoEAtFocus) {
 
