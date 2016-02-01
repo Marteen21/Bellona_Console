@@ -1,4 +1,5 @@
-﻿using Bellona_Console.MemoryReading;
+﻿using Bellona_Console.Controller;
+using Bellona_Console.MemoryReading;
 using Bellona_Console.Models;
 using Magic;
 using System;
@@ -22,22 +23,8 @@ namespace Bellona_Console.Bots.Other {
         }
 
         public override void BotEvent(Object source) {
-            this.ticks++;
-            PrintToConsoleAt(("Refreshing Global info " + this.ticks), 1);
-            wowinfo.Refresh(wow);
-            PrintToConsoleAt(("Refreshing Player Unit info " + this.ticks), 2);
-            Player.RefreshUnit(wow);
-            if (Target.GUID != wowinfo.TargetGUID) {
-                PrintToConsoleAt(("Target changed " + this.ticks), 3);
-                Target = new GameObject(wow, this.wowinfo.TargetGUID);
-            }
-            if (Target.GUID == 0) {
-                PrintToConsoleAt(("No target " + this.ticks), 4);
-            }
-            else {
-                PrintToConsoleAt(("Refreshing Target Unit info " + this.ticks), 5);
-                Target.RefreshUnit(wow);
-            }
+            SendKey.Send(ConstController.WindowsVirtualKey.VK_MBUTTON);
+            SendKey.Send(ConstController.WindowsVirtualKey.VK_NUMPAD6);
         }
         private void PrintToConsoleAt(string str, int ctop) {
             Console.WriteLine(str);

@@ -22,7 +22,7 @@ namespace Bellona_Console.Bots.DPSBots {
         private Spell HornofWinter = new Spell(57330, Controller.ConstController.WindowsVirtualKey.VK_PRIOR);
         private Spell BloodPresence = new Spell(48263, Controller.ConstController.WindowsVirtualKey.VK_NEXT);
         public DeathKnightBloodTank(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
-            Console.WriteLine("Initialize Death Knight Unholy DPS bot");
+            Console.WriteLine("Initialize Death Knight Blood Tank bot");
         }
         public override void Rota() {
             if (!Player.Unit.HasBuff(HornofWinter.ID)) {
@@ -43,6 +43,9 @@ namespace Bellona_Console.Bots.DPSBots {
             }
             else {
                 hearthStrike.CastIfHasRunesFor(this.wowinfo);
+            }
+            if(Player.Unit.Power > 60) {
+                RuneStrike.SendCast();
             }
         }
 

@@ -2,6 +2,7 @@
 using Bellona_Console.Bots.ComplexBots;
 using Bellona_Console.Bots.DPSBots;
 using Bellona_Console.Bots.HealBots;
+using Bellona_Console.Bots.Other;
 using Bellona_Console.Bots.PVEDPSBots;
 using Bellona_Console.ConsoleInterface;
 using Bellona_Console.Controller;
@@ -82,6 +83,9 @@ namespace Bellona_Console {
                 //TestBot tb = new TestBot(100,100, ComplexBotStance.DpsTargetRanged);
                 //WalkBehindBot kutya = new WalkBehindBot(wow, clientInfo, 100, WalkTargetType.CurrentTarget, 1);
                 InitPvEBotBasedonClass(args, PlayerObject.Unit.WowClass);
+                //SendKey.Rect pos =SendKey.GetWoWPosition();
+                //SendKey.SetCursorPos((pos.Right-pos.Left)/2, (pos.Bottom - pos.Top) / 2);
+                //StressTester asd = new StressTester(Wow, ClientInfo, 100);
                 bool temp = true;
                 while (temp) {
                     switch (Console.ReadKey().Key) {
@@ -164,7 +168,7 @@ namespace Bellona_Console {
                     ShamanHeal mysbot = new ShamanHeal(wow, ClientInfo, 100, 1);
                     break;
                 case WoWClass.Priest:
-                    PriestDiscHeal mypdbot = new PriestDiscHeal(wow, ClientInfo, 200);
+                    PriestDiscHeal mypdbot = new PriestDiscHeal(wow, ClientInfo, 100, 1);
                     break;
                 case WoWClass.Rogue:
                     RogueComplex myrbot = new RogueComplex(100, 100);

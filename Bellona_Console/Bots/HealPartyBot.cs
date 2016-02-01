@@ -70,7 +70,7 @@ namespace Bellona_Console.Bots {
             tempObject = new GameObject(wow, (UInt64)wowinfo.PlayerGUID);
             NumberofLowHPPartyMembers = 0;
             uint playerhp = tempObject.Unit.GetHealthPercent();
-            if (playerhp < HealthForAoeHeal) {
+            if (playerhp < HealthForAoeHeal && playerhp!=0) {
                 NumberofLowHPPartyMembers++;
             }
             if (playerhp < HealthForSelfishHeal) {

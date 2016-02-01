@@ -14,7 +14,7 @@ namespace Bellona_Console.Models {
 
         }
         public virtual bool ReCast(WoWGlobal wowinfo, WoWUnit unit) {
-            if (!unit.HasBuff(this.ID) && !wowinfo.SpellIsPending) {
+            if (!unit.HasBuff(this.ID) /*&& !wowinfo.SpellIsPending*/) {
                 this.SendCast();
                 return true;
             }
