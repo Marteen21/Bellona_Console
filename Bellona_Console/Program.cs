@@ -150,7 +150,7 @@ namespace Bellona_Console {
         private static void InitPvEBotBasedonClass(string[] args, WoWClass myclass) {
             switch (myclass) {
                 case WoWClass.Druid:
-                    DruidPVEDPS mydbot = new DruidPVEDPS(wow, ClientInfo, 100, 1);
+                    DruidFeralComplex mydbot = new DruidFeralComplex(100, 2);
                     break;
                 case WoWClass.Warlock:
                     WarlockDemoComplex mywbot = new WarlockDemoComplex(100, 100);
@@ -159,10 +159,10 @@ namespace Bellona_Console {
                     DeathKnightBloodTank mydkbot = new DeathKnightBloodTank(wow, ClientInfo, 100);
                     break;
                 case WoWClass.Paladin:
-                    PaladinPVEDPS mypbot = new PaladinPVEDPS(wow, ClientInfo, 100, 1);
+                    PaladinRetriComplex mypbot = new PaladinRetriComplex(100, 2);
                     break;
                 case WoWClass.Mage:
-                    MageFirePVEDPS mymbot = new MageFirePVEDPS(wow, ClientInfo, 100, 1);
+                    MageFireComplex mymbot = new MageFireComplex( 100, 20);
                     break;
                 case WoWClass.Shaman:
                     ShamanHeal mysbot = new ShamanHeal(wow, ClientInfo, 100, 1);
