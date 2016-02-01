@@ -169,6 +169,9 @@ namespace Bellona_Console {
                 case WoWClass.Rogue:
                     RogueComplex myrbot = new RogueComplex(100, 100);
                     break;
+                case WoWClass.Warrior:
+                    WarriTank mypwbot = new WarriTank(wow, ClientInfo, 100);
+                    break;
             }
         }
     }
