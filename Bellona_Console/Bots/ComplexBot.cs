@@ -29,8 +29,8 @@ namespace Bellona_Console.Bots {
         public static readonly double RangedDPSRange = 28;
         public static readonly double MeleeDPSRange = 4;
         public static readonly double BackDPSRange = 1;
-        public static readonly double FollowFocusStartRange = 10;
-        public static readonly double FollowFocusStopRange = 3;
+        public static readonly double FollowFocusStartRange = 20;
+        public static readonly double FollowFocusStopRange = 5;
 
         public static readonly double RangedDPSAngle = Math.PI * 0.4;
         public static readonly double MeleeDPSAngle = Math.PI * 0.06;
