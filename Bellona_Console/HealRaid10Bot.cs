@@ -47,6 +47,7 @@ namespace Bellona_Console {
         }
         public virtual void Rota() {
             WhatToTarget = FindLowestRaidMember(out this.Target);
+            Console.WriteLine(WhatToTarget);
             switch (WhatToTarget) {
                 case (RaidMembers.RaidMember1):
                     SendKey.Send(ConstController.WindowsVirtualKey.VK_F2);
@@ -82,24 +83,24 @@ namespace Bellona_Console {
         }
         private RaidMembers FindLowestRaidMember(out GameObject tempObject) {
             RaidMembers result = RaidMembers.RaidMember1;
-            tempObject = new GameObject(wow, (UInt64)wowinfo.PlayerGUID);
+            tempObject = new GameObject(wow, Raid.RaidMembers[0]);
             NumberofLowHPRaidMembers = 0;
             uint playerhp = tempObject.Unit.GetHealthPercent();
             if (playerhp < HealthForAoeHeal && playerhp != 0) {
                 NumberofLowHPRaidMembers++;
             }
-            else {
-                for (int i = 0; i < this.Raid.RaidMembers.Count; i++) {
-                    GameObject temp2Object = new GameObject(wow, Raid.RaidMembers[i]);
-                    if (temp2Object.Unit.GetHealthPercent() < HealthForAoeHeal && temp2Object.Unit.Health != 0) {
-                        NumberofLowHPRaidMembers++;
-                    }
+            for (int i = 1; i < this.Raid.RaidMembers.Count; i++) {
+                GameObject temp2Object = new GameObject(wow, Raid.RaidMembers[i]);
+                if (temp2Object.Unit.GetHealthPercent() < HealthForAoeHeal && temp2Object.Unit.Health != 0) {
+                    NumberofLowHPRaidMembers++;
+                    //}
                     if (Vector3.Distance(Player.Unit.Position, temp2Object.Unit.Position) < 40 && GameObject.HPMin(ref tempObject, temp2Object) && temp2Object.Unit.Health != 0) {
-                        result = (RaidMembers)i + 1;
+                        result = (RaidMembers)i+1;
                     }
                 }
             }
             return result;
+
         }
     }
 }

@@ -22,11 +22,11 @@ namespace Bellona_Console.Bots.HealBots {
         private DoT drinking = new DoT(80167, ConstController.WindowsVirtualKey.VK_NUMPAD4);
         private WalkerBot followFocus;
         public PriestDiscRaid10Heal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healTimerInterval, uint walkerTimerInterval) : base(wowProcess, globalinfo, healTimerInterval) {
-            Console.WriteLine("Priest Beta Healing");
+            Console.WriteLine("Priest Beta 10 Healing");
             followFocus = new WalkerBot(this.wow, this.wowinfo, walkerTimerInterval, WalkTargetType.CurrentFocus, 10);
         }
         public PriestDiscRaid10Heal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healTimerInterval) : base(wowProcess, globalinfo, healTimerInterval) {
-            Console.WriteLine("Priest Beta Healing");
+            Console.WriteLine("Priest Beta 10 Healing");
         }
         public override void Rota() {
             base.Rota();
