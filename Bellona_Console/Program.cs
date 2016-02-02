@@ -80,9 +80,10 @@ namespace Bellona_Console {
                 WowPrinter.Print(wp, 1);
                 WowPrinter.Print(wr, 1);
                 WowPrinter.Print(TargetObject); //For debug
+                Other.Tester tst = new Other.Tester(wow, PlayerObject, 60);
                 //TestBot tb = new TestBot(100,100, ComplexBotStance.DpsTargetRanged);
                 //WalkBehindBot kutya = new WalkBehindBot(wow, clientInfo, 100, WalkTargetType.CurrentTarget, 1);
-                InitPvEBotBasedonClass(args, PlayerObject.Unit.WowClass);
+                //InitPvEBotBasedonClass(args, PlayerObject.Unit.WowClass);
                 //SendKey.Rect pos =SendKey.GetWoWPosition();
                 //SendKey.SetCursorPos((pos.Right-pos.Left)/2, (pos.Bottom - pos.Top) / 2);
                 //StressTester asd = new StressTester(Wow, ClientInfo, 100);
@@ -136,10 +137,10 @@ namespace Bellona_Console {
                     MageFireDPS mymbot = new MageFireDPS(wow, ClientInfo, 100);
                     break;
                 case WoWClass.Shaman:
-                    ShamanHeal mysbot = new ShamanHeal(wow, ClientInfo, 100, 1);
+                    ShamanRestoPartyHeal mysbot = new ShamanRestoPartyHeal(wow, ClientInfo, 100, 1);
                     break;
                 case WoWClass.Priest:
-                    PriestDiscHeal mypdbot = new PriestDiscHeal(wow, ClientInfo, 200);
+                    PriestDiscPartyHeal mypdbot = new PriestDiscPartyHeal(wow, ClientInfo, 200);
                     break;
                 case WoWClass.Warrior:
                     WarriTank mypwbot = new WarriTank(wow, ClientInfo, 100);
@@ -165,10 +166,20 @@ namespace Bellona_Console {
                     MageFireComplex mymbot = new MageFireComplex( 100, 20);
                     break;
                 case WoWClass.Shaman:
-                    ShamanHeal mysbot = new ShamanHeal(wow, ClientInfo, 100, 1);
+                    if (new WoWRaid(wow).Raidmembercount > 0) {
+                        ShamanRestoRaid10Heal mypdbot = new ShamanRestoRaid10Heal(wow, ClientInfo, 100, 1);
+                    }
+                    else {
+                        ShamanRestoPartyHeal mysbot = new ShamanRestoPartyHeal(wow, ClientInfo, 100, 1);
+                    }
                     break;
                 case WoWClass.Priest:
-                    PriestDiscHeal mypdbot = new PriestDiscHeal(wow, ClientInfo, 100, 1);
+                    if (new WoWRaid(wow).Raidmembercount > 0) {
+                        PriestDiscRaid10Heal mypdbot = new PriestDiscRaid10Heal(wow, ClientInfo, 100, 1);
+                    }
+                    else {
+                        PriestDiscPartyHeal mypdbot = new PriestDiscPartyHeal(wow, ClientInfo, 100, 1);
+                    }
                     break;
                 case WoWClass.Rogue:
                     RogueComplex myrbot = new RogueComplex(100, 100);

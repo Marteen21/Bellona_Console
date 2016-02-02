@@ -9,7 +9,7 @@ using Bellona_Console.Controller;
 using Bellona_Console.Bots.Other;
 
 namespace Bellona_Console.Bots.HealBots {
-    class ShamanHeal : HealPartyBot {
+    class ShamanRestoRaid10Heal : HealRaid10Bot {
 
         Spell watershild = new Spell(52127, ConstController.WindowsVirtualKey.K_6);
         Spell manatide = new Spell(0, ConstController.WindowsVirtualKey.K_7);
@@ -22,12 +22,12 @@ namespace Bellona_Console.Bots.HealBots {
         Spell chainheal = new Spell(0, ConstController.WindowsVirtualKey.VK_F10);
         private WalkerBot focusfollow;
 
-        public ShamanHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
+        public ShamanRestoRaid10Heal(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {
             Console.WriteLine("Initialize Shaman Resto Heal bot");
         }
-        public ShamanHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healinterval, uint walkerinterval) : base(wowProcess, globalinfo, healinterval) {
+        public ShamanRestoRaid10Heal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healinterval, uint walkerinterval) : base(wowProcess, globalinfo, healinterval) {
             Console.WriteLine("Initialize Shaman Resto Heal bot");
-            focusfollow = new WalkerBot(wow, wowinfo, walkerinterval, WalkTargetType.CurrentFocus,10);
+            focusfollow = new WalkerBot(wow, wowinfo, walkerinterval, WalkTargetType.CurrentFocus, 10);
         }
 
         public override void Rota() {
@@ -38,14 +38,14 @@ namespace Bellona_Console.Bots.HealBots {
             if (this.Player.Unit.GetManaPercent() < 50) {
                 manatide.SendCast();
             }
-            if (!this.Focus.Unit.HasBuff(earthshild.ID) && this.Focus.GUID !=0) {
+            if (!this.Focus.Unit.HasBuff(earthshild.ID) && this.Focus.GUID != 0) {
                 earthshild.SendCast();
             }
-            
+
             if (this.Target.Unit.GetHealthPercent() < 95) {
                 riptide.SendCast();
             }
-            if (this.Player.Unit.HasBuff(tidalwaves.ID) && this.Target.Unit.GetHealthPercent()<90 && !this.wowinfo.SpellIsPending ) {
+            if (this.Player.Unit.HasBuff(tidalwaves.ID) && this.Target.Unit.GetHealthPercent() < 90 && !this.wowinfo.SpellIsPending) {
                 if (this.Target.Unit.GetHealthPercent() < 30) {
                     greaterhw.SendCast();
                 }
@@ -56,14 +56,14 @@ namespace Bellona_Console.Bots.HealBots {
             if (this.Target.Unit.GetHealthPercent() < 10) {
                 natureswiftness.SendCast();
             }
-            if (this.NumberofLowHPPartyMembers >= 3) {
+            if (this.NumberofLowHPRaidMembers >= 3) {
                 if (this.Player.Unit.HasBuff(tidalwaves.ID)) {
                     greaterhw.SendCast();
                 }
                 else {
                     chainheal.SendCast();
                 }
-                
+
             }
 
 

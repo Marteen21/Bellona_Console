@@ -17,7 +17,7 @@ namespace Bellona_Console.MemoryReading {
                 }
                 Console.WriteLine("Process found...");
                 uint ObjMgrAddr = w.ReadUInt(w.ReadUInt((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.ObjectManager.CurMgrPointer) + (uint)ConstOffsets.ObjectManager.CurMgrOffset);
-                Console.WriteLine("Object Manager found...");
+                Console.WriteLine("Object Manager found... at x{0:X}",ObjMgrAddr);
                 FirstObject = new GameObject(w,(UIntPtr)w.ReadUInt(ObjMgrAddr + (uint)ConstOffsets.ObjectManager.FirstObject));
                 Console.WriteLine("First Object found...");
                 return true;
@@ -26,6 +26,10 @@ namespace Bellona_Console.MemoryReading {
             catch {
                 return false;
             }
+        }
+        public static void RefreshObjectMangaer(BlackMagic w) {
+            uint ObjMgrAddr = w.ReadUInt(w.ReadUInt((uint)w.MainModule.BaseAddress + (uint)ConstOffsets.ObjectManager.CurMgrPointer) + (uint)ConstOffsets.ObjectManager.CurMgrOffset);
+            FirstObject = new GameObject(w, (UIntPtr)w.ReadUInt(ObjMgrAddr + (uint)ConstOffsets.ObjectManager.FirstObject));
         }
 
     }

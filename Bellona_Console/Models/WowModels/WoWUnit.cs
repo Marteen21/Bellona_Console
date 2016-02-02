@@ -75,6 +75,8 @@ namespace Bellona_Console.Models {
         private UInt64 targetGUID;
         private MovementFlags movingInfo; 
         private bool isInCombat = false;
+        private uint castingSpellID;
+        private uint channelingSpellID;
         private Vector3 position = new Vector3();
         private double rotation;
         private List<uint> buffs = new List<uint>();
@@ -257,6 +259,26 @@ namespace Bellona_Console.Models {
             }
         }
 
+        public uint ChannelingSpellID {
+            get {
+                return channelingSpellID;
+            }
+
+            set {
+                channelingSpellID = value;
+            }
+        }
+
+        public uint CastingSpellID {
+            get {
+                return castingSpellID;
+            }
+
+            set {
+                castingSpellID = value;
+            }
+        }
+
 
         #endregion
         public WoWUnit() {
@@ -286,7 +308,12 @@ namespace Bellona_Console.Models {
                 this.position.X = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.X);
                 this.position.Y = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Y);
                 this.position.Z = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Z);
+
+                this.CastingSpellID = w.ReadUInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.IsCasting);
+                this.ChannelingSpellID = w.ReadUInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.ChanneledCasting);
+
                 float temprot = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Rotation);
+
                 if (temprot > Math.PI) {
                     this.Rotation = -(2 * Math.PI - temprot);
                 }

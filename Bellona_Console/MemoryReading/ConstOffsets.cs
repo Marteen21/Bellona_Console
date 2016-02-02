@@ -22,6 +22,10 @@ namespace Bellona_Console.MemoryReading {
             IsinCombatOffset1 = 0xF8,
             IsinCombatOffset2 = 0xB4,
         }
+        internal enum CastingInfo {
+            IsCasting = 0xA34,
+            ChanneledCasting = 0xA48,
+        }
         internal enum Globals : uint {
             Markers = 0xB33EF8,
             SpellCooldDownPtr = 0xACD714,

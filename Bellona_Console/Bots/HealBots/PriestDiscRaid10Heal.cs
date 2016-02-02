@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bellona_Console.Bots.HealBots {
-    class PriestDiscHeal : HealPartyBot {
+    class PriestDiscRaid10Heal : HealRaid10Bot {
         private Spell heal = new Spell(123, Controller.ConstController.WindowsVirtualKey.VK_NUMPAD0);
         private Spell flashHeal = new Spell(17, Controller.ConstController.WindowsVirtualKey.VK_NUMPAD1);
         private Spell greaterHeal = new Spell(17, Controller.ConstController.WindowsVirtualKey.VK_NUMPAD2);
@@ -19,23 +19,26 @@ namespace Bellona_Console.Bots.HealBots {
         private Spell powerWordShield = new Spell(17, Controller.ConstController.WindowsVirtualKey.VK_NUMPAD7);
         private DoT renew = new DoT(139, Controller.ConstController.WindowsVirtualKey.VK_NUMPAD8);
         private Spell prayerOfMending = new Spell(16, Controller.ConstController.WindowsVirtualKey.VK_NUMPAD9);
-        private DoT drinking = new DoT(80167,ConstController.WindowsVirtualKey.VK_NUMPAD4);
+        private DoT drinking = new DoT(80167, ConstController.WindowsVirtualKey.VK_NUMPAD4);
         private WalkerBot followFocus;
-        public PriestDiscHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healTimerInterval, uint walkerTimerInterval) : base(wowProcess, globalinfo, healTimerInterval) {
+        public PriestDiscRaid10Heal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healTimerInterval, uint walkerTimerInterval) : base(wowProcess, globalinfo, healTimerInterval) {
             Console.WriteLine("Priest Beta Healing");
             followFocus = new WalkerBot(this.wow, this.wowinfo, walkerTimerInterval, WalkTargetType.CurrentFocus, 10);
         }
-        public PriestDiscHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healTimerInterval) : base(wowProcess, globalinfo, healTimerInterval) {
+        public PriestDiscRaid10Heal(BlackMagic wowProcess, WoWGlobal globalinfo, uint healTimerInterval) : base(wowProcess, globalinfo, healTimerInterval) {
             Console.WriteLine("Priest Beta Healing");
         }
         public override void Rota() {
             base.Rota();
             uint targethealthpercent = Target.Unit.GetHealthPercent();
-            if (NumberofLowHPPartyMembers > 3) {
+            if (Player.Unit.ChannelingSpellID == penance.ID) {
+                return;
+            }
+            if (NumberofLowHPRaidMembers > 3) {
                 prayerofHealing.SendCast();
             }
             if (targethealthpercent > 93) {
-                if(!Player.Unit.IsInCombat && Player.Unit.GetManaPercent()<80) {
+                if (!Player.Unit.IsInCombat && Player.Unit.GetManaPercent() < 80) {
                     drinking.ReCast(wowinfo, Player.Unit);
                 }
             }
