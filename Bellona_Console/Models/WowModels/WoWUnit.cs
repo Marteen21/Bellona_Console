@@ -77,6 +77,7 @@ namespace Bellona_Console.Models {
         private bool isInCombat = false;
         private uint castingSpellID;
         private uint channelingSpellID;
+        private int balancePower;
         private Vector3 position = new Vector3();
         private double rotation;
         private List<uint> buffs = new List<uint>();
@@ -279,6 +280,16 @@ namespace Bellona_Console.Models {
             }
         }
 
+        public int BalancePower {
+            get {
+                return balancePower;
+            }
+
+            set {
+                balancePower = value;
+            }
+        }
+
 
         #endregion
         public WoWUnit() {
@@ -311,6 +322,7 @@ namespace Bellona_Console.Models {
 
                 this.CastingSpellID = w.ReadUInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.IsCasting);
                 this.ChannelingSpellID = w.ReadUInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.ChanneledCasting);
+                this.BalancePower = w.ReadInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.BalancePower);
 
                 float temprot = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Rotation);
 

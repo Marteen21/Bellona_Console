@@ -34,10 +34,7 @@ namespace Bellona_Console.Bots.HealBots {
             if (Player.Unit.ChannelingSpellID == penance.ID) {
                 return;
             }
-            if (NumberofLowHPRaidMembers > 3) {
-                prayerofHealing.SendCast();
-            }
-            if (targethealthpercent > 93) {
+            if (targethealthpercent > 95) {
                 if (!Player.Unit.IsInCombat && Player.Unit.GetManaPercent() < 80) {
                     drinking.ReCast(wowinfo, Player.Unit);
                 }

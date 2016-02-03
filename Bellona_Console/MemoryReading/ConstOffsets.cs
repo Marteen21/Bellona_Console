@@ -25,6 +25,7 @@ namespace Bellona_Console.MemoryReading {
         internal enum CastingInfo {
             IsCasting = 0xA34,
             ChanneledCasting = 0xA48,
+            BalancePower = 0x11DC,
         }
         internal enum Globals : uint {
             Markers = 0xB33EF8,

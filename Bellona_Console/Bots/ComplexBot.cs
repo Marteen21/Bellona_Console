@@ -28,7 +28,7 @@ namespace Bellona_Console.Bots {
         #region Constants
         public static readonly double RangedDPSRange = 28;
         public static readonly double MeleeDPSRange = 4;
-        public static readonly double BackDPSRange = 1;
+        public static readonly double BackDPSRange = 1.5;
         public static readonly double FollowFocusStartRange = 20;
         public static readonly double FollowFocusStopRange = 5;
 
@@ -74,7 +74,7 @@ namespace Bellona_Console.Bots {
         }
         protected virtual void RotaEvent(Object source) {
             throw new NotImplementedException();
-        } 
+        }
         #endregion
         protected virtual void RefreshGameObjects() {
             Program.ClientInfo.Refresh(Program.Wow);
@@ -145,8 +145,9 @@ namespace Bellona_Console.Bots {
         }
         #region DefaultMovements
         protected virtual void FollowFocusMovement() {
-            WalkingTowards(player.Unit, focus.Unit, FollowFocusStopRange);
-            RotateTowards(player.Unit, focus.Unit, FollowFocusAngle, false);
+            if (RotateTowards(player.Unit, focus.Unit, FollowFocusAngle, true)) {
+                WalkingTowards(player.Unit, focus.Unit, FollowFocusStopRange);
+            }
         }
         protected virtual void AoEAtFocusMovement() {
             WalkingTowards(player.Unit, focus.Unit, MeleeDPSRange);
@@ -191,7 +192,7 @@ namespace Bellona_Console.Bots {
             Halt(player.Unit);
         }
         protected virtual void CCMarker(MarkerType mt, List<uint> ccspellids) {
-            
+
         }
         #endregion
         #region MovementControlling

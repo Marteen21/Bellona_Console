@@ -178,7 +178,7 @@ namespace Bellona_Console {
                         PriestDiscRaid10Heal mypdbot = new PriestDiscRaid10Heal(wow, ClientInfo, 100, 50);
                     }
                     else {
-                        PriestDiscPartyHeal mypdbot = new PriestDiscPartyHeal(wow, ClientInfo, 100, 50);
+                        PriestDiscPartyHeal mypdbot = new PriestDiscPartyHeal(wow, ClientInfo, 100);
                     }
                     break;
                 case WoWClass.Rogue:
