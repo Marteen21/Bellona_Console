@@ -59,6 +59,11 @@ namespace Bellona_Console.Models {
         SmallArray = 1,
         BigArray = 2,
     }
+    [Flags]
+    public enum BalanceFlag {
+        Lunar = 0,
+        Solar = 1,
+    }
     #endregion
     public class WoWUnit {
         private WoWClass wowClass;
@@ -77,7 +82,8 @@ namespace Bellona_Console.Models {
         private bool isInCombat = false;
         private uint castingSpellID;
         private uint channelingSpellID;
-        private int balancePower;
+        //private int balancePower;
+        private BalanceFlag balanceStance;
         private Vector3 position = new Vector3();
         private double rotation;
         private List<uint> buffs = new List<uint>();
@@ -280,13 +286,13 @@ namespace Bellona_Console.Models {
             }
         }
 
-        public int BalancePower {
+        public BalanceFlag BalanceStance {
             get {
-                return balancePower;
+                return balanceStance;
             }
 
             set {
-                balancePower = value;
+                balanceStance = value;
             }
         }
 
@@ -322,8 +328,8 @@ namespace Bellona_Console.Models {
 
                 this.CastingSpellID = w.ReadUInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.IsCasting);
                 this.ChannelingSpellID = w.ReadUInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.ChanneledCasting);
-                this.BalancePower = w.ReadInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.BalancePower);
-
+                //this.BalancePower = w.ReadInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.BalancePower);
+                this.BalanceStance = (BalanceFlag)w.ReadUInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.BalanceState);
                 float temprot = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Rotation);
 
                 if (temprot > Math.PI) {
