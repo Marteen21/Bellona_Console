@@ -105,7 +105,7 @@ namespace Bellona_Console.Bots {
                 else if (focus.Unit.TargetGUID != 0) {
                     //Tank is targetting something
                     if (target.GUID != focus.Unit.TargetGUID) {
-                        SendKey.Send(ConstController.WindowsVirtualKey.VK_F6);//Change Target to FocusTarget
+                        SendKey.Send(ConstController.WindowsVirtualKey.VK_F12);//Change Target to FocusTarget
                     }
 
                     return this.playerDPStype;
