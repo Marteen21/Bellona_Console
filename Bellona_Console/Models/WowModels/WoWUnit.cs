@@ -329,7 +329,7 @@ namespace Bellona_Console.Models {
                 this.CastingSpellID = w.ReadUInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.IsCasting);
                 this.ChannelingSpellID = w.ReadUInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.ChanneledCasting);
                 //this.BalancePower = w.ReadInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.BalancePower);
-                this.BalanceStance = (BalanceFlag)w.ReadUInt((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.BalanceState);
+                this.BalanceStance = (BalanceFlag)(w.ReadByte((uint)go.BaseAddress + (uint)ConstOffsets.CastingInfo.BalanceState) & 0x01);
                 float temprot = w.ReadFloat((uint)go.BaseAddress + (uint)ConstOffsets.Positions.Rotation);
 
                 if (temprot > Math.PI) {
