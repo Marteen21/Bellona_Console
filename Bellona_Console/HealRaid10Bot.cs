@@ -47,7 +47,6 @@ namespace Bellona_Console {
         }
         public virtual void Rota() {
             WhatToTarget = FindLowestRaidMember(out this.Target);
-            Console.WriteLine(WhatToTarget);
             switch (WhatToTarget) {
                 case (RaidMembers.RaidMember1):
                     SendKey.Send(ConstController.WindowsVirtualKey.VK_F2);

@@ -167,18 +167,18 @@ namespace Bellona_Console {
                     break;
                 case WoWClass.Shaman:
                     if (new WoWRaid(wow).Raidmembercount > 0) {
-                        ShamanRestoRaid10Heal mypdbot = new ShamanRestoRaid10Heal(wow, ClientInfo, 100, 1);
+                        ShamanRestoRaid10Heal mypdbot = new ShamanRestoRaid10Heal(wow, ClientInfo, 100, 10);
                     }
                     else {
-                        ShamanRestoPartyHeal mysbot = new ShamanRestoPartyHeal(wow, ClientInfo, 100, 1);
+                        ShamanRestoPartyHeal mysbot = new ShamanRestoPartyHeal(wow, ClientInfo, 100, 10);
                     }
                     break;
                 case WoWClass.Priest:
                     if (new WoWRaid(wow).Raidmembercount > 0) {
-                        PriestDiscRaid10Heal mypdbot = new PriestDiscRaid10Heal(wow, ClientInfo, 100, 1);
+                        PriestDiscRaid10Heal mypdbot = new PriestDiscRaid10Heal(wow, ClientInfo, 100, 50);
                     }
                     else {
-                        PriestDiscPartyHeal mypdbot = new PriestDiscPartyHeal(wow, ClientInfo, 100, 1);
+                        PriestDiscPartyHeal mypdbot = new PriestDiscPartyHeal(wow, ClientInfo, 100, 50);
                     }
                     break;
                 case WoWClass.Rogue:
