@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Bellona_Console.Bots.ComplexBots {
     class DruidBalanceComplex : ComplexBot {
 
-        Spell mookin = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD0);
+        Spell moonkin = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD0);
         DoT moonfire = new DoT(8921, ConstController.WindowsVirtualKey.VK_NUMPAD1);
         DoT insectswarm = new DoT(5570, ConstController.WindowsVirtualKey.VK_NUMPAD2);
         Spell starsurge = new Spell(93400, ConstController.WindowsVirtualKey.VK_NUMPAD3);
@@ -40,27 +40,27 @@ namespace Bellona_Console.Bots.ComplexBots {
                     break;
                 case ComplexBotStance.DpsTargetRanged:
 
-                    if (this.player.Unit.GetHealthPercent() < 30) {
-                        barkskin.SendCast();
+                    //if (this.player.Unit.GetHealthPercent() < 30) {
+                    //    barkskin.SendCast();
+                    //}
+                    //if (this.player.Unit.GetManaPercent() < 60) {
+                    //    innervate.SendCast();
+                    //}
+                    if (this.player.Unit.Shapeshift != ShapeshiftForm.Moonkin && this.player.Unit.IsInCombat) {
+                        moonkin.SendCast();
                     }
-                    if (this.player.Unit.GetManaPercent() < 60) {
-                        innervate.SendCast();
-                    }
-                    if (this.player.Unit.Shapeshift != ShapeshiftForm.Moonkin) {
-                        mookin.SendCast();
-                    }
-                    if (this.target.Unit.CastingSpellID != 0) {
-                        solarbeam.SendCast();
-                    }
+                    //if (this.target.Unit.CastingSpellID != 0) {
+                    //    solarbeam.SendCast();
+                    //}
                     if (this.player.Unit.HasBuff(lunareclipse.ID)) {
                         starfall.SendCast();
                     }
                     insectswarm.ReCast(Program.ClientInfo, this.target.Unit);
-                    if (this.target.Unit.HasBuff(moonfire.ID) || this.target.Unit.HasBuff(solarfire.ID)) {
+                    if (!this.target.Unit.HasBuff(moonfire.ID) && !this.target.Unit.HasBuff(solarfire.ID)) {
                         moonfire.SendCast();
                     }
                     starsurge.SendCast();
-                    if (!Program.ClientInfo.SpellIsPending) {
+                    if (!Program.ClientInfo.SpellIsPending || this.player.Unit.CastingSpellID!=0) {
                         if (this.player.Unit.HasBuff(solareclipse.ID)) {
                             wrath.SendCast();
                         }
