@@ -61,11 +61,17 @@ namespace Bellona_Console.Bots.ComplexBots {
                     }
                     starsurge.SendCast();
                     if (!Program.ClientInfo.SpellIsPending) {
-                        if (this.player.Unit.BalanceStance == BalanceFlag.Solar) {
+                        if (this.player.Unit.HasBuff(solareclipse.ID)) {
                             wrath.SendCast();
                         }
-                        else {
+                        else if(this.player.Unit.HasBuff(solareclipse.ID)){
                             starfire.SendCast();
+                        }
+                        else if (player.Unit.BalancePower > 0) {
+                            starfire.SendCast();
+                        }
+                        else {
+                            wrath.SendCast();
                         }
                     }
                     break;
