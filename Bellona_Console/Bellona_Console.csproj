@@ -51,6 +51,7 @@
     <Compile Include="Bots\BunkoBot.cs" />
     <Compile Include="Bots\Bot.cs" />
     <Compile Include="Bots\ComplexBot.cs" />
+    <Compile Include="Bots\ComplexBots\DruidBalanceComplex.cs" />
     <Compile Include="Bots\ComplexBots\DruidFeralComplex.cs" />
     <Compile Include="Bots\ComplexBots\MageFireComplex.cs" />
     <Compile Include="Bots\ComplexBots\PaladinRetriComplex.cs" />

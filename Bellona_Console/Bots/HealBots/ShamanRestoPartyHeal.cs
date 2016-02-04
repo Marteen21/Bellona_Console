@@ -16,10 +16,10 @@ namespace Bellona_Console.Bots.HealBots {
         Spell earthshild = new Spell(974, ConstController.WindowsVirtualKey.K_8);
         Spell riptide = new Spell(0, ConstController.WindowsVirtualKey.K_9);
         Spell tidalwaves = new Spell(53390);
-        Spell greaterhw = new Spell(0, ConstController.WindowsVirtualKey.VK_F12);
-        Spell hw = new Spell(0, ConstController.WindowsVirtualKey.VK_F11);
-        Spell natureswiftness = new Spell(0, ConstController.WindowsVirtualKey.VK_F9);
-        Spell chainheal = new Spell(0, ConstController.WindowsVirtualKey.VK_F10);
+        Spell greaterhw = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD0);
+        Spell hw = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD1);
+        Spell natureswiftness = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD2);
+        Spell chainheal = new Spell(0, ConstController.WindowsVirtualKey.VK_NUMPAD3);
         private WalkerBot focusfollow;
 
         public ShamanRestoPartyHeal(BlackMagic wowProcess, WoWGlobal globalinfo, uint tt) : base(wowProcess, globalinfo, tt) {

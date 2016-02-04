@@ -31,7 +31,7 @@ namespace Bellona_Console.Bots.ComplexBots {
             base.MoveBasedOnStance(this.stance);
         }
         protected override void RotaEvent(object source) {
-            if (stance==ComplexBotStance.DpsTargetMelee || stance==ComplexBotStance.AoEAtFocus) {
+            if (stance==ComplexBotStance.DpsTargetBackMelee || stance==ComplexBotStance.AoEAtFocus) {
 
                 //repetance.SendCast();
                 if (this.player.Unit.GetManaPercent() < 50 && this.player.Unit.GetHealthPercent() > 70) {
