@@ -40,12 +40,12 @@ namespace Bellona_Console.Bots.ComplexBots {
                     break;
                 case ComplexBotStance.DpsTargetRanged:
 
-                    //if (this.player.Unit.GetHealthPercent() < 30) {
-                    //    barkskin.SendCast();
-                    //}
-                    //if (this.player.Unit.GetManaPercent() < 60) {
-                    //    innervate.SendCast();
-                    //}
+                    if (this.player.Unit.GetHealthPercent() < 30) {
+                        barkskin.SendCast();
+                    }
+                    if (this.player.Unit.GetManaPercent() < 60) {
+                        innervate.SendCast();
+                    }
                     if (this.player.Unit.Shapeshift != ShapeshiftForm.Moonkin && this.player.Unit.IsInCombat) {
                         moonkin.SendCast();
                     }
@@ -60,11 +60,11 @@ namespace Bellona_Console.Bots.ComplexBots {
                         moonfire.SendCast();
                     }
                     starsurge.SendCast();
-                    if (!Program.ClientInfo.SpellIsPending || this.player.Unit.CastingSpellID!=0) {
+                    if (!Program.ClientInfo.SpellIsPending || this.player.Unit.CastingSpellID==0) {
                         if (this.player.Unit.HasBuff(solareclipse.ID)) {
                             wrath.SendCast();
                         }
-                        else if(this.player.Unit.HasBuff(solareclipse.ID)){
+                        else if(this.player.Unit.HasBuff(lunareclipse.ID)){
                             starfire.SendCast();
                         }
                         else if (player.Unit.BalancePower > 0) {

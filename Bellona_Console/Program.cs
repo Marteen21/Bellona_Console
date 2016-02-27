@@ -84,7 +84,7 @@ namespace Bellona_Console {
                 //Other.Tester tst = new Other.Tester(wow, PlayerObject, 60);
                 //TestBot tb = new TestBot(100,100, ComplexBotStance.DpsTargetRanged);
                 //WalkBehindBot kutya = new WalkBehindBot(wow, clientInfo, 100, WalkTargetType.CurrentTarget, 1);
-                InitPvEBotBasedonClass(args, PlayerObject.Unit.WowClass);
+                InitPvPBotBasedonClass(args, PlayerObject.Unit.WowClass);
                 //SendKey.Rect pos =SendKey.GetWoWPosition();
                 //SendKey.SetCursorPos((pos.Right-pos.Left)/2, (pos.Bottom - pos.Top) / 2);
                 //StressTester asd = new StressTester(Wow, ClientInfo, 100);
